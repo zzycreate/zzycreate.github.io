@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>普通用户sudo权限问题 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,sudo">
+    <meta name="description" content="在虚拟机中安装一个ubuntu系统，执行一些sudo命令时出现 xxx is not in the sudoers file.This incident will be reported. 的提示.  切换到root用户下su - 切换root用户 添加sudo文件的写权限chmod u+w /etc/sudoers 编辑sudoers文件vi /etc/sudoers 找到这行 root AL">
+<meta name="keywords" content="Linux,sudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="普通用户sudo权限问题">
+<meta property="og:url" content="https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="在虚拟机中安装一个ubuntu系统，执行一些sudo命令时出现 xxx is not in the sudoers file.This incident will be reported. 的提示.  切换到root用户下su - 切换root用户 添加sudo文件的写权限chmod u+w /etc/sudoers 编辑sudoers文件vi /etc/sudoers 找到这行 root AL">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="普通用户sudo权限问题">
+<meta name="twitter:description" content="在虚拟机中安装一个ubuntu系统，执行一些sudo命令时出现 xxx is not in the sudoers file.This incident will be reported. 的提示.  切换到root用户下su - 切换root用户 添加sudo文件的写权限chmod u+w /etc/sudoers 编辑sudoers文件vi /etc/sudoers 找到这行 root AL">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">普通用户sudo权限问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">普通用户sudo权限问题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-25T21:32:56.000Z" itemprop="datePublished" class="page-time">
+  2017-01-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#切换到root用户下"><span class="post-toc-number">1.</span> <span class="post-toc-text">切换到root用户下</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加sudo文件的写权限"><span class="post-toc-number">2.</span> <span class="post-toc-text">添加sudo文件的写权限</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编辑sudoers文件"><span class="post-toc-number">3.</span> <span class="post-toc-text">编辑sudoers文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#撤销sudoers文件写权限"><span class="post-toc-number">4.</span> <span class="post-toc-text">撤销sudoers文件写权限</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-普通用户sudo权限问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">普通用户sudo权限问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-25 21:32:56" datetime="2017-01-25T21:32:56.000Z"  itemprop="datePublished">2017-01-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>在虚拟机中安装一个ubuntu系统，执行一些sudo命令时出现 <code>xxx is not in the sudoers file.This incident will be reported.</code> 的提示.</p>
+</blockquote>
+<h2 id="切换到root用户下"><a href="#切换到root用户下" class="headerlink" title="切换到root用户下"></a>切换到root用户下</h2><p><code>su -</code> 切换root用户</p>
+<h2 id="添加sudo文件的写权限"><a href="#添加sudo文件的写权限" class="headerlink" title="添加sudo文件的写权限"></a>添加sudo文件的写权限</h2><p><code>chmod u+w /etc/sudoers</code></p>
+<h2 id="编辑sudoers文件"><a href="#编辑sudoers文件" class="headerlink" title="编辑sudoers文件"></a>编辑sudoers文件</h2><p><code>vi /etc/sudoers</code></p>
+<p>找到这行 <code>root ALL=(ALL) ALL</code>,在他下面添加<code>xxx ALL=(ALL) ALL</code> (这里的xxx是你的用户名)</p>
+<p>ps:这里说下你可以sudoers添加下面四行中任意一条</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">youuser            ALL=(ALL)                ALL</span><br><span class="line">%youuser           ALL=(ALL)                ALL</span><br><span class="line">youuser            ALL=(ALL)                NOPASSWD: ALL</span><br><span class="line">%youuser           ALL=(ALL)                NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
+<p>第一行:允许用户youuser执行sudo命令(需要输入密码).<br>第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).<br>第三行:允许用户youuser执行sudo命令,并且在执行的时候不输入密码.<br>第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不输入密码.</p>
+<h2 id="撤销sudoers文件写权限"><a href="#撤销sudoers文件写权限" class="headerlink" title="撤销sudoers文件写权限"></a>撤销sudoers文件写权限</h2><p><code>chmod u-w /etc/sudoers</code></p>
+<p>这样普通用户就可以使用sudo了.</p>
+<p>参考文章：<a href="http://blog.csdn.net/u010622887/article/details/46911469" target="_blank" rel="noopener">http://blog.csdn.net/u010622887/article/details/46911469</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2017/01/25/普通用户sudo权限问题/" target="_blank" rel="external">/2017/01/25/普通用户sudo权限问题/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/">sudo</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/&title=《普通用户sudo权限问题》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/&title=《普通用户sudo权限问题》 — ZZY补完计划&source=God is in his heaven,all is right with the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《普通用户sudo权限问题》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/30/Linux的软件安装方式/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux的软件安装方式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/19/npm下载慢的解决方法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">npm下载慢的解决方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/&title=《普通用户sudo权限问题》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/&title=《普通用户sudo权限问题》 — ZZY补完计划&source=God is in his heaven,all is right with the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《普通用户sudo权限问题》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/25/普通用户sudo权限问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3a0W7jMAwEwP7/T7evBzSxl6SY+oDxUwEnskYBLHapr6/4+v7nSu6++/z1CNXRjl14eHh4g6n/vq4/k9x9B6guaPLEFyPj4eHhrfGSl3XvJV59rVfnc/NdPDw8vAfwklK4V4In9TAeHh7e/8i7fkyvQM8Ldzw8PLzn8KpD96KH6+XoBbvHshY8PDy8mFcNCJ7w90p/Dw8PD2/cVZ+8cPMY93rkfDN4MVs8PDy8Bd6pRn61FL6OJM4eOMDDw8M7y8u/kFDzJlZvmarhBR4eHt42Lx+i2vRKYtxeyHuzTHh4eHgLvMnxpnkZfbZhdjNbPDw8vEO8vCw+Fc7mm0RS1t/MBA8PD2+BV31ktUk23x6SAj06U4aHh4e3wOsFrHlbq9oMm7S+XhTWeHh4eAu8eeM/PwqQH+HKg+BySY2Hh4c35uVTrB6KysviHummWMfDw8P7OC8/YjWZaB7sVuNmPDw8vLO8JE7NW/u98KJX4kdFOR4eHt4CL48DJoFvfsigGuD2Al88PDy8CW8eQ8wnV25oxQuKh4eH91e8ahssjxjykasBLh4eHt4eb9LO75XF+eRORRh4eHh427zqVrHx+d7iRhsDHh4e3iHe5PhU8phqirxx4AAPDw9vj9f7578asE6i3tHGgIeHh3eIV90SenFqUjonxwvKB7Dw8PDw1ni9aLW3EPkiVn8GPDw8vM/zkuFONbEmYW6+KHh4eHhned/Fq1oEXy/QqWMHb+/i4eHhLfAmL9/8wdWQIgl88wXCw8PD2+BVW/69AwHJdtILjm/GxMPDw1vj5bFp/spOQofJMhU2Bjw8PLwH8+aRRO/uTZiLh4eH9wBetUSetNyqGwweHh7eZ3jJlycTGpXFrZ8EDw8Pb4/X+4c/v9trquXLeuDCw8PDS5/yAzd+DQG9fNwuAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

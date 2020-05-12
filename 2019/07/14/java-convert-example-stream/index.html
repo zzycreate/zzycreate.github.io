@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java常用对象转换之 Stream 流 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,java-convert-example,Stream,JDK8">
+    <meta name="description" content="平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：zzycreate/java-convert-example本文记录一些常用的 Stream 操作，以备需要时直接使用">
+<meta name="keywords" content="Java,java-convert-example,Stream,JDK8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java常用对象转换之 Stream 流">
+<meta property="og:url" content="https://github.com/zzycreate/2019/07/14/java-convert-example-stream/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：zzycreate/java-convert-example本文记录一些常用的 Stream 操作，以备需要时直接使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/5HBDY6enzbM1SrA.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/hTcN1CvDeRrQW2t.jpg">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java常用对象转换之 Stream 流">
+<meta name="twitter:description" content="平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：zzycreate/java-convert-example本文记录一些常用的 Stream 操作，以备需要时直接使用">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/31/5HBDY6enzbM1SrA.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java常用对象转换之 Stream 流</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java常用对象转换之 Stream 流</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-14T19:23:47.000Z" itemprop="datePublished" class="page-time">
+  2019-07-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#流的基本构成"><span class="post-toc-number">1.</span> <span class="post-toc-text">流的基本构成</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Stream-流的生成"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Stream 流的生成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Stream-流的中间操作-Intermediate"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Stream 流的中间操作(Intermediate)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Stream-流的执行操作-Terminal"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Stream 流的执行操作(Terminal)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Short-circuiting"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Short-circuiting</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成-Stream-流数据源"><span class="post-toc-number">2.</span> <span class="post-toc-text">生成 Stream 流数据源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#集合对象-gt-Stream"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">集合对象 -&gt; Stream</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数组对象-gt-Stream"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">数组对象 -&gt; Stream</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IO-流-gt-Stream"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">IO 流 -&gt; Stream</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#流对象提供的构造方法"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">流对象提供的构造方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Stream-流的-Intermediate-操作"><span class="post-toc-number">3.</span> <span class="post-toc-text">Stream 流的 Intermediate 操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#map"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">map</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#flatMap"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">flatMap</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#filter"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">filter</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#distinct"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">distinct</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sorted"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">sorted</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#unordered"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">unordered</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#peek"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">peek</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#limit"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">limit</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#skip"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">skip</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#parallel"><span class="post-toc-number">3.10.</span> <span class="post-toc-text">parallel</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sequential"><span class="post-toc-number">3.11.</span> <span class="post-toc-text">sequential</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Stream-流的-Terminal-操作"><span class="post-toc-number">4.</span> <span class="post-toc-text">Stream 流的 Terminal 操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#collect"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">collect</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#toArray"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">toArray</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#forEach-forEachOrdered"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">forEach/forEachOrdered</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#reduce"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">reduce</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#min-max-count"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">min/max/count</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#anyMatch-allMatch-noneMatch"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">anyMatch/allMatch/noneMatch</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#findFirst-findAny"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">findFirst/findAny</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有效的特殊用法"><span class="post-toc-number">5.</span> <span class="post-toc-text">有效的特殊用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义去重"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">自定义去重</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#求和"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">求和</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-java-convert-example-stream"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java常用对象转换之 Stream 流</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-14 19:23:47" datetime="2019-07-14T19:23:47.000Z"  itemprop="datePublished">2019-07-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：<a href="https://github.com/zzycreate/java-convert-example">zzycreate/java-convert-example</a><br>本文记录一些常用的 Stream 操作，以备需要时直接使用</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="流的基本构成"><a href="#流的基本构成" class="headerlink" title="流的基本构成"></a>流的基本构成</h2><p>Stream 不是集合元素，它不是数据结构并不保存数据，它是有关算法和计算的，它更像一个高级版本的 Iterator。<br>原始版本的 Iterator，用户只能显式地一个一个遍历元素并对其执行某些操作；<br>高级版本的 Stream，用户只要给出需要对其包含的元素执行什么操作，比如 “过滤掉长度大于 10 的字符串”、“获取每个字符串的首字母”等，Stream 会隐式地在内部进行遍历，做出相应的数据转换。</p>
+<p>Stream 就如同一个迭代器（Iterator），单向，不可往复，数据只能遍历一次，遍历过一次后即用尽了，就好比流水从面前流过，一去不复返。</p>
+<p>而和迭代器又不同的是，Stream 可以并行化操作，迭代器只能命令式地、串行化操作。<br>顾名思义，当使用串行方式去遍历时，每个 item 读完后再读下一个 item。而使用并行去遍历时，数据会被分成多个段，其中每一个都在不同的线程中处理，然后将结果一起输出。</p>
+<p>Stream 流的使用基本分为三种操作：生成 Stream 流数据源、Stream 流中值操作、Stream 流结束操作。另外还有 short-circuiting 操作作为补充。</p>
+<h3 id="Stream-流的生成"><a href="#Stream-流的生成" class="headerlink" title="Stream 流的生成"></a>Stream 流的生成</h3><p>想要获取 Stream 流数据源有很多种方式：</p>
+<ol>
+<li>从集合中获取：集合对象（List、Set、Queue等）的 stream()、parallelStream() 方法可以直接获取 Stream 对象</li>
+<li>从数组中获取：数据对象可以利用 Arrays.stream(T[] array) 或者 Stream.of() 的工具方法获取 Stream 对象</li>
+<li>从IO流中获取：BufferedReader 提供了 lines() 方法可以逐行获取IO流里面的数据</li>
+<li>静态工厂方法：Stream.of(Object[])、IntStream.range(int, int)、Stream.iterate(Object, UnaryOperator) 等静态工厂方法可以提供 Stream 对象</li>
+<li>Files类的操作路径的方法：如list、find、walk等。</li>
+<li>随机数流：Random.ints()</li>
+<li>其他诸如 Random.ints()、BitSet.stream()、Pattern.splitAsStream(java.lang.CharSequence)、JarFile.stream() 等方法</li>
+<li>更底层的使用StreamSupport，它提供了将Spliterator转换成流的方法。</li>
+</ol>
+<h3 id="Stream-流的中间操作-Intermediate"><a href="#Stream-流的中间操作-Intermediate" class="headerlink" title="Stream 流的中间操作(Intermediate)"></a>Stream 流的中间操作(Intermediate)</h3><p>一个流可以后面跟随零个或多个 intermediate 操作。其目的主要是打开流，做出某种程度的数据映射/过滤，然后返回一个新的流，交给下一个操作使用。<br>这类操作都是惰性化的（lazy），就是说，仅仅调用到这类方法，并没有真正开始流的遍历。只有在 Terminal 操作执行时才会真正的执行这些 Intermediate 操作。</p>
+<p>常用的 Intermediate 操作有：map (mapToInt, flatMap 等)、 filter、 distinct、 sorted、 peek、 limit、 skip、 parallel、 sequential、 unordered</p>
+<h3 id="Stream-流的执行操作-Terminal"><a href="#Stream-流的执行操作-Terminal" class="headerlink" title="Stream 流的执行操作(Terminal)"></a>Stream 流的执行操作(Terminal)</h3><p>一个流只能有一个 terminal 操作，当这个操作执行后，流就被使用“光”了，无法再被操作。所以这必定是流的最后一个操作。<br>Terminal 操作的执行，才会真正开始流的遍历，并且会生成一个结果，或者一个 side effect。</p>
+<p>常用的 Terminal 操作有：forEach、 forEachOrdered、 toArray、 reduce、 collect、 min、 max、 count、 anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 iterator</p>
+<h3 id="Short-circuiting"><a href="#Short-circuiting" class="headerlink" title="Short-circuiting"></a>Short-circuiting</h3><p>当操作一个无限大的 Stream，而又希望在有限时间内完成操作，则在管道内拥有一个 short-circuiting 操作是必要非充分条件。</p>
+<p>常用的 Short-circuiting 操作有：anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 limit</p>
+<h2 id="生成-Stream-流数据源"><a href="#生成-Stream-流数据源" class="headerlink" title="生成 Stream 流数据源"></a>生成 Stream 流数据源</h2><h3 id="集合对象-gt-Stream"><a href="#集合对象-gt-Stream" class="headerlink" title="集合对象 -&gt; Stream"></a>集合对象 -&gt; Stream</h3><p>集合对象本身提供了 stream() 和 parallelStream() ，两个方法可以直接获取 Stream 流</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Stream&lt;String&gt; listStream = list.stream();</span><br><span class="line">Stream&lt;String&gt; listParallelStream = list.parallelStream();</span><br><span class="line">Stream&lt;String&gt; setStream = set.stream();</span><br><span class="line">Stream&lt;String&gt; setParallelStream = set.parallelStream();</span><br></pre></td></tr></table></figure>
+<h3 id="数组对象-gt-Stream"><a href="#数组对象-gt-Stream" class="headerlink" title="数组对象 -&gt; Stream"></a>数组对象 -&gt; Stream</h3><p>数组对象转换需要利用工具类 Arrays、 Stream 的静态方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Stream&lt;String&gt; arrayStream = Arrays.stream(array);</span><br><span class="line">Stream&lt;String&gt; arrayStream1 = Stream.of(array);</span><br></pre></td></tr></table></figure>
+<h3 id="IO-流-gt-Stream"><a href="#IO-流-gt-Stream" class="headerlink" title="IO 流 -&gt; Stream"></a>IO 流 -&gt; Stream</h3><p>IO 流可以包装成 BufferedReader 转换为 Stream</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(&quot;input.txt&quot;), StandardCharsets.UTF_8));</span><br><span class="line">Stream&lt;String&gt; stream = reader.lines();</span><br></pre></td></tr></table></figure>
+<h3 id="流对象提供的构造方法"><a href="#流对象提供的构造方法" class="headerlink" title="流对象提供的构造方法"></a>流对象提供的构造方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IntStream intStream = IntStream.range(1, 4);</span><br><span class="line">DoubleStream doubleStream = DoubleStream.builder().add(1.1).add(2.1).add(3.1).add(4.1).build();</span><br><span class="line">LongStream longStream = LongStream.of(1L, 2L, 3L, 4L);</span><br></pre></td></tr></table></figure>
+<h2 id="Stream-流的-Intermediate-操作"><a href="#Stream-流的-Intermediate-操作" class="headerlink" title="Stream 流的 Intermediate 操作"></a>Stream 流的 Intermediate 操作</h2><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/stream/StreamIntermediateExample.java">StreamIntermediateExample.java</a></p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map 的作用就是把 input Stream 的每一个元素，映射成 output Stream 的另外一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 转大写</span><br><span class="line">List&lt;String&gt; stringList = list.stream()</span><br><span class="line">        .map(String::toUpperCase)</span><br><span class="line">        .collect(Collectors.toList()); // [ABC, EFG, HIJ]</span><br><span class="line"></span><br><span class="line">// 数据计算</span><br><span class="line">List&lt;Integer&gt; intList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9).stream()</span><br><span class="line">        .map(n -&gt; n * n)</span><br><span class="line">        .collect(Collectors.toList()); // [1, 4, 9, 16, 25, 36, 49, 64, 81]</span><br><span class="line"></span><br><span class="line">// 获取对象属性</span><br><span class="line">List&lt;String&gt; list = list.stream()</span><br><span class="line">        .map(Item::getDetail).map(ItemDetail::getValue)</span><br><span class="line">        .collect(Collectors.toList()); // [v1, v5, v3, v2, v4]</span><br></pre></td></tr></table></figure>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h3><p>flatMap 把 input Stream 中的层级结构扁平化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Stream&lt;List&lt;Integer&gt;&gt; inputStream = Stream.of(</span><br><span class="line">        Arrays.asList(1),</span><br><span class="line">        Arrays.asList(2, 3),</span><br><span class="line">        Arrays.asList(4, 5, 6)</span><br><span class="line">);</span><br><span class="line">// 将集合对象里面的数据拿出来转换为扁平结构</span><br><span class="line">Stream&lt;Integer&gt; outputStream = inputStream.</span><br><span class="line">        flatMap((childList) -&gt; childList.stream()); // [1, 2, 3, 4, 5, 6]</span><br></pre></td></tr></table></figure>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>filter 对原始 Stream 进行某项测试，<strong>通过</strong>测试的元素被留下来生成一个新 Stream。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Integer[] sixNums = &#123;1, 2, 3, 4, 5, 6&#125;;</span><br><span class="line">// 对2取模等于0的是偶数，filter留下数字中的偶数</span><br><span class="line">Integer[] evens = Stream.of(sixNums)</span><br><span class="line">        .filter(n -&gt; n % 2 == 0)</span><br><span class="line">        .toArray(Integer[]::new); // [2, 4, 6]</span><br></pre></td></tr></table></figure>
+<h3 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h3><p>distinct 是对元素进行去重，去重是利用了对象的 hashCode() 和 equals() 方法</p>
+<p>如果distinct（）正在处理有序流，那么对于重复元素，将保留以遭遇顺序首先出现的元素，并且以这种方式选择不同元素是稳定的。<br>在无序流的情况下，不同元素的选择不一定是稳定的，是可以改变的。distinct（）执行有状态的中间操作。<br>在有序流的并行流的情况下，保持distinct（）的稳定性是需要很高的代价的，因为它需要大量的缓冲开销。<br>如果我们不需要保持遭遇顺序的一致性，那么我们应该可以使用通过BaseStream.unordered（）方法实现的无序流。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Integer[] nums = &#123;1, 1, 2, 3, 4, 5, 4, 5, 6&#125;;</span><br><span class="line">Integer[] evens = Stream.of(nums)</span><br><span class="line">        .distinct()</span><br><span class="line">        .toArray(Integer[]::new);// [1, 2, 3, 4, 5, 6]</span><br></pre></td></tr></table></figure>
+<h3 id="sorted"><a href="#sorted" class="headerlink" title="sorted"></a>sorted</h3><p>sorted 方法用于排序，利用 Comparator 类的静态方法可以快速构造一个比较器实现排序。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(5, 2, 4, 8, 6, 1, 9, 3, 7);</span><br><span class="line"></span><br><span class="line">// sorted() 无参方法为自然排序</span><br><span class="line">List&lt;Integer&gt; sorted = list.stream().sorted().collect(Collectors.toList());// [1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line"></span><br><span class="line">// 使用 Comparator.reverseOrder() 获得一个自然逆序比较器，用于逆序排序</span><br><span class="line">List&lt;Integer&gt; reverse = list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());// [1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line"></span><br><span class="line">// 使用 Comparator.comparing() 获取一个自定义比较器，显现自定义对象的排序</span><br><span class="line">List&lt;Item&gt; codeSorted = StreamIntermediateExample.newItems().stream()</span><br><span class="line">        .sorted(Comparator.comparing(Item::getCode))</span><br><span class="line">        .collect(Collectors.toList());</span><br><span class="line">// [Item(name=Name1, code=1, number=1.1, detail=ItemDetail(id=101, value=v1)), Item(name=Name2, code=2, number=2.2, detail=ItemDetail(id=202, value=v2)), Item(name=Name3, code=3, number=3.3, detail=ItemDetail(id=303, value=v3)), Item(name=Name4, code=4, number=4.4, detail=ItemDetail(id=404, value=v4)), Item(name=Name5, code=5, number=5.5, detail=ItemDetail(id=505, value=v5))]</span><br><span class="line"></span><br><span class="line">List&lt;Item&gt; codeReverse = StreamIntermediateExample.newItems().stream()</span><br><span class="line">        .sorted(Comparator.comparing(Item::getCode).reversed())</span><br><span class="line">        .collect(Collectors.toList());</span><br><span class="line">// [Item(name=Name5, code=5, number=5.5, detail=ItemDetail(id=505, value=v5)), Item(name=Name4, code=4, number=4.4, detail=ItemDetail(id=404, value=v4)), Item(name=Name3, code=3, number=3.3, detail=ItemDetail(id=303, value=v3)), Item(name=Name2, code=2, number=2.2, detail=ItemDetail(id=202, value=v2)), Item(name=Name1, code=1, number=1.1, detail=ItemDetail(id=101, value=v1))]</span><br></pre></td></tr></table></figure>
+<h3 id="unordered"><a href="#unordered" class="headerlink" title="unordered"></a>unordered</h3><p>某些流的返回的元素是有确定顺序的，我们称之为 encounter order。这个顺序是流提供它的元素的顺序，比如数组的encounter order是它的元素的排序顺序，List是它的迭代顺序(iteration order)，对于HashSet,它本身就没有encounter order。</p>
+<p>一个流是否是encounter order主要依赖数据源和它的中间操作，比如数据源List和Array上创建的流是有序的(ordered)，但是在HashSet创建的流不是有序的。</p>
+<p>sorted()方法可以将流转换成encounter order的，unordered可以将流转换成encounter order的。</p>
+<p>注意，这个方法并不是对元素进行排序或者打散，而是返回一个是否encounter order的流。</p>
+<p>可以参见 stackoverflow 上的问题： <a href="https://stackoverflow.com/questions/21350195/stream-ordered-unordered-problems" target="_blank" rel="noopener">stream-ordered-unordered-problems</a></p>
+<p>除此之外，一个操作可能会影响流的有序,比如map方法，它会用不同的值甚至类型替换流中的元素，所以输入元素的有序性已经变得没有意义了，但是对于filter方法来说，它只是丢弃掉一些值而已，输入元素的有序性还是保障的。</p>
+<p>对于串行流，流有序与否不会影响其性能，只是会影响确定性(determinism)，无序流在多次执行的时候结果可能是不一样的。</p>
+<p>对于并行流，去掉有序这个约束可能会提高性能，比如distinct、groupingBy这些聚合操作。</p>
+<h3 id="peek"><a href="#peek" class="headerlink" title="peek"></a>peek</h3><p>peek() 接受一个 Consumer 消费者方法，而 map() 接受一个 Function 方法; Consumer 方法返回值是 void，而 Function 方法有返回值，peek 和 map 方法的区别主要在于流处理过程中返回值的不同。<br>peek() 方法是 Intermediate 方法，而 forEach() 方法是 Terminal 方法; 如果 peek 方法后没有 Terminal 方法，则 peek 并不会真正的执行，forEach 方法则会立即执行。<br>forEach 和 peek 都是接受 Consumer 对象的，因此如果在 Stream 流处理的过程中做一些数据操作或者打印操作，选择 peek 方法，该方法还会返回 Stream 流，用于下一步处理; 如果已经是处理的最后一步，则选择 forEach 用于最终执行整个流。 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// [Abc, efG, HiJ] -&gt; [Abc, efG, HiJ]</span><br><span class="line">List&lt;String&gt; peek = StreamIntermediateExample.newStringList().stream()</span><br><span class="line">        .peek(str -&gt; &#123;</span><br><span class="line">            if (&quot;Abc&quot;.equals(str)) &#123;</span><br><span class="line">                str = str.toUpperCase();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<p>peek 方法对对象的修改，会影响到集合里面的元素，但如果集合中是 String 这种，则不会改变，<br>因为修改后的 String 在常量池中是另一个对象，由于 Consumer 无法返回该对象，Stream 内的元素仍然指向原来的 String。<br>对对象的修改则是改变堆中对象的数据，对象的引用并没有发生变化，Stream 中的元素任然指向原对象，只是对象内部已经发生了改变。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// [Name1, Name5, Name3, Name2, Name4] -&gt; [xxx, Name5, Name3, Name2, Name4]</span><br><span class="line">List&lt;String&gt; peek1 = StreamIntermediateExample.newItems().stream()</span><br><span class="line">        .peek(item -&gt; &#123;</span><br><span class="line">            if (item.getCode() == 1) &#123;</span><br><span class="line">                item.setName(&quot;xxx&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .map(Item::getName)</span><br><span class="line">        .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h3 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h3><p>limit 方法会对一个Stream进行截断操作，获取其前N个元素，如果原Stream中包含的元素个数小于N，那就获取其所有的元素；</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/5HBDY6enzbM1SrA.jpg" alt="stream-limit" title>
+                </div>
+                <div class="image-caption">stream-limit</div>
+            </figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6);</span><br><span class="line"></span><br><span class="line">// 截取指定元素位置以内的元素</span><br><span class="line">List&lt;Integer&gt; limit2 = numbers.stream().limit(2).collect(Collectors.toList());// [1, 2]</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; limit6 = numbers.stream().limit(6).collect(Collectors.toList());// [1, 2, 3, 4, 5, 6]</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; limit8 = numbers.stream().limit(8).collect(Collectors.toList());// [1, 2, 3, 4, 5, 6]</span><br></pre></td></tr></table></figure>
+<h3 id="skip"><a href="#skip" class="headerlink" title="skip"></a>skip</h3><p>skip 方法会返回一个丢弃原Stream的前N个元素后剩下元素组成的新Stream，如果原Stream中包含的元素个数小于N，那么返回空Stream；</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/hTcN1CvDeRrQW2t.jpg" alt="stream-limit" title>
+                </div>
+                <div class="image-caption">stream-limit</div>
+            </figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6);</span><br><span class="line"></span><br><span class="line">// 忽略指定元素位置以内的元素</span><br><span class="line">List&lt;Integer&gt; skip2 = numbers.stream().skip(2).collect(Collectors.toList());// [3, 4, 5, 6]</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; skip6 = numbers.stream().skip(6).collect(Collectors.toList());// []</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; skip8 = numbers.stream().skip(8).collect(Collectors.toList());// []</span><br></pre></td></tr></table></figure>
+<h3 id="parallel"><a href="#parallel" class="headerlink" title="parallel"></a>parallel</h3><p>parallel stream是基于fork/join框架的,简单点说就是使用多线程来完成的,使用parallel stream时要考虑初始化fork/join框架的时间,<br>如果要执行的任务很简单,那么初始化fork/join框架的时间会远多于执行任务所需时间,也就导致了效率的降低.<br>根据附录doug Lee的说明,任务数量*执行方法的行数&gt;=10000或者执行的是消耗大量时间操作(如io/数据库)才有必要使用</p>
+<p>Java 8为ForkJoinPool添加了一个通用线程池，这个线程池用来处理那些没有被显式提交到任何线程池的任务。<br>它是ForkJoinPool类型上的一个静态元素，它拥有的默认线程数量等于运行计算机上的处理器数量。<br>当调用Arrays类上添加的新方法时，自动并行化就会发生。<br>比如用来排序一个数组的并行快速排序，用来对一个数组中的元素进行并行遍历。自动并行化也被运用在Java 8新添加的Stream API中。</p>
+<p>并行流是 JDK8 对多线程的应用，但是难以控制，要想用好并行流，需要深入理解 ForkJoinPool 。<br>以下的例子详阅：<a href="https://blog.csdn.net/u011001723/article/details/52794455" target="_blank" rel="noopener">深入浅出parallelStream</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">System.out.println(&quot;Hello World!&quot;);</span><br><span class="line">// 构造一个10000个元素的集合</span><br><span class="line">List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">    list.add(i);</span><br><span class="line">&#125;</span><br><span class="line">// 统计并行执行list的线程</span><br><span class="line">Set&lt;Thread&gt; threadSet = new CopyOnWriteArraySet&lt;&gt;();</span><br><span class="line">// 并行执行</span><br><span class="line">list.stream().parallel().forEach(integer -&gt; &#123;</span><br><span class="line">    Thread thread = Thread.currentThread();</span><br><span class="line">    // System.out.println(thread);</span><br><span class="line">    // 统计并行执行list的线程</span><br><span class="line">    threadSet.add(thread);</span><br><span class="line">&#125;);</span><br><span class="line">System.out.println(&quot;threadSet一共有&quot; + threadSet.size() + &quot;个线程&quot;); // 6</span><br><span class="line">System.out.println(&quot;系统一个有&quot; + Runtime.getRuntime().availableProcessors() + &quot;个cpu&quot;); // 8</span><br><span class="line">List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;();</span><br><span class="line">List&lt;Integer&gt; list2 = new ArrayList&lt;&gt;();</span><br><span class="line">for (int i = 0; i &lt; 100000; i++) &#123;</span><br><span class="line">    list1.add(i);</span><br><span class="line">    list2.add(i);</span><br><span class="line">&#125;</span><br><span class="line">Set&lt;Thread&gt; threadSetTwo = new CopyOnWriteArraySet&lt;&gt;();</span><br><span class="line">CountDownLatch countDownLatch = new CountDownLatch(2);</span><br><span class="line">Thread threadA = new Thread(() -&gt; &#123;</span><br><span class="line">    list1.stream().parallel().forEach(integer -&gt; &#123;</span><br><span class="line">        Thread thread = Thread.currentThread();</span><br><span class="line">        // System.out.println(&quot;list1&quot; + thread);</span><br><span class="line">        threadSetTwo.add(thread);</span><br><span class="line">    &#125;);</span><br><span class="line">    countDownLatch.countDown();</span><br><span class="line">&#125;);</span><br><span class="line">Thread threadB = new Thread(() -&gt; &#123;</span><br><span class="line">    list2.stream().parallel().forEach(integer -&gt; &#123;</span><br><span class="line">        Thread thread = Thread.currentThread();</span><br><span class="line">        // System.out.println(&quot;list2&quot; + thread);</span><br><span class="line">        threadSetTwo.add(thread);</span><br><span class="line">    &#125;);</span><br><span class="line">    countDownLatch.countDown();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">threadA.start();</span><br><span class="line">threadB.start();</span><br><span class="line">countDownLatch.await();</span><br><span class="line">System.out.println(&quot;threadSetTwo一共有&quot; + threadSetTwo.size() + &quot;个线程&quot;); // 9</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">// [Thread[main,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-3,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-1,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-4,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-5,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-2,5,main]]</span><br><span class="line">System.out.println(threadSet);</span><br><span class="line">// [Thread[ForkJoinPool.commonPool-worker-6,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-7,5,main],</span><br><span class="line">// Thread[Thread-0,5,],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-5,5,main],</span><br><span class="line">// Thread[Thread-1,5,],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-4,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-3,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-2,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-1,5,main]]</span><br><span class="line">System.out.println(threadSetTwo);</span><br><span class="line">System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">threadSetTwo.addAll(threadSet);</span><br><span class="line">// [Thread[ForkJoinPool.commonPool-worker-6,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-7,5,main],</span><br><span class="line">// Thread[Thread-0,5,],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-5,5,main],</span><br><span class="line">// Thread[Thread-1,5,],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-4,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-3,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-2,5,main],</span><br><span class="line">// Thread[ForkJoinPool.commonPool-worker-1,5,main],</span><br><span class="line">// Thread[main,5,main]]</span><br><span class="line">// 执行forEach本身的线程也作为线程池中的一个工作线程</span><br><span class="line">System.out.println(threadSetTwo);</span><br><span class="line">System.out.println(&quot;threadSetTwo一共有&quot; + threadSetTwo.size() + &quot;个线程&quot;);</span><br><span class="line">System.out.println(&quot;系统一个有&quot; + Runtime.getRuntime().availableProcessors() + &quot;个cpu&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="sequential"><a href="#sequential" class="headerlink" title="sequential"></a>sequential</h3><p>通过parallel()方法可以将串行流转换成并行流,sequential()方法将流转换成串行流。</p>
+<p>顺序流和并行流相对，这种使用的方法很少，暂时没有研究。</p>
+<h2 id="Stream-流的-Terminal-操作"><a href="#Stream-流的-Terminal-操作" class="headerlink" title="Stream 流的 Terminal 操作"></a>Stream 流的 Terminal 操作</h2><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/stream/StreamTerminalExample.java">StreamTerminalExample.java</a></p>
+<h3 id="collect"><a href="#collect" class="headerlink" title="collect"></a>collect</h3><p>collect 方法是 Terminal 操作，可以将 Stream 流转换为集合，Collectors 中提供了一些便捷的生成 Collector 的方法，<br>例如 <code>toList()</code> 用于生成 List 列表，<code>toSet()</code> 可以用于生成 Set 堆，<code>toMap()</code> 可以用于生成 Map。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; list = Arrays.asList(&quot;apple&quot;, &quot;orange&quot;, &quot;banana&quot;, &quot;pear&quot;);</span><br><span class="line">List&lt;String&gt; collectList = list.stream().filter(s -&gt; s.length() &gt; 5).collect(Collectors.toList());//[orange, banana]</span><br><span class="line">Set&lt;String&gt; collectSet = list.stream().filter(s -&gt; s.length() &gt; 5).collect(Collectors.toSet());// [orange, banana]</span><br></pre></td></tr></table></figure>
+<p><code>Collectors.toMap()</code> 有三个重构方法，推荐至少使用三个参数的 toMap() 方法，<code>BinaryOperator&lt;U&gt; mergeFunction</code><br>这个参数有利于解决，生成Map时的主键重复问题，避免因为源数据问题产生问题。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Map&lt;Integer, Item&gt; collectMap1 = items.stream()</span><br><span class="line">        .collect(Collectors.toMap(Item::getCode, Function.identity()));</span><br><span class="line">Map&lt;Integer, Item&gt; collectMap2 = StreamConstant.newItems().stream()</span><br><span class="line">        .collect(Collectors.toMap(Item::getCode, Function.identity(), (a, b) -&gt; a));</span><br></pre></td></tr></table></figure>
+<p><code>toCollection()</code> 可以用于生成各种各样自定义的集合结构。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Stack&lt;String&gt; collect = items.stream()</span><br><span class="line">            .map(Item::getName)</span><br><span class="line">            .collect(Collectors.toCollection(Stack::new));</span><br></pre></td></tr></table></figure>
+<p>Collector包含四种不同的操作：supplier（初始构造器）, accumulator（累加器）, combiner（组合器）， finisher（终结者）。</p>
+<p>简单分组：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Map&lt;Integer, List&lt;Item&gt;&gt; groupingByCollect = StreamConstant.newItems().stream()</span><br><span class="line">        .collect(Collectors.groupingBy(Item::getCode));</span><br></pre></td></tr></table></figure>
+<p>平均值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Double average = StreamConstant.newItems().stream()</span><br><span class="line">        .collect(Collectors.averagingInt(Item::getCode));</span><br></pre></td></tr></table></figure>
+<p>统计：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IntSummaryStatistics summaryStatistics = StreamConstant.newItems().stream()</span><br><span class="line">        .collect(Collectors.summarizingInt(Item::getCode));// IntSummaryStatistics&#123;count=5, sum=15, min=1, average=3.000000, max=5&#125;</span><br></pre></td></tr></table></figure>
+<p>拼接(三个参数分别是：连接符、字符串前缀、字符串后缀)：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String join = list.stream()</span><br><span class="line">            .collect(Collectors.joining(&quot; and &quot;, &quot;The &quot;, &quot; are fruits&quot;));// The apple and orange and banana and pear are fruits</span><br></pre></td></tr></table></figure>
+<p><code>Collector.of()</code> 方法可以创建了一个新的collector，我们必须给这个collector提供四种功能：supplier, accumulator, combiner,finisher.</p>
+<p>supplier 初始化构造分割符；accumulator 处理数据，并叠加数据；combiner 进行数据连接，finisher 生成最终数据。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Collector&lt;Item, StringJoiner, String&gt; personNameCollector =</span><br><span class="line">        Collector.of(</span><br><span class="line">                () -&gt; new StringJoiner(&quot; | &quot;),               // supplier</span><br><span class="line">                (j, p) -&gt; j.add(p.getName().toUpperCase()),  // accumulator</span><br><span class="line">                (j1, j2) -&gt; j1.merge(j2),                    // combiner</span><br><span class="line">                StringJoiner::toString);                     // finisher</span><br><span class="line">String names = StreamConstant.newItems().stream()</span><br><span class="line">        .collect(personNameCollector);</span><br><span class="line">System.out.println(names);  // NAME1 | NAME5 | NAME3 | NAME2 | NAME4</span><br></pre></td></tr></table></figure>
+<h3 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h3><p><code>toArray()</code> 方法可以将流中的数据放入一个数组中。无参方法只能生成 <code>Object[]</code> 对象数组，单参方法可以指定生成的数组类型。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; list = Arrays.asList(&quot;apple&quot;, &quot;orange&quot;, &quot;banana&quot;, &quot;pear&quot;);</span><br><span class="line">Object[] objects = list.stream().filter(s -&gt; s.length() &gt; 5).toArray();</span><br><span class="line">String[] strings = list.stream().filter(s -&gt; s.length() &gt; 5).toArray(String[]::new);</span><br></pre></td></tr></table></figure>
+<h3 id="forEach-forEachOrdered"><a href="#forEach-forEachOrdered" class="headerlink" title="forEach/forEachOrdered"></a>forEach/forEachOrdered</h3><p>forEach 方法接收一个 Lambda 表达式，然后在 Stream 的每一个元素上执行该表达式。</p>
+<p>一般认为，forEach 和常规 for 循环的差异不涉及到性能，它们仅仅是函数式风格与传统 Java 风格的差别。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// Java 8</span><br><span class="line">list.stream()</span><br><span class="line">        .filter(s -&gt; s.length() &gt; 5)</span><br><span class="line">        .forEach(System.out::println);</span><br><span class="line">// Pre-Java 8</span><br><span class="line">for (String s : list) &#123;</span><br><span class="line">    if (s.length() &gt; 5) &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>forEach 是 terminal 操作，因此它执行后，Stream 的元素就被“消费”掉了，你无法对一个 Stream 进行两次 terminal 运算。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Stream&lt;String&gt; stream = list.stream().filter(s -&gt; s.length() &gt; 5);</span><br><span class="line">stream.forEach(element -&gt; System.out.println(&quot;1: &quot;+element));// ok</span><br><span class="line">stream.forEach(element -&gt; System.out.println(&quot;2: &quot;+element));// java.lang.IllegalStateException: stream has already been operated upon or closed</span><br></pre></td></tr></table></figure>
+<p>要想实现上述类似功能，可以使用 peek 方法，peek是中间方法，流还没有被消费掉。或者利用Supplier提供者，Supplier的get方法可以构造新的Stream。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Supplier&lt;Stream&lt;String&gt;&gt; streamSupplier= () -&gt; (list.stream().filter(s -&gt; s.length() &gt; 5));</span><br><span class="line">streamSupplier.get().forEach(element -&gt; System.out.println(&quot;1: &quot;+element));</span><br><span class="line">streamSupplier.get().forEach(element -&gt; System.out.println(&quot;2: &quot;+element));</span><br></pre></td></tr></table></figure>
+<p>forEachOrdered 是为了保证执行后数据的有序性。</p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>Stream 的 reduce 方法，返回单个的结果值，并且reduce操作每处理一个元素总是创建一个新值。常用的方法有average、sum、min、max、count，都可以使用reduce方法实现。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;U&gt; U reduce(U identity,BiFunction&lt;U,? super T,U&gt; accumulator,BinaryOperator&lt;U&gt; combiner)</span><br><span class="line">#第一个参数identity返回实例u，传递你要返回的U类型对象的初始化实例u, 用于提供一个循环计算的初始值</span><br><span class="line"></span><br><span class="line">#第二个参数累加器accumulator，可以使用二元ℷ表达式（即二元lambda表达式），声明你在u上累加你的数据来源t的逻辑</span><br><span class="line">#例如(u,t)-&gt;u.sum(t),此时lambda表达式的行参列表是返回实例u和遍历的集合元素t，函数体是在u上累加t</span><br><span class="line">#BinaryOperator 的函数方法为 apply(U u, T t), 第一个参数为上次函数计算的返回值，第二个参数为 Stream 中的元素，函数方法会将两个值计算apply，得到的值赋值给下次执行该方法的第一个参数</span><br><span class="line"></span><br><span class="line">#第三个参数组合器combiner，同样是二元ℷ表达式，(u,t)-&gt;u</span><br><span class="line">#lambda表达式行参列表同样是(u,t)，函数体返回的类型则要和第一个参数的类型保持一致</span><br></pre></td></tr></table></figure>
+<p>具体的一个示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Supplier&lt;Stream&lt;Integer&gt;&gt; supplier = () -&gt; (Stream.of(1, 2, 3, 4).filter(p -&gt; p &gt; 2));</span><br><span class="line">List&lt;Integer&gt; result = supplier.get()</span><br><span class="line">        .collect(() -&gt; new ArrayList&lt;&gt;(), (list, item) -&gt; list.add(item), (one, two) -&gt; one.addAll(two));</span><br><span class="line">System.out.println(result);// [3, 4]</span><br><span class="line">/* 或者使用方法引用 */</span><br><span class="line">result = supplier.get().collect(ArrayList::new, List::add, List::addAll);</span><br><span class="line">System.out.println(result);// [3, 4]</span><br></pre></td></tr></table></figure>
+<h3 id="min-max-count"><a href="#min-max-count" class="headerlink" title="min/max/count"></a>min/max/count</h3><p>一般比较大小需要比较器 Comparator, min 和 max 返回值类型是 Optional。</p>
+<p>count 是对满足条件的数据进行统计，计算次数。等价于 <code>return mapToLong(e -&gt; 1L).sum();</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Supplier&lt;Stream&lt;Integer&gt;&gt; supplier = () -&gt; (Stream.of(1, 2, 3, 4).filter(p -&gt; p &gt; 2));</span><br><span class="line">Optional&lt;Integer&gt; min = supplier.get().min(Integer::compareTo);// Optional[3]</span><br><span class="line">Optional&lt;Integer&gt; max = supplier.get().max(Integer::compareTo);// Optional[4]</span><br><span class="line">long count = supplier.get().count();// 2</span><br></pre></td></tr></table></figure>
+<h3 id="anyMatch-allMatch-noneMatch"><a href="#anyMatch-allMatch-noneMatch" class="headerlink" title="anyMatch/allMatch/noneMatch"></a>anyMatch/allMatch/noneMatch</h3><ul>
+<li>allMatch：Stream 中全部元素符合传入的 predicate，返回 true</li>
+<li>anyMatch：Stream 中只要有一个元素符合传入的 predicate，返回 true</li>
+<li>noneMatch：Stream 中没有一个元素符合传入的 predicate，返回 true</li>
+</ul>
+<p>它们都不是要遍历全部元素才能返回结果。例如 allMatch 只要一个元素不满足条件，就 skip 剩下的所有元素，返回 false。对清单 13 中的 Person 类稍做修改，加入一个 age 属性和 getAge 方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">boolean b1 = StreamConstant.newItems().stream().map(Item::getCode).anyMatch(i -&gt; i &gt; 3);// true</span><br><span class="line">boolean b2 = StreamConstant.newItems().stream().map(Item::getCode).anyMatch(i -&gt; i &gt; 5);// false</span><br><span class="line">boolean b3 = StreamConstant.newItems().stream().map(Item::getCode).allMatch(i -&gt; i &gt; 3);// false</span><br><span class="line">boolean b4 = StreamConstant.newItems().stream().map(Item::getCode).allMatch(i -&gt; i &gt; 5);// false</span><br><span class="line">boolean b5 = StreamConstant.newItems().stream().map(Item::getCode).noneMatch(i -&gt; i &gt; 3);// false</span><br><span class="line">boolean b6 = StreamConstant.newItems().stream().map(Item::getCode).noneMatch(i -&gt; i &gt; 5);// true</span><br></pre></td></tr></table></figure>
+<h3 id="findFirst-findAny"><a href="#findFirst-findAny" class="headerlink" title="findFirst/findAny"></a>findFirst/findAny</h3><p>findFirst 是一个 termimal 兼 short-circuiting 操作，它总是返回 Stream 的第一个元素，或者空。<br>findAny 是搜索到任何一个符合条件的结果返回，因为流可能是并行的，因此顺序可能不是确定的。如果顺序是确定的，使用 findFirst 可以方便的获取第一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Optional&lt;String&gt; first = StreamConstant.newStringList().stream().findFirst();// Optional[Abc]</span><br><span class="line">String any = StreamConstant.newStringList().stream()</span><br><span class="line">        .filter(s -&gt; s.length() &gt; 5).findAny().orElse(&quot;ERROR&quot;);// ERROR</span><br></pre></td></tr></table></figure>
+<h2 id="有效的特殊用法"><a href="#有效的特殊用法" class="headerlink" title="有效的特殊用法"></a>有效的特殊用法</h2><h3 id="自定义去重"><a href="#自定义去重" class="headerlink" title="自定义去重"></a>自定义去重</h3><p>利用 Map 的 key 不能重复的特性进行去重，实现下方静态方法，在需要的使用结合 filter 和 distinctByKey 方法进行去重。</p>
+<p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/stream/tools/DistinctByKey.java">DistinctByKey.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static &lt;T&gt; Predicate&lt;T&gt; distinctByKey(Function&lt;? super T, ?&gt; keyExtractor) &#123;</span><br><span class="line">    Map&lt;Object, Boolean&gt; seen = new ConcurrentHashMap&lt;&gt;();</span><br><span class="line">    // putIfAbsent 如果map中有值，则返回原值，新值也不会放入map中，如果原来没有值，则返回null，本次put的值也会放入map中</span><br><span class="line">    return t -&gt; seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用的时候只需要使用 filter 过滤掉重复项：</p>
+<p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/stream/StreamSpecialExample.java">StreamSpecialExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">items.stream().filter(distinctByKey(Item::getName)).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h3 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h3><p>BigDecimal 对象求和:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//计算 总金额</span><br><span class="line">BigDecimal totalMoney = stream().map(Item::getDetail).map(ItemDetail::getMoney)</span><br><span class="line">        .reduce(BigDecimal.ZERO, BigDecimal::add);</span><br><span class="line">System.err.println(&quot;totalMoney:&quot; + totalMoney.setScale(2, RoundingMode.HALF_UP));  //totalMoney:166.50</span><br></pre></td></tr></table></figure>
+<p>基本类型求和：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//计算 数量</span><br><span class="line">double sum = stream().mapToDouble(Item::getNumber).sum();</span><br><span class="line">System.err.println(&quot;sum:&quot; + sum);  //sum:16.5</span><br></pre></td></tr></table></figure>
+<p>参考文章：<br><a href="https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/index.html" target="_blank" rel="noopener">Java 8 中的 Streams API 详解</a><br><a href="https://colobu.com/2016/03/02/Java-Stream/#%E6%8E%92%E5%BA%8F_Ordering" target="_blank" rel="noopener">Java Stream 详解 ——鸟窝</a><br><a href="https://www.jianshu.com/p/0c07597d8311" target="_blank" rel="noopener">Java 8 Stream 教程</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2019/07/14/java-convert-example-stream/" target="_blank" rel="external">/2019/07/14/java-convert-example-stream/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK8/">JDK8</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stream/">Stream</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-convert-example/">java-convert-example</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/&title=《Java常用对象转换之 Stream 流》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/&title=《Java常用对象转换之 Stream 流》 — ZZY补完计划&source=
+平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java常用对象转换之 Stream 流》 — ZZY补完计划&url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/29/java-convert-example-datetime/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java常用对象转换之时间操作</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/&title=《Java常用对象转换之 Stream 流》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/&title=《Java常用对象转换之 Stream 流》 — ZZY补完计划&source=
+平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java常用对象转换之 Stream 流》 — ZZY补完计划&url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2019/07/14/java-convert-example-stream/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3a22rDMBAFwPz/T6fQ12D37EXBhfFTSFxLo4K1nNXrFV/v3+v+18973h9X9fn5E0YXHh4eXmvqV9fV8MlfXQGunj/5/nJ0PDw8vGO8ZELJdKuL1ds8kjnj4eHhPYF3/4JOppt8c/9kPDw8vP/F6wUWeVSRbD94eHh4z+ElRXB+Tw+Qk45kLXh4eHi1lLXQAHvC54P9PTw8PLxBV32yDcyPI8xni4eHh3eCN59WNWjohQ7JN9Gq4OHh4R3g9dr8WwcFJoHy5T14eHh4B3j3b9Gtpv4k5liLcfHw8PDGvLzYzRtXeYGel9dr/ys8PDy8Jd6k2K3+2jugUN0q8PDw8M7xktd6rzHW2zCSIj4PjvHw8PBO85LB8qB2a9K9hXj1HoGHh4cX8PKIYbJOJ0KKwqEBPDw8vFVerwWVF9Z5KDzZBsphLh4eHt4SLw8jqsV3dZR80aNlxcPDw1vlTYKAPMydTL1K+uP/hoeHhzfm5YV19crDhd6GVC7W8fDw8FZ59wHEZCF68e4ksIhOluHh4eGNefmxgN0mWe851fIdDw8Pb5fXi2V7+KQ4rpbmUT6Nh4eHd4DXa1b1um15eDEPmvHw8PBO8PLXbrX1lTwtL5qr83kl57Pw8PDwjvG2IoNeS6wQ1OZZCx4eHt4Sr/qICTiPZautr1mXDA8PD6//tkwGq0a9vbh2cqwBDw8P7zu85NVfXYIeYHL0Cg8PD+8c71288kkn5fUkaCgcusLDw8Nb5fVeuL3JVbeN6ucmDA8PD6/FyzeDvGFfjR52ww48PDy87/DyzWA+0d6Bg2bTDg8PD+8BvOpgecE9ObaFh4eH90xe9UDAVmzRC4vx8PDwTvN6Ta9eayoZpXdYYZS14OHh4bUaXUmxO2+J5dtGdZSF/h4eHh7e3f0/JEIr8ICJ864AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

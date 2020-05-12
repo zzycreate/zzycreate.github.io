@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java常用对象转换之时间操作 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,java-convert-example,datetime,JSR 310">
+    <meta name="description" content="平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：zzycreate/java-convert-example本文记录一些常用的时间操作，以备需要时直接使用">
+<meta name="keywords" content="Java,java-convert-example,datetime,JSR 310">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java常用对象转换之时间操作">
+<meta property="og:url" content="https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：zzycreate/java-convert-example本文记录一些常用的时间操作，以备需要时直接使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java常用对象转换之时间操作">
+<meta name="twitter:description" content="平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：zzycreate/java-convert-example本文记录一些常用的时间操作，以备需要时直接使用">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java常用对象转换之时间操作</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java常用对象转换之时间操作</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-29T17:07:47.000Z" itemprop="datePublished" class="page-time">
+  2019-06-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#java-的时间操作-API"><span class="post-toc-number">1.</span> <span class="post-toc-text">java 的时间操作 API</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#java-util-包的时间操作"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">java.util 包的时间操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#java-time-包的时间操作"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">java.time 包的时间操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#java-1-1-日期-时间操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">java 1.1 日期/时间操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象构造"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">对象构造</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象取值"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">对象取值</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#java-8-日期-时间操作"><span class="post-toc-number">3.</span> <span class="post-toc-text">java 8 日期/时间操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象构造-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">对象构造</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象取值和比较"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">对象取值和比较</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间加减"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">时间加减</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类型转换"><span class="post-toc-number">4.</span> <span class="post-toc-text">类型转换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Date-gt-Instant"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Date -&gt; Instant</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Date-gt-LocalDateTime-LocalDate-LocalTime"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">Date -&gt; LocalDateTime/LocalDate/LocalTime</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Instant-gt-Date"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">Instant -&gt; Date</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LocalDateTime-gt-Date"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">LocalDateTime -&gt; Date</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String-gt-Date"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">String -&gt; Date</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String-gt-LocalDateTime"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">String -&gt; LocalDateTime</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Date-gt-String"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">Date -&gt; String</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Instant-gt-String"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">Instant -&gt; String</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Date-Instant-gt-epochMilli"><span class="post-toc-number">4.9.</span> <span class="post-toc-text">Date/Instant -&gt; epochMilli</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#epochMilli-gt-Date-Instant"><span class="post-toc-number">4.10.</span> <span class="post-toc-text">epochMilli -&gt; Date/Instant</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-java-convert-example-datetime"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java常用对象转换之时间操作</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-29 17:07:47" datetime="2019-06-29T17:07:47.000Z"  itemprop="datePublished">2019-06-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例代码见 github 项目：<a href="https://github.com/zzycreate/java-convert-example">zzycreate/java-convert-example</a><br>本文记录一些常用的时间操作，以备需要时直接使用</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="java-的时间操作-API"><a href="#java-的时间操作-API" class="headerlink" title="java 的时间操作 API"></a>java 的时间操作 API</h2><h3 id="java-util-包的时间操作"><a href="#java-util-包的时间操作" class="headerlink" title="java.util 包的时间操作"></a>java.util 包的时间操作</h3><p><code>jdk 1.1</code> 就开始提供了基础的日期时间相关的功能，<code>java.util.Date</code>、<code>java.util.Calendar</code>、<code>java.text.DateFormat</code>、<code>java.sql.Date</code>、<code>java.sql.Time</code>、<br><code>java.sql.Timestamp</code> 等是 <code>jdk 1.1</code> 中常用的日期时间类，<code>java.util.Date</code> 代表了时间，<code>java.util.Calendar</code> 代表了日期，<code>java.text.DateFormat</code><br>用于格式化时间，<code>java.sql.Date</code> 是 <code>java.util.Date</code> 的包装类，代表了数据库中的 DATE，<code>java.sql.Time</code> 代表数据库的时间（不含日期）, <code>java.sql.Timestamp</code> 代表了数据库的 TIMESTAMP。</p>
+<p>SimpleDateFormat 时间格式化常用字符及含义：</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G</td>
+<td>纪元</td>
+<td>在 Locale.CHINA语言环境下，如 ‘公元’;<br>在Locale.US语言环境下，如 ‘AD’</td>
+</tr>
+<tr>
+<td>y</td>
+<td>年份。一般用 yy 表示两位年份，yyyy 表示 4 位年份</td>
+<td>使用 yy 表示的年扮，如 11；<br>使用 yyyy 表示的年份，如 2011</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月份。一般用 MM 表示月份，如果使用 MMM，则会根据语言环境显示不同语言的月份</td>
+<td>使用 MM 表示的月份，如 05；<br>使用 MMM 表示月份，在 Locale.CHINA语言环境下，如“十月”；<br>在Locale.US语言环境下，如 Oct</td>
+</tr>
+<tr>
+<td>d</td>
+<td>月份中的天数。一般用 dd 表示天数</td>
+<td>使用 dd 表示的天数，如 10</td>
+</tr>
+<tr>
+<td>D</td>
+<td>年份中的天数。表示当天是当年的第几天， 用 D 表示</td>
+<td>使用 D 表示的年份中的天数，如 295</td>
+</tr>
+<tr>
+<td>E</td>
+<td>星期几。用 E 表示，会根据语言环境的不同， 显示不同语言的星期几</td>
+<td>使用 E 表示星期几，<br>在 Locale.CHINA 语言环境下，如“星期四”；<br>在 Locale.US 语言环境下，如 Thu</td>
+</tr>
+<tr>
+<td>H</td>
+<td>一天中的小时数（0~23)。一般用 HH 表示小时数</td>
+<td>使用 HH 表示的小时数，如 18</td>
+</tr>
+<tr>
+<td>h</td>
+<td>一天中的小时数（1~12)。一般使用hh表 示小时数</td>
+<td>使用 hh 表示的小时数，如 10 (注意 10 有可能是 10 点，也可能是 22 点）</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分钟数。一般使用 mm 表示分钟数</td>
+<td>使用 mm 表示的分钟数，如 29</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒数。一般使用 ss 表示秒数</td>
+<td>使用 ss 表示的秒数，如 38</td>
+</tr>
+<tr>
+<td>S</td>
+<td>毫秒数。一般使用 SSS 表示毫秒数</td>
+<td>使用 SSS 表示的毫秒数，如 156</td>
+</tr>
+</tbody>
+</table>
+<p><code>Date</code> 代表了一个特定的时间，可以精确到毫秒，也能表示年月日等日期概念。</p>
+<p>但 util 中的日期时间操作存在一些问题：</p>
+<ol>
+<li>Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。</li>
+<li>java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理。另外这两个类都有相同的名字，这本身就是一个非常糟糕的设计。</li>
+<li>对于时间、时间戳、格式化以及解析，并没有一些明确定义的类。对于格式化和解析的需求，我们有java.text.DateFormat抽象类，但通常情况下，SimpleDateFormat类被用于此类需求。</li>
+<li>所有的日期类都是可变的，因此他们都不是线程安全的，这是Java日期类最大的问题之一。</li>
+<li>日期类并不提供国际化，没有时区支持，因此Java引入了java.util.Calendar和java.util.TimeZone类，但他们同样存在上述所有的问题。</li>
+</ol>
+<h3 id="java-time-包的时间操作"><a href="#java-time-包的时间操作" class="headerlink" title="java.time 包的时间操作"></a>java.time 包的时间操作</h3><p>Java 8 新增的日期时间 API 遵循 JSR 310 设计规范，解决上述 API 中的缺陷。</p>
+<p>主要的操作对象有：</p>
+<ol>
+<li>java.time.LocalTime: 时间</li>
+<li>java.time.LocalDate: 日期</li>
+<li>java.time.LocalDateTime: 日期/时间</li>
+<li>java.time.ZoneId: 时区</li>
+<li>java.time.ZoneOffset: 时区偏移量</li>
+<li>java.time.ZonedDateTime: 带时区信息的日期/时间</li>
+<li>java.time.Instant: 时刻（时间戳）</li>
+<li>java.time.Duration java.time.Period: 时间段</li>
+</ol>
+<p>这些对象都是线程安全，且不可变，API 方法设计简单，转换容易，配合 <code>java.time.format.DateTimeFormatter</code> 可以很容易的进行格式化。</p>
+<p>以上这些对象的关联关系：</p>
+<ol>
+<li>LocalDateTime = LocalDate + LocalTime</li>
+<li>ZonedDateTime = LocalDateTime + ZoneId/ZoneOffset</li>
+<li>Instant = seconds + nano</li>
+</ol>
+<p>Java 8日期/时间API是JSR-310的实现，它的实现目标是克服旧的日期时间实现中所有的缺陷，新的日期/时间API的一些设计原则是：</p>
+<ol>
+<li>不变性：新的日期/时间API中，所有的类都是不可变的，这对多线程环境有好处。</li>
+<li>关注点分离：新的API将人可读的日期时间和机器时间（unix timestamp）明确分离，它为日期（Date）、时间（Time）、日期时间（DateTime）、时间戳（unix timestamp）以及时区定义了不同的类。</li>
+<li>清晰：在所有的类中，方法都被明确定义用以完成相同的行为。举个例子，要拿到当前实例我们可以使用now()方法，在所有的类中都定义了format()和parse()<br>方法，而不是像以前那样专门有一个独立的类。为了更好的处理问题，所有的类都使用了工厂模式和策略模式，一旦你使用了其中某个类的方法，与其他类协同工作并不困难。</li>
+<li>实用操作：所有新的日期/时间API类都实现了一系列方法用以完成通用的任务，如：加、减、格式化、解析、从日期/时间中提取单独部分，等等。</li>
+<li>可扩展性：新的日期/时间API是工作在ISO-8601日历系统上的，但我们也可以将其应用在非IOS的日历上。</li>
+</ol>
+<h2 id="java-1-1-日期-时间操作"><a href="#java-1-1-日期-时间操作" class="headerlink" title="java 1.1 日期/时间操作"></a>java 1.1 日期/时间操作</h2><h3 id="对象构造"><a href="#对象构造" class="headerlink" title="对象构造"></a>对象构造</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 毫秒值</span><br><span class="line">long timestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">// java.util.Date 除了一下两种构造方法，其他构造方法均已过期</span><br><span class="line">Date date = new Date();</span><br><span class="line">Date date1 = new Date(timestamp);</span><br><span class="line"></span><br><span class="line">// sql date/time/timestamp 是针对SQL语言使用的，Date只有日期而没有时间，Time只有时间而没有日期</span><br><span class="line">java.sql.Date sqlDate = new java.sql.Date(timestamp);</span><br><span class="line">java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());</span><br><span class="line">java.sql.Time sqlTime = new java.sql.Time(timestamp);</span><br><span class="line">java.sql.Time sqlTime1 = new java.sql.Time(date1.getTime());</span><br><span class="line">java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(timestamp);</span><br><span class="line">java.sql.Timestamp sqlTimestamp1 = new java.sql.Timestamp(date1.getTime());</span><br><span class="line"></span><br><span class="line">// Calendar 代表日历, GregorianCalendar 代表公历</span><br><span class="line">Calendar calendar = Calendar.getInstance();</span><br><span class="line">GregorianCalendar gregorianCalendar = new GregorianCalendar();</span><br></pre></td></tr></table></figure>
+<h3 id="对象取值"><a href="#对象取值" class="headerlink" title="对象取值"></a>对象取值</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">long timestamp = System.currentTimeMillis();</span><br><span class="line">Date date = new Date(timestamp);</span><br><span class="line">java.sql.Date sqlDate = new java.sql.Date(timestamp);</span><br><span class="line">java.sql.Time sqlTime = new java.sql.Time(timestamp);</span><br><span class="line">java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(timestamp);</span><br><span class="line">Calendar calendar = Calendar.getInstance();</span><br><span class="line">GregorianCalendar gregorianCalendar = new GregorianCalendar();</span><br><span class="line"></span><br><span class="line">// Date 除了 getTime() 方法可以获取时间戳毫秒值外，其他 get 方法在 jdk8 中均已过期，不推荐时间</span><br><span class="line">// sql date/time/timestamp 均为 util date 的子类，过期方法类似</span><br><span class="line">long s = date.getTime();</span><br><span class="line">long sqlTimes = sqlDate.getTime();</span><br><span class="line">long sqlTime1 = sqlTime.getTime();</span><br><span class="line">long sqlTime2 = sqlTimestamp.getTime();</span><br><span class="line">long sqlNano1 = sqlTimestamp.getNanos();</span><br><span class="line">long sqlNano2 = sqlTimestamp.getNanos();</span><br><span class="line"></span><br><span class="line">Date calendarTime = calendar.getTime();</span><br><span class="line">int year = calendar.get(Calendar.YEAR);</span><br><span class="line">// 由于月份是从0开始，一般 +1 之后才和人的主观感受一致</span><br><span class="line">int month = calendar.get(Calendar.MONTH) + 1;</span><br><span class="line">int dateNum = calendar.get(Calendar.DATE);</span><br><span class="line">int hour = calendar.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">int minute = calendar.get(Calendar.MINUTE);</span><br><span class="line">int second = calendar.get(Calendar.SECOND);</span><br><span class="line">// 星期</span><br><span class="line">int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);</span><br><span class="line">// 日期</span><br><span class="line">int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);</span><br><span class="line"></span><br><span class="line">boolean isLeapYear = gregorianCalendar.isLeapYear(year);</span><br></pre></td></tr></table></figure>
+<h2 id="java-8-日期-时间操作"><a href="#java-8-日期-时间操作" class="headerlink" title="java 8 日期/时间操作"></a>java 8 日期/时间操作</h2><p>JSR 303 的日期时间对象虽然多，但是操作的 API 基本类似，很容易理解，以下距离没有列举所有情况，但其他操作基本类似。</p>
+<h3 id="对象构造-1"><a href="#对象构造-1" class="headerlink" title="对象构造"></a>对象构造</h3><p>对象的创建基本都是 now (当前时间)、of (静态构造方法)、parse (文本解析)、at (维度组合)、to (对象转换)、between (区间) 等简单明了的 API。</p>
+<p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/Jdk8TimeExample.java">Jdk8TimeExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LocalTime time = LocalTime.now();</span><br><span class="line">LocalTime time1 = LocalTime.of(13, 14, 15);</span><br><span class="line">LocalTime time2 = LocalTime.ofSecondOfDay(47655);</span><br><span class="line">LocalTime time3 = LocalTime.parse(&quot;13:14:15&quot;);</span><br><span class="line"></span><br><span class="line">LocalDate date = LocalDate.now();</span><br><span class="line">LocalDate date1 = LocalDate.of(2019, 5, 10);</span><br><span class="line">LocalDate date2 = LocalDate.ofYearDay(2019, 130);</span><br><span class="line">LocalDate date3 = LocalDate.parse(&quot;2019-05-10&quot;);</span><br><span class="line"></span><br><span class="line">LocalDateTime dateTime = LocalDateTime.now();</span><br><span class="line">LocalDateTime dateTime1 = LocalDateTime.of(2019, 5, 10, 13, 14, 15);</span><br><span class="line">LocalDateTime dateTime2 = LocalDateTime.of(date, time);</span><br><span class="line">LocalDateTime dateTime3 = date.atStartOfDay();</span><br><span class="line">LocalDateTime dateTime4 = date.atTime(time);</span><br><span class="line">LocalDateTime dateTime5 = date.atTime(13, 14, 15);</span><br><span class="line">LocalDateTime dateTime6 = time.atDate(date);</span><br><span class="line"></span><br><span class="line">ZonedDateTime zonedDateTime = ZonedDateTime.now();</span><br><span class="line">ZonedDateTime zonedDateTime1 = dateTime.atZone(ZoneId.systemDefault());</span><br><span class="line">ZonedDateTime zonedDateTime2 = dateTime.atZone(ZoneId.of(&quot;Asia/Shanghai&quot;));</span><br><span class="line"></span><br><span class="line">LocalDateTime dateTime7 = zonedDateTime.toLocalDateTime();</span><br><span class="line">LocalDate date4 = zonedDateTime.toLocalDate();</span><br><span class="line">LocalTime time4 = zonedDateTime.toLocalTime();</span><br><span class="line"></span><br><span class="line">Instant instant = dateTime.toInstant(ZoneOffset.of(&quot;+08:00&quot;));</span><br><span class="line">Instant instant1 = zonedDateTime.toInstant();</span><br><span class="line">Instant instant2 = new Date().toInstant();</span><br><span class="line"></span><br><span class="line">Duration duration = Duration.between(time, time1);</span><br><span class="line">Period period = Period.between(date, date1);</span><br></pre></td></tr></table></figure>
+<h3 id="对象取值和比较"><a href="#对象取值和比较" class="headerlink" title="对象取值和比较"></a>对象取值和比较</h3><p>对象的 get 方法可以获取对象结构的组成部分，is方法可以用做时间的简单判断。</p>
+<p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/Jdk8TimeExample.java">Jdk8TimeExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ZonedDateTime zonedDateTime = ZonedDateTime.now();</span><br><span class="line">LocalDateTime dateTime = zonedDateTime.toLocalDateTime();</span><br><span class="line">LocalDate date = dateTime.toLocalDate();</span><br><span class="line">LocalTime time = dateTime.toLocalTime();</span><br><span class="line"></span><br><span class="line">int year = date.getYear();</span><br><span class="line">Month month = date.getMonth();</span><br><span class="line">int monthValue = date.getMonthValue();</span><br><span class="line">int dayOfYear = date.getDayOfYear();</span><br><span class="line">int dayOfMonth = date.getDayOfMonth();</span><br><span class="line">DayOfWeek dayOfWeek = date.getDayOfWeek();</span><br><span class="line"></span><br><span class="line">int hour = time.getHour();</span><br><span class="line">int minute = time.getMinute();</span><br><span class="line">int second = time.getSecond();</span><br><span class="line">int nano = time.getNano();</span><br><span class="line"></span><br><span class="line">ZoneId zone = zonedDateTime.getZone();</span><br><span class="line">ZoneOffset offset = zonedDateTime.getOffset();</span><br><span class="line"></span><br><span class="line">LocalDateTime now = LocalDateTime.now();</span><br><span class="line"></span><br><span class="line">boolean isBefore = dateTime.isBefore(now);</span><br><span class="line">boolean isAfter = dateTime.isAfter(now);</span><br><span class="line">boolean isLeapYear = dateTime.toLocalDate().isLeapYear();</span><br></pre></td></tr></table></figure>
+<h3 id="时间加减"><a href="#时间加减" class="headerlink" title="时间加减"></a>时间加减</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LocalDate date = LocalDate.now();</span><br><span class="line">LocalDate minus1 = date.minus(1, ChronoUnit.DAYS);</span><br><span class="line">LocalDate date1 = date.minusDays(1);</span><br><span class="line">LocalDate date2 = date.minusMonths(2);</span><br><span class="line">LocalDate plus1 = date.plus(1, ChronoUnit.WEEKS);</span><br><span class="line">LocalDate date3 = date.plusYears(1);</span><br><span class="line"></span><br><span class="line">LocalTime time = LocalTime.now();</span><br><span class="line">LocalTime minus2 = time.minus(1, ChronoUnit.SECONDS);</span><br><span class="line">LocalTime time1 = time.minusSeconds(2);</span><br><span class="line">LocalTime time2 = time.minusMinutes(30);</span><br><span class="line">LocalTime plus2 = time.plus(3, ChronoUnit.HALF_DAYS);</span><br><span class="line">LocalTime time3 = time.plusHours(2);</span><br><span class="line"></span><br><span class="line">LocalDateTime dateTime = LocalDateTime.now();</span><br><span class="line"></span><br><span class="line">LocalDateTime minus = dateTime.minus(10, ChronoUnit.SECONDS);</span><br><span class="line">LocalDateTime dateTime1 = dateTime.minusSeconds(10L);</span><br><span class="line">LocalDateTime dateTime2 = dateTime.minusDays(10L);</span><br><span class="line"></span><br><span class="line">LocalDateTime plus = dateTime.plus(10, ChronoUnit.SECONDS);</span><br><span class="line">LocalDateTime dateTime3 = dateTime.plusMinutes(10L);</span><br><span class="line">LocalDateTime dateTime4 = dateTime.plusMonths(5);</span><br></pre></td></tr></table></figure>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><blockquote>
+<p>以下为 jdk 1.1 时间日期与 jdk1.8 时间日期的转换</p>
+</blockquote>
+<h3 id="Date-gt-Instant"><a href="#Date-gt-Instant" class="headerlink" title="Date -&gt; Instant"></a>Date -&gt; Instant</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateLocalDateTimeConvertExample.java">DateLocalDateTimeConvertExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Instant instant = new Date().toInstant();</span><br><span class="line">Instant instant1 = Instant.ofEpochMilli(new Date().getTime())</span><br></pre></td></tr></table></figure>
+<h3 id="Date-gt-LocalDateTime-LocalDate-LocalTime"><a href="#Date-gt-LocalDateTime-LocalDate-LocalTime" class="headerlink" title="Date -&gt; LocalDateTime/LocalDate/LocalTime"></a>Date -&gt; LocalDateTime/LocalDate/LocalTime</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateLocalDateTimeConvertExample.java">DateLocalDateTimeConvertExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LocalDateTime localDateTime = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault());</span><br><span class="line">LocalDate localDate = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault()).toLocalDate();</span><br><span class="line">LocalTime localTime = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault()).toLocalTime();</span><br></pre></td></tr></table></figure>
+<h3 id="Instant-gt-Date"><a href="#Instant-gt-Date" class="headerlink" title="Instant -&gt; Date"></a>Instant -&gt; Date</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateLocalDateTimeConvertExample.java">DateLocalDateTimeConvertExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Date date = new Date(Instant.now().toEpochMilli());</span><br></pre></td></tr></table></figure>
+<h3 id="LocalDateTime-gt-Date"><a href="#LocalDateTime-gt-Date" class="headerlink" title="LocalDateTime -&gt; Date"></a>LocalDateTime -&gt; Date</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Date date = new Date(LocalDateTime.now().toInstant(ZoneOffset.of(&quot;+08:00&quot;)).toEpochMilli());</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以下为字符串与时间日期的转换</p>
+</blockquote>
+<h3 id="String-gt-Date"><a href="#String-gt-Date" class="headerlink" title="String -&gt; Date"></a>String -&gt; Date</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateTimeStringExample.java">DateTimeStringExample.java</a></p>
+<p>使用 <code>SimpleDateFormat</code> 按照格式解析字符串，可能会出现异常，格式见前文表格。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">    Date date = sdf.parse(&quot;2019-01-02 15:23:46&quot;);</span><br><span class="line">&#125; catch (ParseException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者间接利用 LocalDateTime 进行字符串解析</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">LocalDateTime localDateTime = LocalDateTime.parse(&quot;2019-05-10 13:14:15&quot;, dateTimeFormatter);</span><br><span class="line">Date date = Date.from(localDateTime.toInstant(ZoneOffset.of(&quot;+08:00&quot;)));</span><br></pre></td></tr></table></figure>
+<h3 id="String-gt-LocalDateTime"><a href="#String-gt-LocalDateTime" class="headerlink" title="String -&gt; LocalDateTime"></a>String -&gt; LocalDateTime</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateTimeStringExample.java">DateTimeStringExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">LocalDateTime dateTime = DateTimeStringExample.toLocalDateTime(&quot;2019-05-10 13:14:15&quot;, dateTimeFormatter);</span><br></pre></td></tr></table></figure>
+<h3 id="Date-gt-String"><a href="#Date-gt-String" class="headerlink" title="Date -&gt; String"></a>Date -&gt; String</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateExample.java">DateExample.java</a></p>
+<p>利用 <code>SimpleDateFormat</code> 进行时间的格式化：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">String str = sdf.format(new Date);</span><br></pre></td></tr></table></figure>
+<p>利用 <code>DateTimeFormatter</code> 进行时间的格式化：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ZonedDateTime zonedDateTime = date.toInstant().atZone(ZoneId.systemDefault());</span><br><span class="line">DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">String str = zonedDateTime.format(dateTimeFormatter);</span><br></pre></td></tr></table></figure>
+<h3 id="Instant-gt-String"><a href="#Instant-gt-String" class="headerlink" title="Instant -&gt; String"></a>Instant -&gt; String</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateExample.java">DateExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ZonedDateTime zonedDateTime = Instant.now().atZone(ZoneId.systemDefault());</span><br><span class="line">DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">String str = zonedDateTime.format(dateTimeFormatter);</span><br></pre></td></tr></table></figure>
+<h3 id="Date-Instant-gt-epochMilli"><a href="#Date-Instant-gt-epochMilli" class="headerlink" title="Date/Instant -&gt; epochMilli"></a>Date/Instant -&gt; epochMilli</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateExample.java">DateExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">long epochMilli = new Date().getTime();</span><br><span class="line">long epochMilli1 = Instant.now().toEpochMilli();</span><br><span class="line">long epochMilli2 = new Date().toInstant().toEpochMilli();</span><br></pre></td></tr></table></figure>
+<h3 id="epochMilli-gt-Date-Instant"><a href="#epochMilli-gt-Date-Instant" class="headerlink" title="epochMilli -&gt; Date/Instant"></a>epochMilli -&gt; Date/Instant</h3><p>示例代码： <a href="https://github.com/zzycreate/java-convert-example/blob/master/src/main/java/io/github/zzycreate/example/datetime/DateExample.java">DateExample.java</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">long epochMilli = System.currentTimeMillis();</span><br><span class="line">Date date = new Date(epochMilli);</span><br><span class="line">Instant instant = Instant.ofEpochMilli(epochMilli);</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2019/06/29/java-convert-example-datetime/" target="_blank" rel="external">/2019/06/29/java-convert-example-datetime/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JSR-310/">JSR 310</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/datetime/">datetime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-convert-example/">java-convert-example</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/&title=《Java常用对象转换之时间操作》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/&title=《Java常用对象转换之时间操作》 — ZZY补完计划&source=
+平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java常用对象转换之时间操作》 — ZZY补完计划&url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/07/14/java-convert-example-stream/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java常用对象转换之 Stream 流</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/04/java-convert-example-file/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java常用对象转换之文件操作</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/&title=《Java常用对象转换之时间操作》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/&title=《Java常用对象转换之时间操作》 — ZZY补完计划&source=
+平时的开发中会经常遇到一些对象需要转换，本项目记录一些常见对象转换的方法，例如：文件转换、日期时间转换、stream流转换、集合对象转换等, 具体的示例..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java常用对象转换之时间操作》 — ZZY补完计划&url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2019/06/29/java-convert-example-datetime/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aQW7jMBAEwPz/05tzkEjunhENL1A+CYlksXgg6Z75+oo//359fv/96qnkG67uubrz4Q8eHh7eeuj3jKt7rmD5RCTsejx4eHh4x3jJsj7bKpJB5O/Kx4yHh4f3Obz2YJ1MSv4UHh4e3v/IS47j+QS1k4iHh4f3ObzNQO+PwrPAN9kYHs5a8PDw8LrcNTrUfs71kfoeHh4e3rqqngSvsyPv/UBnRbg/nsLDw8M7wMsX3M0RNi+SzQKRF9OHh4eHd4A3O8juo9i2zDa7Bw8PD+8c7/7f+WaQvGzWdvDYN+Dh4eEteG3c0L7mRDNWHUPg4eHhPcrb/OxvWwdmi/vw0IyHh4f3Fl673LfXm+bXWUkMDw8P7528NmI4AWu3gcfaVfHw8PBGTQP5otwu6JuAo27kwsPDwzvGawPcJIDYTEpbJLscDx4eHt4x3mZR3mwzs+N4EYXg4eHhvYW3zzOSyHXWOlC3JuDh4eEd4LWYWVybL/dtjLsqfeHh4eGNeO2P/9mL27LZpp3rx3vx8PDwDvDysCCPBvbH7jxijt6Oh4eH9xZeftS+X77bMLdtLIiCFTw8PLxHeW3hPw9Vnzpqt6HJ5S8GPDw8vId4SQibF8zyRb/FrKYDDw8P7wDvPgiYHbXz+HXfdBU1E+Dh4eE9ymsL9nnkui9oHdn38PDw8I7x7jeJtog1O463xbBiY8DDw8Nb82bxRLsBtJFxG+kWuwoeHh7eAtYu/bPQdtPIlW8eP67x8PDwDvCeWmPzsll+EJ9dH9lC8PDw8NZDn8W77RI/ewoPDw/vnbw8Vsiv21BjtoO9+H48PDy8D+C1ge+meNa2DuDh4eF9Jq9tBZh9Zz5NdX0PDw8P7yHerGQ1W7iT+5NWsOh+PDw8vAO8WWNWuyUkw0ravw7W9/Dw8PBe874B3cDuA78ncOsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

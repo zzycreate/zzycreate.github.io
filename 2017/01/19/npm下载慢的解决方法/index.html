@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>npm下载慢的解决方法 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,node,npm">
+    <meta name="description" content="国内访问外网都很慢，甚至不能访问！大家都懂，都很无奈！安装 Node 时自带的 npm 地址默认是：http://registry.npmjs.org ，访问很慢！ 没事，咱们换成国内的！怎么换？">
+<meta name="keywords" content="javascript,node,npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm下载慢的解决方法">
+<meta property="og:url" content="https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="国内访问外网都很慢，甚至不能访问！大家都懂，都很无奈！安装 Node 时自带的 npm 地址默认是：http://registry.npmjs.org ，访问很慢！ 没事，咱们换成国内的！怎么换？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="npm下载慢的解决方法">
+<meta name="twitter:description" content="国内访问外网都很慢，甚至不能访问！大家都懂，都很无奈！安装 Node 时自带的 npm 地址默认是：http://registry.npmjs.org ，访问很慢！ 没事，咱们换成国内的！怎么换？">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">npm下载慢的解决方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">npm下载慢的解决方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-19T02:00:23.000Z" itemprop="datePublished" class="page-time">
+  2017-01-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设置第三方的npm源"><span class="post-toc-number">1.</span> <span class="post-toc-text">设置第三方的npm源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通过config命令"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">通过config命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命令行指定"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">命令行指定</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编辑-node-modules-npm-npmrc-加入下面内容"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">编辑 node_modules\npm.npmrc 加入下面内容</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用-nrm-管理-npm-源"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用 nrm 管理 npm 源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装nrm"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装nrm</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看可以选择的源"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">查看可以选择的源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#快速切换npm注册源"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">快速切换npm注册源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新增和删除私有源"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">新增和删除私有源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注册源速度测试"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">注册源速度测试</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-npm下载慢的解决方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">npm下载慢的解决方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-19 02:00:23" datetime="2017-01-19T02:00:23.000Z"  itemprop="datePublished">2017-01-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>国内访问外网都很慢，甚至不能访问！大家都懂，都很无奈！<br>安装 Node 时自带的 npm 地址默认是：<a href="http://registry.npmjs.org/" target="_blank" rel="noopener">http://registry.npmjs.org</a> ，访问很慢！ 没事，咱们换成国内的！怎么换？</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="设置第三方的npm源"><a href="#设置第三方的npm源" class="headerlink" title="设置第三方的npm源"></a>设置第三方的npm源</h2><h3 id="通过config命令"><a href="#通过config命令" class="headerlink" title="通过config命令"></a>通过config命令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config set registry http://registry.cnpmjs.org  </span><br><span class="line"># 随便检查一个npm库的信息</span><br><span class="line">npm info underscore</span><br></pre></td></tr></table></figure>
+<p>（如果上面配置正确这个命令会有字符串response）</p>
+<h3 id="命令行指定"><a href="#命令行指定" class="headerlink" title="命令行指定"></a>命令行指定</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm --registry http://registry.cnpmjs.org</span><br></pre></td></tr></table></figure>
+<h3 id="编辑-node-modules-npm-npmrc-加入下面内容"><a href="#编辑-node-modules-npm-npmrc-加入下面内容" class="headerlink" title="编辑 node_modules\npm.npmrc 加入下面内容"></a>编辑 <code>node_modules\npm.npmrc</code> 加入下面内容</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">registry = http://registry.cnpmjs.org</span><br></pre></td></tr></table></figure>
+<p>如果上面的 <code>npm</code> 地址不行的话，大家可以试试淘宝的 <code>npm</code>，也非常稳定:</p>
+<p>地址：<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
+<h2 id="使用-nrm-管理-npm-源"><a href="#使用-nrm-管理-npm-源" class="headerlink" title="使用 nrm 管理 npm 源"></a>使用 nrm 管理 npm 源</h2><p><code>nrm</code> 是一个开源的 npm 注册源管理程序，可以使用 nrm 进行查看及快速的换源操作。</p>
+<h3 id="安装nrm"><a href="#安装nrm" class="headerlink" title="安装nrm"></a>安装nrm</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install -g nrm</span><br></pre></td></tr></table></figure>
+<h3 id="查看可以选择的源"><a href="#查看可以选择的源" class="headerlink" title="查看可以选择的源"></a>查看可以选择的源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ nrm ls</span><br><span class="line">* npm ---- https://registry.npmjs.org/</span><br><span class="line">  cnpm --- http://r.cnpmjs.org/</span><br><span class="line">  eu ----- http://registry.npmjs.eu/</span><br><span class="line">  au ----- http://registry.npmjs.org.au/</span><br><span class="line">  sl ----- http://npm.strongloop.com/</span><br><span class="line">  nj ----- https://registry.nodejitsu.com/</span><br></pre></td></tr></table></figure>
+<h3 id="快速切换npm注册源"><a href="#快速切换npm注册源" class="headerlink" title="快速切换npm注册源"></a>快速切换npm注册源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ nrm use cnpm //switch registry to cnpm</span><br><span class="line">    Registry has been set to: http://r.cnpmjs.org/</span><br></pre></td></tr></table></figure>
+<h3 id="新增和删除私有源"><a href="#新增和删除私有源" class="headerlink" title="新增和删除私有源"></a>新增和删除私有源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nrm add  &lt;registry&gt; &lt;url&gt; [home]</span><br><span class="line"></span><br><span class="line">nrm del &lt;registry&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="注册源速度测试"><a href="#注册源速度测试" class="headerlink" title="注册源速度测试"></a>注册源速度测试</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nrm test                                                                                                                                   </span><br><span class="line">  npm ---- 891ms</span><br><span class="line">  cnpm --- 1213ms</span><br><span class="line">* taobao - 460ms</span><br><span class="line">  eu ----- 3859ms</span><br><span class="line">  au ----- 1073ms</span><br><span class="line">  sl ----- 4150ms</span><br><span class="line">  nj ----- 8008ms</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2017/01/19/npm下载慢的解决方法/" target="_blank" rel="external">/2017/01/19/npm下载慢的解决方法/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/&title=《npm下载慢的解决方法》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/&title=《npm下载慢的解决方法》 — ZZY补完计划&source=
+国内访问外网都很慢，甚至不能访问！大家都懂，都很无奈！安装 Node 时自带的 npm 地址默认是：http://registry.npmjs.org ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《npm下载慢的解决方法》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/25/普通用户sudo权限问题/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">普通用户sudo权限问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/03/npm全局安装与本地安装/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">npm全局安装与本地安装</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/&title=《npm下载慢的解决方法》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/&title=《npm下载慢的解决方法》 — ZZY补完计划&source=
+国内访问外网都很慢，甚至不能访问！大家都懂，都很无奈！安装 Node 时自带的 npm 地址默认是：http://registry.npmjs.org ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《npm下载慢的解决方法》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/19/npm下载慢的解决方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3dUWorMRAEwNz/0nm/AWO7e0YyflD+Co68q1JgR+4R5Ocnfv3+eT2+8/jbv2OejX8c04489sLDw8NbTP31pV+/8+zKyfj8jvmc8fDw8G7zksm9ntDsmZwUg7xI4OHh4X0nL3m4zxjthh4PDw/v/+IlAcQsmEiWAA8PD+8beO2l8/F5uNB+9nDWgoeHhxfz8i7S9/x8pb+Hh4eHt+6q5w/cYw/ociP+ZrZ4eHh4F3j5A7cNCNqIYb/ET9tyeHh4eNd4ectqf5QqOYKwL1R4eHh4N3jFGsSb3eQ6bYDbRiT1h/Hw8PDWvPz4VL6Z3kfG9XLg4eHhXeDNWvtFEDCKaNvSEs0QDw8P7yivfaznce3rhZsFEPkd8fDw8D7JS+LX9lv/ZvM9O76Ah4eHd4OXhxF7RtvKysfXx63w8PDwDvFmm9d2QmdLyJuCgYeHh3eN1wa4m/Gzzfrq0BUeHh7eNV7e6Grjg1kjbV9s8PDw8D7JayOA2TVnLbfiz4OHh4d3gTe76IyRRAxROFuC8fDw8O7x8knnyHzT3C5QMU88PDy8o7x20puAtV31PBZ5umR4eHh4F3jtZve3fOXhbxsf54EyHh4e3lleG9G2ZWN/dGB2hbru4eHh4XV3X/1zuOI28b2KatbGuHh4eHhHeW3j6nBYMPo2UB+9wsPDw7vAm4Fn7f89PhqDh4eH9xHeLBQoHtZxqDELdvHw8PDu8TYNrfaoVn5cIG+/vSlCeHh4eBd4q3h0HWS02+g8Pv6Z1RY8PDy8mJcUg1mM2xaGNiKJvhjg4eHhXeO10eps+5vHE3k1e3N9PDw8vK/ktTFBy8jDYjw8PLzv5M1Is/bYgWXCw8PDu8bLW1Z52ciXow0vioNZeHh4eBd4s4NNm3C2nfQm4MDDw8M7yvsH47gDJ7kE1lQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

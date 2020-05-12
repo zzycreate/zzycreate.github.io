@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>个人Linux使用命令记录 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,个人收集">
+    <meta name="description" content="linux 的命令非常的多，有一些有效但是不常用的命令，可能需要临时进行翻阅，记录部分有效命令以备查阅使用">
+<meta name="keywords" content="Linux,个人收集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人Linux使用命令记录">
+<meta property="og:url" content="https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="linux 的命令非常的多，有一些有效但是不常用的命令，可能需要临时进行翻阅，记录部分有效命令以备查阅使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="个人Linux使用命令记录">
+<meta name="twitter:description" content="linux 的命令非常的多，有一些有效但是不常用的命令，可能需要临时进行翻阅，记录部分有效命令以备查阅使用">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">个人Linux使用命令记录</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">个人Linux使用命令记录</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-10T22:19:30.000Z" itemprop="datePublished" class="page-time">
+  2018-10-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/收集/">收集</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#收藏"><span class="post-toc-number">1.</span> <span class="post-toc-text">收藏</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网站"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">网站</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#压缩包相关"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">压缩包相关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tar-命令"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">tar 命令</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解压与解包"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">解压与解包</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#压缩与打包"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">压缩与打包</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#磁盘空间"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">磁盘空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#df-Disk-Free"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">df (Disk Free)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#du-Disk-Usage"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">du (Disk Usage)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-命令"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">git 命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#git-rm-删除远端已提交文件"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">git rm 删除远端已提交文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ssh-keygen-生成ssh密钥对"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">ssh-keygen 生成ssh密钥对</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#删除-git-配置"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">删除 git 配置</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-个人Linux使用命令记录"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">个人Linux使用命令记录</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-10 22:19:30" datetime="2018-10-10T22:19:30.000Z"  itemprop="datePublished">2018-10-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/收集/">收集</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>linux 的命令非常的多，有一些有效但是不常用的命令，可能需要临时进行翻阅，记录部分有效命令以备查阅使用</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="收藏"><a href="#收藏" class="headerlink" title="收藏"></a>收藏</h2><h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h3><ol>
+<li><a href="http://linux.vbird.org/" target="_blank" rel="noopener">鳥哥的 Linux 私房菜 http://linux.vbird.org/</a></li>
+<li><a href="http://linux.51yip.com/" target="_blank" rel="noopener">linux 命令手册 http://linux.51yip.com/</a></li>
+</ol>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="压缩包相关"><a href="#压缩包相关" class="headerlink" title="压缩包相关"></a>压缩包相关</h3><h4 id="tar-命令"><a href="#tar-命令" class="headerlink" title="tar 命令"></a>tar 命令</h4><p><strong>tar 参数：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  -A, --catenate, --concatenate   追加 tar 文件至归档</span><br><span class="line">* -c, --create                    创建一个新归档</span><br><span class="line">  -d, --diff, --compare           找出归档和文件系统的差异</span><br><span class="line">  --delete                        从归档(非磁带！)中删除</span><br><span class="line">  -r, --append                    追加文件至归档结尾</span><br><span class="line">  -t, --list                      列出归档内容</span><br><span class="line">  -u, --update                    仅追加比归档中副本更新的文件</span><br><span class="line">* -x, --extract, --get            从归档中解出文件</span><br><span class="line">* -v, --verbose                   详细地列出处理的文件</span><br><span class="line">* -f, --file=ARCHIVE              使用归档文件或 ARCHIVE 设备，命令后必须跟文件名</span><br><span class="line">* -C, --directory=DIR             改变至目录 DIR</span><br><span class="line">  --exclude=PATTERN               排除以 PATTERN 指定的文件</span><br><span class="line"></span><br><span class="line">  -a, --auto-compress             使用归档后缀来决定压缩程序</span><br><span class="line">  -I, --use-compress-program=PROG 通过 PROG 过滤(必须是能接受 -d选项的程序)</span><br><span class="line">* -j, --bzip2                     通过 bzip2 过滤归档</span><br><span class="line">* -z, --gzip, --gunzip, --ungzip  通过 gzip 过滤归档</span><br><span class="line">* -Z, --compress, --uncompress    通过 compress 过滤归档</span><br><span class="line">* -J, --xz                        filter the archive through xz</span><br></pre></td></tr></table></figure>
+<h4 id="解压与解包"><a href="#解压与解包" class="headerlink" title="解压与解包"></a>解压与解包</h4><p>各种类型的包解压：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># *.tar 解包</span></span><br><span class="line">$ tar -xvf xx.tar [-C dir/]</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.zip 解压</span></span><br><span class="line">$ unzip xx.zip dir/</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.rar 解压</span></span><br><span class="line">$ rar x xx.rar</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.gz 解压</span></span><br><span class="line">$ gunzip xx.gz</span><br><span class="line">或</span><br><span class="line">$ gzip -d xx.gz</span><br><span class="line"><span class="comment"># *.tar.gz 解压</span></span><br><span class="line">$ tar -xzvf xx.tar.gz [-C dir/]</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.bz2 解压</span></span><br><span class="line">$ bzip2 -d xx.bz2</span><br><span class="line">或</span><br><span class="line">$ bunzip2 xx.bz2</span><br><span class="line"><span class="comment"># *.tar.bz2 解压</span></span><br><span class="line">$ tar -xjvf xx.tar.bz2  [-C dir/]</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.Z 解压</span></span><br><span class="line">$ uncompress xx.Z</span><br><span class="line"><span class="comment"># *.tar.Z 解压</span></span><br><span class="line">$ tar -xZvf xx.tar.Z  [-C dir/]</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.xz 解压</span></span><br><span class="line">$ xz -d xx.tar.xz</span><br><span class="line"><span class="comment"># *.tar.xz 解压</span></span><br><span class="line">$ tar -xJvf xx.tar</span><br></pre></td></tr></table></figure>
+<h4 id="压缩与打包"><a href="#压缩与打包" class="headerlink" title="压缩与打包"></a>压缩与打包</h4><p>各种类型的包压缩：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># *.tar 打包</span></span><br><span class="line">$ tar -cvf xx.tar  file dir/ ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.zip 压缩</span></span><br><span class="line">$ zip xx.zip file...</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.rar 压缩</span></span><br><span class="line">$ rar a xx.rar file...</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.gz 压缩</span></span><br><span class="line">$ gzip file</span><br><span class="line"><span class="comment"># *.tar.gz 打包压缩</span></span><br><span class="line">$ tar -czvf xx.tar.gz  file dir/ ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.bz2 压缩</span></span><br><span class="line">$ bzip2 -z file</span><br><span class="line"><span class="comment"># *.tar.bz2 打包压缩</span></span><br><span class="line">$ tar -cjvf xx.tar.bz2  file dir/ ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.Z 压缩</span></span><br><span class="line">$ compress xx.tar.Z</span><br><span class="line"><span class="comment"># *.tar.Z 打包压缩</span></span><br><span class="line">$ tar -cZvf xx.tar.Z  file dir/ ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># *.xz 压缩</span></span><br><span class="line">$ xz -z xx.tar.xz</span><br><span class="line"><span class="comment"># *.tar.xz 打包压缩</span></span><br><span class="line">$ tar -cJvf xx.tar file dir/ ...</span><br></pre></td></tr></table></figure>
+<h3 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h3><h4 id="df-Disk-Free"><a href="#df-Disk-Free" class="headerlink" title="df (Disk Free)"></a>df (Disk Free)</h4><p><code>df</code> 是用于整个系统的空间使用查询。<br>df命令使用的是 statfs 这个系统调用，直接读取分区的超级块信息获取分区使用情况。它的数据是基于分区元数据的，所以只能针对整个分区。由于df直接读取超级块，所以运行速度不受文件多少影响。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ df [-ahikHTm] [目录/文件名]</span><br><span class="line">选项与参数：</span><br><span class="line">-a  ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；</span><br><span class="line">-k  ：以 KBytes 的容量显示各文件系统；</span><br><span class="line">-m  ：以 MBytes 的容量显示各文件系统；</span><br><span class="line">-h  ：以人类较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；</span><br><span class="line">-H  ：以 M=1000K 取代 M=1024K 的进位方式；</span><br><span class="line">-T  ：连同该 partition 的 filesystem 名称 (例如 xfs) 也列出；</span><br><span class="line">-i  ：不用磁盘容量，而以 inode 的数量来显示</span><br></pre></td></tr></table></figure>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以容易阅读的方式查看所有磁盘的容量</span></span><br><span class="line">$ df -ah</span><br></pre></td></tr></table></figure>
+<h4 id="du-Disk-Usage"><a href="#du-Disk-Usage" class="headerlink" title="du (Disk Usage)"></a>du (Disk Usage)</h4><p><code>du</code> 是用于指定文件的空间使用查询。<br>du 命令会对待统计文件逐个调用 fstat 这个系统调用，获取文件大小。它的数据是基于文件获取的，所以有很大的灵活性，不一定非要针对一个分区，可以跨越多个分区操作。如果针对的目录中文件很多，du速度就会很慢了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ du [-ahskm] 文件/目录名</span><br><span class="line">选项与参数：</span><br><span class="line">-a  ：列出所有的文件及目录容量，因为预设仅统计目录底下的文件数量而已。</span><br><span class="line">-h  ：以人类较容易阅读的容量格式 (G/M) 显示；</span><br><span class="line">-s  ：列出总量而已，而不列出每个目录占用容量；</span><br><span class="line">-S  ：不包括子目录下的总计，与 -s 有点差別。</span><br><span class="line">-k  ：以 KBytes 列出容量显示；</span><br><span class="line">-m  ：以 MBytes 列出容量显示；</span><br></pre></td></tr></table></figure>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以容易阅读的方式查看当前目录所有文件的大小</span></span><br><span class="line">du -sh *</span><br></pre></td></tr></table></figure>
+<p>以容易阅读的方式查看当前目录所有文件的大小，并且只显示一层目录：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">du -sh --max-depth=1 *</span><br></pre></td></tr></table></figure>
+<p>有时候需要排序现实，简单的方式是使用 <code>sort</code> 命令协助排序，因此不能使用 <code>-h</code> 参数，<code>-h</code> 参数展示的单位会影响排序结果,<br>另外再组合 head、tail 等命令只截取前后部分的数据，方便使用。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr |head</span><br></pre></td></tr></table></figure>
+<h3 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a>git 命令</h3><h4 id="git-rm-删除远端已提交文件"><a href="#git-rm-删除远端已提交文件" class="headerlink" title="git rm 删除远端已提交文件"></a>git rm 删除远端已提交文件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rm --cached &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="ssh-keygen-生成ssh密钥对"><a href="#ssh-keygen-生成ssh密钥对" class="headerlink" title="ssh-keygen 生成ssh密钥对"></a>ssh-keygen 生成ssh密钥对</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="删除-git-配置"><a href="#删除-git-配置" class="headerlink" title="删除 git 配置"></a>删除 git 配置</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --unset user.name</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2018/10/10/个人Linux使用命令记录/" target="_blank" rel="external">/2018/10/10/个人Linux使用命令记录/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/个人收集/">个人收集</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/&title=《个人Linux使用命令记录》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/&title=《个人Linux使用命令记录》 — ZZY补完计划&source=
+linux 的命令非常的多，有一些有效但是不常用的命令，可能需要临时进行翻阅，记录部分有效命令以备查阅使用
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《个人Linux使用命令记录》 — ZZY补完计划&url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/15/个人IDEA插件收藏/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">个人IDEA插件收藏</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/03/Hexo博客添加评论系统/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hexo博客添加评论系统</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/&title=《个人Linux使用命令记录》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/&title=《个人Linux使用命令记录》 — ZZY补完计划&source=
+linux 的命令非常的多，有一些有效但是不常用的命令，可能需要临时进行翻阅，记录部分有效命令以备查阅使用
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《个人Linux使用命令记录》 — ZZY补完计划&url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2018/10/10/个人Linux使用命令记录/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACv0lEQVR42u3a0U7DMAwF0P3/Tw+JJxCsuzdOxpBOn6bStT1Bij3bt1t83D+P9vqv3/p5h+t73h8ctxMHHh4e3tKrX9/u+gHJ+eRu+VOSd8bDw8M7zctvNwknawEj+dbD83h4eHh/yrv+fP0qefhJFgsPDw/vf/HWygfXaTQeHh7ef+StbdnXASBJlJP7t8EGDw8P7zSvLSu8w+eD/T08PDy8QVc9CRL5ht4+ZcN98PDw8A7wkrS13YEnaXHeEiveAQ8PD28rr21f5YMF+XafLERbgPgW9/Dw8PAO8/Lf9btKFWuLGC0oHh4e3mHeWrGgTXzzFlo7OvDLX/Hw8PCO8dpybQJOChPtwFa9oHh4eHgHeMlQVJtAt0nwHB+15fDw8PBeyGvDyWSx1oLKKDDg4eHhLfEmJYkkMOQNtjX8kzN4eHh4W3l5CbXdmtv0d3JsqBDj4eHhlbyiGR8vSn5Nu/Xn4QcPDw/vHC/Z0Hc9clfrK2rL4eHh4R3m5Q/Og8da0aFd9KIYgYeHh7eJl5chJsEjH5bKSyRP/gF4eHh4h3ntRnxdnlgbUMgLxFFSjoeHh3eM1ya119e3KXhexq3xeHh4eC/htS96YmwrT+KfhBM8PDy8A7w8kW3LEG3rK0my86DyMDzg4eHhbeKtFWfXNvF8o2+bXnh4eHiv4SVb7WTN8q2/peLh4eG9A2/SyM+T8klBpB1QwMPDwzvB29CeX1qISblhUqfFw8PDm/Pu5dE2+CeLMhkFe/KLAQ8PD2/Am4SK9sq1MYJ2sGAtrcfDw8NrefmD20ZXPkwwDxsPlxgPDw/vGC8psLapcz0adfnctYXDw8PD+1te3ohqx6TagJG/FR4eHt4789ZaX3lhoi3p4uHh4Z3m5cWISSMqDzBrJd0NtRY8PDy8gDcZw8pLDHlxdpKCb+vv4eHh4f1+5Qd2wmnOdzosxAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

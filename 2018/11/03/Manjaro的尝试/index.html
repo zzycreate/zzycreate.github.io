@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Manjaro的尝试 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,ArchLinux,Manjaro">
+    <meta name="description" content="linux 拥有大量的发行版，虽然都是使用的相同的 linux kernel，但是由于 linux 下软件的繁多，各种不同的发行版有着不同的软件组合和生态。大众常用的几个发行版主要有 RedHat、Fedora、CentOS、Ubuntu 等。最近发现了 ArchLinux 分支下据说最好的版本 ———— Manjaro，对其进行一番尝试。">
+<meta name="keywords" content="Linux,ArchLinux,Manjaro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manjaro的尝试">
+<meta property="og:url" content="https://github.com/zzycreate/2018/11/03/Manjaro的尝试/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="linux 拥有大量的发行版，虽然都是使用的相同的 linux kernel，但是由于 linux 下软件的繁多，各种不同的发行版有着不同的软件组合和生态。大众常用的几个发行版主要有 RedHat、Fedora、CentOS、Ubuntu 等。最近发现了 ArchLinux 分支下据说最好的版本 ———— Manjaro，对其进行一番尝试。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/KPZLNraM7h3wjtn.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/4nji5I2KCDmMhSL.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/EGAlQgCsXLnORJ2.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/jtncJBSyvFPgdAs.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/mR2cnb1PkqUf4wS.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/gkrN2swcULDzWxu.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/iYEqeBso1WUvaOu.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/wF2CmzjspaTht85.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/VJexMlkCDjSniY6.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/5QPnbNw1Isud6mg.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/p6jow4GrbCEtJhl.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/nf2gHSx5pmdDNjw.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/31/Gb7FyQMNJmaXdec.png">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Manjaro的尝试">
+<meta name="twitter:description" content="linux 拥有大量的发行版，虽然都是使用的相同的 linux kernel，但是由于 linux 下软件的繁多，各种不同的发行版有着不同的软件组合和生态。大众常用的几个发行版主要有 RedHat、Fedora、CentOS、Ubuntu 等。最近发现了 ArchLinux 分支下据说最好的版本 ———— Manjaro，对其进行一番尝试。">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/31/KPZLNraM7h3wjtn.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Manjaro的尝试</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Manjaro的尝试</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-03T14:14:12.000Z" itemprop="datePublished" class="page-time">
+  2018-11-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Manjaro-的安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">Manjaro 的安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Manjaro-介绍"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Manjaro 介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Manjaro-下载"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Manjaro 下载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Manjaro-安装"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Manjaro 安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Manjaro-软件折腾"><span class="post-toc-number">2.</span> <span class="post-toc-text">Manjaro 软件折腾</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#软件源"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">软件源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#自动方式"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">自动方式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#手动方式换源"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">手动方式换源</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#软件安装的方式"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">软件安装的方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输入法"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">输入法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Chrome"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">Chrome</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#中文汉化"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">中文汉化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Zsh"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">Zsh</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vim"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">Vim</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#oracle-jdk"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">oracle jdk</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Maven"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">Maven</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#QQ"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">QQ</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#微信"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">微信</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PDF-阅读器"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">PDF 阅读器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#笔记工具"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">笔记工具</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#截图工具"><span class="post-toc-number">2.14.</span> <span class="post-toc-text">截图工具</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Guake-Tilda-yakuake"><span class="post-toc-number">2.15.</span> <span class="post-toc-text">Guake/Tilda/yakuake</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#快速搜索"><span class="post-toc-number">2.16.</span> <span class="post-toc-text">快速搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#剪切板管理-copyq"><span class="post-toc-number">2.17.</span> <span class="post-toc-text">剪切板管理 copyq</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发工具"><span class="post-toc-number">2.18.</span> <span class="post-toc-text">开发工具</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gnome-主题美化"><span class="post-toc-number">2.19.</span> <span class="post-toc-text">gnome 主题美化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主题"><span class="post-toc-number">2.19.1.</span> <span class="post-toc-text">主题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#图标"><span class="post-toc-number">2.19.2.</span> <span class="post-toc-text">图标</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#dock"><span class="post-toc-number">2.19.3.</span> <span class="post-toc-text">dock</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#字体"><span class="post-toc-number">2.19.4.</span> <span class="post-toc-text">字体</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#快捷键"><span class="post-toc-number">2.20.</span> <span class="post-toc-text">快捷键</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ssr"><span class="post-toc-number">2.21.</span> <span class="post-toc-text">ssr</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#远程连接"><span class="post-toc-number">2.22.</span> <span class="post-toc-text">远程连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#teamviewer"><span class="post-toc-number">2.23.</span> <span class="post-toc-text">teamviewer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚拟机-virtualbox"><span class="post-toc-number">2.24.</span> <span class="post-toc-text">虚拟机 virtualbox</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置菜单或者启动器"><span class="post-toc-number">2.25.</span> <span class="post-toc-text">配置菜单或者启动器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改-grub2-的等待时间"><span class="post-toc-number">2.26.</span> <span class="post-toc-text">修改 grub2 的等待时间</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#个人安装记录"><span class="post-toc-number">2.27.</span> <span class="post-toc-text">个人安装记录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他软件"><span class="post-toc-number">2.28.</span> <span class="post-toc-text">其他软件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Manjaro的尝试"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Manjaro的尝试</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-03 14:14:12" datetime="2018-11-03T14:14:12.000Z"  itemprop="datePublished">2018-11-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>linux 拥有大量的发行版，虽然都是使用的相同的 linux kernel，但是由于 linux 下软件的繁多，各种不同的发行版有着不同的软件组合和生态。大众常用的几个发行版主要有 RedHat、Fedora、CentOS、Ubuntu 等。最近发现了 ArchLinux 分支下据说最好的版本 ———— Manjaro，对其进行一番尝试。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Manjaro-的安装"><a href="#Manjaro-的安装" class="headerlink" title="Manjaro 的安装"></a>Manjaro 的安装</h2><h3 id="Manjaro-介绍"><a href="#Manjaro-介绍" class="headerlink" title="Manjaro 介绍"></a>Manjaro 介绍</h3><blockquote>
+<p>Manjaro是一款基于Arch Linux、对用户友好、全球排名第1的Linux发行版。（排名数据源于 <a href="http://distrowatch.com/" target="_blank" rel="noopener">DistroWatch</a>，统计日期2018.03.02，时间段3个月。）<br>Manjaro 的官网是 <a href="https://manjaro.org/" target="_blank" rel="noopener">https://manjaro.org/</a>.</p>
+</blockquote>
+<p>在 Linux 圈，Arch 的确是一个异常强大的发行版。它有3个无与伦比的优势：</p>
+<ul>
+<li>滚动更新可以使软件保持最新；</li>
+<li>AUR 软件仓库有着世界上最齐全的 Linux 软件；</li>
+<li>丰富的 wiki 和活跃的社区让所有问题都可以快速得到满意的答案。</li>
+</ul>
+<p>作为准备折腾的玩物，Arch Linux 这些特性很吸引我。Arch Linux 被人诟病的最多的就是对新手不友好，安装复杂。Manjaro 的出现就是为了解决 Arch Linux 的一些操作上的不舒适。</p>
+<h3 id="Manjaro-下载"><a href="#Manjaro-下载" class="headerlink" title="Manjaro 下载"></a>Manjaro 下载</h3><p>Manjaro 官方下载地址 <a href="https://manjaro.org/get-manjaro/" target="_blank" rel="noopener">https://manjaro.org/get-manjaro/</a>.<br>另外国内的一些下载站点也提供下载：<a href="https://mirrors.ustc.edu.cn/manjaro-cd/" target="_blank" rel="noopener">中科大镜像站</a>、<a href="https://mirrors.tuna.tsinghua.edu.cn/manjaro-cd/" target="_blank" rel="noopener">清华大学镜像站</a></p>
+<p>Manjaro 官网提供了三种版本，分别对应了三种 linux 桌面集成版本。</p>
+<ol>
+<li>Manjaro XFCE版: Xfce是一个用于类UNIX操作系统的轻量级桌面环境。 它的目标是快速和系统资源低耗，同时仍然保持视觉上的吸引力和对用户友好的特性。</li>
+<li>Manjaro KDE版: KDE是一个功能丰富多样的桌面环境，提供几种不同风格的菜单来访问应用程序。还有一个优秀的内置界面，可以方便地访问、下载、安装新的主题、小部件等。 虽然在用户友好度上做的非常好，但KDE也是相当消耗系统资源的，跟XFCE比较起来，启动程序、使用桌面环境都明显偏慢。运行Manjaro的64位KDE桌面使用大约需要550MB的内存。</li>
+<li>Manjaro GNOME版: GNOME 桌面环境是作为 GNU 项目的一部分来开发的，它旨在简单易用，并且完全可用。 它的默认显示服务器是 Wayland。 虽然外观是独特的，它的可定制性仍然非常高。各种扩展可以从<a href="https://extensions.gnome.org/" target="_blank" rel="noopener">https://extensions.gnome.org/</a>获取。像KDE一样，它比Xfce使用更多的资源。</li>
+</ol>
+<p>就界面的操作逻辑来说，XFCE 类似于 Win7，KDE 类似于 Win10，Gnome 类似于 Ubuntu。</p>
+<p><del>我选择先使用 KDE 版本尝试一番。</del> 已经更换为 gnome 主题，后文所有的内容都适用于 gnome，安装的图片还是 kde 的图片，我就不换了，注意桌面系统的区别。</p>
+<h3 id="Manjaro-安装"><a href="#Manjaro-安装" class="headerlink" title="Manjaro 安装"></a>Manjaro 安装</h3><p>使用 VirtualBox 进行安装。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/KPZLNraM7h3wjtn.png" alt="manjaro-install1.png" title>
+                </div>
+                <div class="image-caption">manjaro-install1.png</div>
+            </figure>
+<p>专家模式，类型 Linux，版本 Arch Linux（64-bit），内存 2048 MB。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/4nji5I2KCDmMhSL.png" alt="manjaro-install2.png" title>
+                </div>
+                <div class="image-caption">manjaro-install2.png</div>
+            </figure>
+<p>文件大小 50 GB，虚拟硬盘文件类型 VDI，文件位置 自选。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/EGAlQgCsXLnORJ2.png" alt="manjaro-install3.png" title>
+                </div>
+                <div class="image-caption">manjaro-install3.png</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/jtncJBSyvFPgdAs.png" alt="manjaro-install4.png" title>
+                </div>
+                <div class="image-caption">manjaro-install4.png</div>
+            </figure>
+<p>选择语言，按 <code>方向→</code> ，选择<code>中文</code>、<code>zh_CN</code>；</p>
+<p><code>Boot: Manjaro.x86_64 kde</code> ，按<code>方向→</code> 进入安装程序。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/mR2cnb1PkqUf4wS.png" alt="manjaro-install5.png" title>
+                </div>
+                <div class="image-caption">manjaro-install5.png</div>
+            </figure>
+<p><code>Launch at start</code> 可以选择关闭，按 <code>Launch installer</code> 或者双击桌面的 <code>Install Manjaro</code> 进入安装步骤。</p>
+<p>选择语言键盘，图略。选择 <code>简体中文（中国）</code> ，时区选择 <code>Asia - Shanghai</code> ，键盘 <code>Chinese</code>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/gkrN2swcULDzWxu.png" alt="manjaro-install6.png" title>
+                </div>
+                <div class="image-caption">manjaro-install6.png</div>
+            </figure>
+<p>手动分区，注意此处左上角的 <code>BIOS</code> ，一些同学可能是<code>EFI</code>方式安装的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/iYEqeBso1WUvaOu.png" alt="manjaro-install7.png" title>
+                </div>
+                <div class="image-caption">manjaro-install7.png</div>
+            </figure>
+<p>新建分区表，<code>BIOS</code> 引导方式选择 <code>MBR</code> 分区表，<code>EFI</code> 引导方式选择 <code>FPT</code> 分区表。</p>
+<p>然后对空闲空间进行分区。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/wF2CmzjspaTht85.png" alt="manjaro-install8.png" title>
+                </div>
+                <div class="image-caption">manjaro-install8.png</div>
+            </figure>
+<p>我制作的分区最终为：</p>
+<ol>
+<li>挂载点：<code>/</code> ，大小：<code>36362 MiB</code>，分区类型：<code>主分区</code> ，文件类型：<code>ext4</code> ， 标记：无所谓 选 <code>root</code>；用于根节点挂载</li>
+<li>挂载点：<code>/boot</code> ，大小：<code>500 MiB</code>，分区类型：<code>主分区</code> ，文件类型：<code>ext4</code> ， 标记：无所谓 选 <code>boot</code> ；用于系统引导挂载</li>
+<li>挂载点：<code>/home</code> ，大小：<code>10240 MiB</code>，分区类型：<code>主分区</code> ，文件类型：<code>ext4</code> ， 标记：无所谓 选 <code>root</code> ，用于用户目录挂载</li>
+<li>分区类型：<code>拓展分区</code> ，文件类型：<code>ext4</code> ， 标记：无所谓 选 <code>swap</code> ；在这个拓展分区下新建分区：挂载点：<code>/swap</code>，大小：<code>4096 MiB</code>，分区类型：<code>逻辑分区</code> ，文件类型：<code>linuxswap</code> ， 标记：无所谓 选 <code>swap</code> ，用于内存缓存恢复，一般为内存的两倍大小</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/VJexMlkCDjSniY6.png" alt="manjaro-install9.png" title>
+                </div>
+                <div class="image-caption">manjaro-install9.png</div>
+            </figure>
+<p>下一步选择创建用户，最后一行是创建 <code>root</code> 用户的密码，一定要记住。继续后面的步骤完成安装。</p>
+<h2 id="Manjaro-软件折腾"><a href="#Manjaro-软件折腾" class="headerlink" title="Manjaro 软件折腾"></a>Manjaro 软件折腾</h2><h3 id="软件源"><a href="#软件源" class="headerlink" title="软件源"></a>软件源</h3><h4 id="自动方式"><a href="#自动方式" class="headerlink" title="自动方式"></a>自动方式</h4><p>Manjaro 的默认软件源在国外，速度一般不理想，需要更换国内更快的源。</p>
+<p>使用 <code>F12</code> 可以使用下拉的 <code>Terminal</code> ，快速开启 <code>bash</code> 的命令行环境。</p>
+<p>使用以下命令进行软件源的排列：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman-mirrors -g</span><br></pre></td></tr></table></figure>
+<p>或者使用以下命令直接测试中文源的速度，会弹出弹窗，可以进行勾选。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman-mirrors -i -c China -m rank</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/5QPnbNw1Isud6mg.png" alt="manjaro-install10.png" title>
+                </div>
+                <div class="image-caption">manjaro-install10.png</div>
+            </figure>
+<p>直接选择速度同步时间段，速度快的源。</p>
+<h4 id="手动方式换源"><a href="#手动方式换源" class="headerlink" title="手动方式换源"></a>手动方式换源</h4><p>选择手动修改软件源。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/pacman.conf</span><br></pre></td></tr></table></figure>
+<p>编辑 <code>/etc/pacman.config</code> ，在最底部添加以下描述（中科大源）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[archlinuxcn]</span><br><span class="line">SigLevel = Optional TrustedOnly</span><br><span class="line">Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="variable">$arch</span></span><br><span class="line">Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="variable">$arch</span></span><br></pre></td></tr></table></figure>
+<p>然后更新源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring</span><br></pre></td></tr></table></figure>
+<h3 id="软件安装的方式"><a href="#软件安装的方式" class="headerlink" title="软件安装的方式"></a>软件安装的方式</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pacman -S package_name1 package_name2 ...     <span class="comment"># 安装软件</span></span><br><span class="line">pacman -R package_name                        <span class="comment"># 删除软件</span></span><br><span class="line">pacman -Syu                                   <span class="comment"># 更新软件和系统</span></span><br><span class="line">pacman -Ss string1 string2 ...                <span class="comment"># 搜索</span></span><br></pre></td></tr></table></figure>
+<p><del>其他也可以添加 <code>yaourt</code> ，这个也是一个 Manjaro 上常用的包管理命令，使用上差不多。安装：</del></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pacman -S base-devel yaourt</span><br></pre></td></tr></table></figure>
+<p>yaourt 已经被官方标记为 inactive，可以尝试使用 <code>yay</code> 或者 <code>aurman</code> 作为 AUR 包管理，</p>
+<p>看了一下 github ，yay 的更新会更新一些，所以我选择装一个 <code>yay</code> 作为 AUR 的包管理，这样可以使用 AUR 源里的软件。<br><code>yay</code> 的 github 仓库地址： <a href="https://github.com/Jguer/yay">https://github.com/Jguer/yay</a></p>
+<p>安装方式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https://aur.archlinux.org/yay.git</span><br><span class="line">cd yay</span><br><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+<p>yay 使用方法基本和 pacman 一致，一些定制用法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay &lt;Search Term&gt;</span><br><span class="line">        Present package-installation selection menu.</span><br><span class="line"></span><br><span class="line">yay -Ps</span><br><span class="line">        Print system statistics.</span><br><span class="line"></span><br><span class="line">yay -Yc</span><br><span class="line">        Clean unneeded dependencies.</span><br><span class="line"></span><br><span class="line">yay -G &lt;AUR Package&gt;</span><br><span class="line">        Download PKGBUILD from ABS or AUR.</span><br><span class="line"></span><br><span class="line">yay -Y --gendb</span><br><span class="line">        Generate development package database used for devel update.</span><br><span class="line"></span><br><span class="line">yay -Syu --devel --timeupdate</span><br><span class="line">        Perform system upgrade, but also check for development package updates and use</span><br><span class="line">        PKGBUILD modification time (not version number) to determine update.</span><br></pre></td></tr></table></figure>
+<h3 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h3><p>Manjaro 默认有中文输入，但是使用和管理不方便，需要进行一些配置，常用的是使用 <code>fcitx</code> 或者 <code>iBus</code> 进行输入法的管理。Linux 上输入法是各大坑，需要一些尝试，我选择使用 <code>fcitx</code> 进行尝试。</p>
+<p>安装 <code>fcitx</code> 主程序，并安装 <code>fcitx-toolconfig</code> 的配置管理程序：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S fcitx-im</span><br><span class="line">sudo pacman -S fcitx-configtool</span><br></pre></td></tr></table></figure>
+<p>安装完 <code>fcitx</code> 的程序，需要进行配置，使用 <code>sudo vi ~/.xprofile</code> 进行配置修改，添加以下内容。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> GTK_IM_MODULE=fcitx</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=fcitx</span><br><span class="line"><span class="built_in">export</span> XMODIFIERS=<span class="string">"@im=fcitx"</span></span><br></pre></td></tr></table></figure>
+<p>中文输入法其实有很多，主要是使用的 搜狗输入法（<code>fcitx-sogoupinyin</code>）、谷歌输入法（<code>fcitx-googlepinyin</code>）,sun拼音（<code>fcitx-sunpinyin</code>），另外还有 <code>fcitx-cloudpinyin</code> 可以进行云词库的搜索。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S fcitx-sogoupinyin 或者 yaourt sogou</span><br><span class="line">sudo pacman -S fcitx-googlepinyin</span><br><span class="line">sudo pacman -S fcitx-sunpinyin</span><br><span class="line">sudo pacman -S fcitx-cloudpinyin</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/p6jow4GrbCEtJhl.png" alt="manjaro-software1.png" title>
+                </div>
+                <div class="image-caption">manjaro-software1.png</div>
+            </figure>
+<p>如果还是无法使用，可能需要安装fcitx-gtk2:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S fcitx-gtk2</span><br></pre></td></tr></table></figure>
+<p>第一个为非激活状态，一般选择 <code>键盘-汉语</code> ， 后面选择其他输入法，这样就可以使用 <code>Ctrl+Space</code> 进行键盘和输入法的切换（非激活状态与激活状态切换），激活状态可以使用 <code>Ctrl+Shift</code> 进行输入法的切换，很方便。</p>
+<p>fcitx 配置可以修改快捷键，<code>Ctrl + Space</code> 可能会和 <code>Jetbrains</code> 系列产生冲突，建议修改成 <code>Ctrl + ,</code> 或者 <code>Super + Space</code>。</p>
+<p>对于 <code>jetbrians</code> 系列 fcitx 无法跟随的情况 fcitx输入法配置&gt;附加组件&gt;勾选高级&gt;xim前端&gt;勾选on the spot</p>
+<h3 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h3><p>使用 <code>pacman</code> 进行 Chrome 的安装也很简单，使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S google-chrome</span><br></pre></td></tr></table></figure>
+<p>或者安装 <code>chromium</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S chromium</span><br></pre></td></tr></table></figure>
+<h3 id="中文汉化"><a href="#中文汉化" class="headerlink" title="中文汉化"></a>中文汉化</h3><p>firefox-i18n-zh-cn : 火狐浏览器中文汉化<br>thunderbird-i18n-zh-cn : thunderbird 邮件汉化<br>gimp-help-zh_cn :<br>libreoffice-still-zh-CN : libreoffice 汉化<br>man-pages-zh_cn : man 帮助文档汉化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S --noconfirm firefox-i18n-zh-cn thunderbird-i18n-zh-cn gimp-help-zh_cn libreoffice-still-zh-CN man-pages-zh_cn</span><br></pre></td></tr></table></figure>
+<p>火狐中文包安装完之后，在火狐的菜单中选择 <code>add-ons</code> 检查中文包是否安装完好；如果已经包含了，在地址栏中输入 <code>about:config</code> 。搜索 intl.locale.requested， 如果没有，则右键新建一个，修改值为 <code>zh_CN</code>，重启。</p>
+<h3 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h3><p>安装 <code>oh-my-zsh</code> 作为 <code>shell</code> :</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S zsh git</span><br><span class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+<p>或者使用 aur 中 <code>oh-my-zsh-git</code> 的软件包，一键安装。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S zsh</span><br><span class="line">sudo pacman -S oh-my-zsh-git</span><br><span class="line">cp /usr/share/oh-my-zsh/zshrc ~/.zshrc #ohmyzsh配置文件</span><br><span class="line">chsh -s /bin/zsh #替换默认shell</span><br></pre></td></tr></table></figure>
+<h3 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h3><p><code>vim</code> 是  <code>vi</code> 的增强编辑器，功能强大</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S vim</span><br></pre></td></tr></table></figure>
+<h3 id="oracle-jdk"><a href="#oracle-jdk" class="headerlink" title="oracle jdk"></a>oracle jdk</h3><p>系统自带了 openjdk ，但是还是想使用 oracle jdk，使用命令 <code>yay -S jdk8</code> 即可安装 oracle 的 jdk8, 安装的 jdk 位置是 <code>/usr/lib/jvm/java-8-jdk/bin/java</code>, 默认的 openjdk 位置是 <code>/usr/lib/jvm/default</code></p>
+<p>但是这样安装之后 <code>java --version</code> 还是显示的 OpenJDK。</p>
+<p>使用 <code>archlinux-java</code> 命令进行jdk的选择，archlinux-java 的说明见：<a href="https://wiki.archlinux.org/index.php/java" target="_blank" rel="noopener">Java ArchWiki</a>、或者 <a href="https://wiki.archlinux.org/index.php/Java_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">Java ArchWIki(简体中文)</a>)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">archlinux-java &lt;COMMAND&gt;</span><br><span class="line"></span><br><span class="line">COMMAND:</span><br><span class="line">	status		List installed Java environments and enabled one</span><br><span class="line">	get		Return the short name of the Java environment set as default</span><br><span class="line">	set &lt;JAVA_ENV&gt;	Force &lt;JAVA_ENV&gt; as default</span><br><span class="line">	unset		Unset current default Java environment</span><br><span class="line">	fix		Fix an invalid/broken default Java environment configuration</span><br></pre></td></tr></table></figure>
+<h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><p>安装 maven 作为 java 项目的包管理软件，执行命令 <code>yay -S maven</code>。maven 安装路径为：<code>/opt/maven</code>。</p>
+<p>执行 <code>cp /opt/maven/conf/setting.xml ~/.m2/</code> 拷贝全局配置到当前用户目录，修改 .m2 目录中的配置文件进行个人配置修改。</p>
+<h3 id="QQ"><a href="#QQ" class="headerlink" title="QQ"></a>QQ</h3><p>Gnome 桌面的 Manjaro 可用，KDE 桌面的 Manjaro 我试用时，无法使用，以下内容先记录下来</p>
+<p><code>TIM</code> 是腾讯旗下的聊天工具 <code>QQ</code> 的新版设计，腾讯官方已经在 2010 年停止了 Linux 版的 QQ 更新，wine 版的 QQ是网友制作并维护的 Linux 版 QQ，不过也在 2017 年停止了更新，于是 deepin 公司维护了一个 deepin wine 系列软件，包括 QQ。</p>
+<p><strong>deepin：</strong>如果您用的是 deepin，deepinwine 的 QQ 默认就已经安装。</p>
+<p><strong>Arch系：</strong>如果您用的是 archlinux/antergos/manjaro，可以用 <code>yaourt</code> 命令安装它。<code>manjaro</code> 默认就开启了 <code>AUR</code>，在 <code>pamac</code> 图形管理器上搜 <code>deepin office</code>，然后切换到 AUR 标签，出来几种可用的 <code>deepin wine</code>包， <code>deepin</code> 粉丝 <a href="https://gitee.com/wszqkzqk/" target="_blank" rel="noopener">wszqkzqk</a> 最开始移植的 <code>deepin.com.qq.office</code> 和 <code>deepin.com.qq.im</code>。最新的还有 <code>countstarlight</code> 移植的2.0的 <code>tim</code> 版本。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S deepin.com.qq.office</span><br><span class="line">sudo pacman -S deepin.com.qq.im</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/nf2gHSx5pmdDNjw.png" alt="manjaro-software2.png" title>
+                </div>
+                <div class="image-caption">manjaro-software2.png</div>
+            </figure>
+<p>虽然我在 Octopi 中找到了这两个包，也安装成功了，但是实际上 QQ 并不能打开成功，有待后续继续研究。</p>
+<h3 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h3><p>微信安装的是 <code>electronic-wechat-git</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S electronic-wechat-git</span><br></pre></td></tr></table></figure>
+<h3 id="PDF-阅读器"><a href="#PDF-阅读器" class="headerlink" title="PDF 阅读器"></a>PDF 阅读器</h3><p>可以使用强大的福昕PDF阅读器，或者使用小巧的 evince 。如果只是阅读，evince 已经够用了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S foxitreader</span><br><span class="line">yay -S evince</span><br></pre></td></tr></table></figure>
+<h3 id="笔记工具"><a href="#笔记工具" class="headerlink" title="笔记工具"></a>笔记工具</h3><p>cherrytree 是一个以节点为管理元素的笔记软件，小巧轻便，还可以加密，推荐使用。<br>另外的为知笔记(wiznote)、蚂蚁笔记(leanote), 也都是使用比较广泛的笔记软件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S cherrytree</span><br></pre></td></tr></table></figure>
+<h3 id="截图工具"><a href="#截图工具" class="headerlink" title="截图工具"></a>截图工具</h3><p>安装截图工具 <code>xfce4-screenshooter</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S xfce4-screenshooter</span><br></pre></td></tr></table></figure>
+<p>设置快捷键, &gt;键盘&gt;应用程序快捷键，添加快捷键，命令为 <code>xfce4-screenshooter -f</code></p>
+<p>或者安装深度的截图工具 <code>deepin-screenshot</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S deepin-screenshot</span><br></pre></td></tr></table></figure>
+<p>设置快捷键, &gt;键盘&gt;应用程序快捷键，添加快捷键，命令为 <code>deepin-screenshot</code></p>
+<p>deepin 的截图和 windows 下一般的截图工具操作体验一致，比较推荐。</p>
+<h3 id="Guake-Tilda-yakuake"><a href="#Guake-Tilda-yakuake" class="headerlink" title="Guake/Tilda/yakuake"></a>Guake/Tilda/yakuake</h3><p>Manjaro KDE 系统默认是有快速下拉的终端 <code>Yakuake</code>， xcef 和 Gnome 版没有，可以安装 Guake 或者 Tilda 实现相同功能。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S tilda</span><br><span class="line">sudo pacman -S guake</span><br></pre></td></tr></table></figure>
+<p><code>tilda</code> 默认是左上角显示，使用快捷键 <code>F1</code>；<code>Guake</code> 默认是顶部显示，快捷键 <code>F12</code>。<br>可以使用快捷键，快速打开终端输入命令。</p>
+<h3 id="快速搜索"><a href="#快速搜索" class="headerlink" title="快速搜索"></a>快速搜索</h3><p>类似于 Mac 上的 Alfred，快速搜索，可以自行在配置中添加快捷键。不是使用体验只能说还行，Gnome 自带的搜索其实也可以做到很多事情的，快捷键 <code>Super + A</code>。<br>对 synapse 有兴趣的可以尝试一下。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S synapse</span><br></pre></td></tr></table></figure>
+<p>另外还有个类似功能的软件叫 <code>Albert</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S albert</span><br></pre></td></tr></table></figure>
+<p>建议 <code>albert</code> 使用加快捷方式的办法，快捷方式的命令使用 <code>albert toggle</code> 或者 <code>albert show</code>。使用应用内的快捷方式实在是不怎么可靠。</p>
+<p><code>albert</code> 相对于 <code>synapse</code> 界面要素雅一点，<code>synapse</code> 可以在界面上就控制你搜索的类型。</p>
+<p><code>albert</code> 的自定义快捷命令用于搜索引擎的快速使用深得我心，<code>synapse</code> 找了半天没法自定义网页搜索。</p>
+<h3 id="剪切板管理-copyq"><a href="#剪切板管理-copyq" class="headerlink" title="剪切板管理 copyq"></a>剪切板管理 copyq</h3><p>类似于 Ditto，监控管理剪切板。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S copyq</span><br></pre></td></tr></table></figure>
+<h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><p>开发 java 使用 IDEA .<br>开发其他脚本语言，例如 javascript, 使用 vscode .<br>连接数据库使用 dbeave (非常强大，Mysql、Oracle应有尽有)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 社区版 IDEA</span><br><span class="line">yay -S intellij-idea-community-edition</span><br><span class="line"># 商业版 IDEA</span><br><span class="line">yay -S intellij-idea-ultimate-edition</span><br><span class="line"># vscode</span><br><span class="line">yay -S visual-studio-code</span><br><span class="line"># dbeaver</span><br><span class="line">yay -S dbeaver</span><br></pre></td></tr></table></figure>
+<h3 id="gnome-主题美化"><a href="#gnome-主题美化" class="headerlink" title="gnome 主题美化"></a>gnome 主题美化</h3><p>我选择的 gnome 桌面主题组合是主题 <code>Mc-OS-themes</code> 、图标 <code>la-capitaine-icon-theme</code>和 <code>docky</code>。</p>
+<h4 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h4><p>下载 <code>Mc-OS-themes</code>, 使用 git 直接下载在 github 上的源码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone git@github.com:paullinuxthemer/Mc-OS-themes.git</span><br></pre></td></tr></table></figure>
+<p>然后在 clone 下来的文件夹中选择你想要的 mac 版本样式，拷贝到 <code>~/.themes</code> 文件夹下。例如 <code>McOS-MJV-3.30</code> 是 Mojava 版本的 OS X 的仿制主题。<br>在 <code>gnome tweak</code> 中可以进行外观管理，应用程序 选择 <code>McOS-MJV-3.30</code> 即可。</p>
+<h4 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h4><p>下载 <code>la-capitaine-icon-theme</code> 图标源码, 可以直接 clone 到图标文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir ~/.icons</span><br><span class="line">cd ~/.icons</span><br><span class="line">git clone git@github.com:keeferrourke/la-capitaine-icon-theme.git</span><br></pre></td></tr></table></figure>
+<p>在 tweak 中进行外观管理，图标选择 <code>la-capitaine-icon-theme</code> 即可拥有 mac 的大图标。</p>
+<h4 id="dock"><a href="#dock" class="headerlink" title="dock"></a>dock</h4><p>要想改得像 mac 主题，最明显的特征是那个大 dock 栏。使用 <code>docky</code> 可以拥有这种感觉。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S docky</span><br></pre></td></tr></table></figure>
+<p>安装完了之后，可以把 gnome 左侧的 dock 栏去掉了。在 tweak 设置中拓展下有个 <code>dash to dock</code>， 把这个拓展关掉就不显示左侧的 dock 栏了。</p>
+<p>安装完之后的效果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2020/01/31/Gb7FyQMNJmaXdec.png" alt="manjaro-theme1.png" title>
+                </div>
+                <div class="image-caption">manjaro-theme1.png</div>
+            </figure>
+<h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><p>文泉系列字体：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S wqy-microhei-lite</span><br><span class="line">yay -S wqy-bitmapfont </span><br><span class="line">yay -S wqy-zenhei</span><br></pre></td></tr></table></figure>
+<p>adobe 系列字体及其他：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S adobe-source-han-sans-cn-fonts </span><br><span class="line">yay -S adobe-source-han-serif-cn-fonts </span><br><span class="line">yay -S noto-fonts-cjk</span><br></pre></td></tr></table></figure>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><p>打开设置&gt;设备&gt;Keyboard ，最下面的加号新增快捷方式 (注意是 Gnome 主题)</p>
+<ol>
+<li>Terminal: 命令 <code>/usr/bin/gnome-terminal</code>, 快捷键 <code>Super + T</code></li>
+<li>synapse: 命令 <code>synapse</code>, 快捷键 <code>Super + R</code></li>
+<li>深度截图： 命令 <code>deepin-screenshot</code>, 快捷键 <code>Ctrl + Alt + A</code></li>
+<li>打开文件管理器： 命令 <code>nautilus</code>, 快捷键 <code>Super + E</code></li>
+</ol>
+<h3 id="ssr"><a href="#ssr" class="headerlink" title="ssr"></a>ssr</h3><p>安装 electron-ssr 需要安装 <code>python</code> 和 <code>shadowsocksr</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S python shadowsocksr</span><br></pre></td></tr></table></figure>
+<p>去 <code>electron-ssr</code> 的 <a href="https://github.com/erguotou520/electron-ssr">github仓库</a> 中下载 release 发布包。</p>
+<p>其中 <code>electron-ssr-0.2.4-x86_64.AppImage</code> 可以用于各种 linux 环境直接执行。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod a+x electron-ssr-0.2.4-x86_64.AppImage</span><br><span class="line">./*.AppImage</span><br></pre></td></tr></table></figure>
+<p>安装之后运行，可能在任务栏没有图标，根据 <a href="https://github.com/erguotou520/electron-ssr/blob/master/docs/FAQ.md">FAQ</a> 说明是因为环境中缺少<code>libappindicator1</code> 应用指示器。</p>
+<p>查看到 Issue <a href="https://github.com/erguotou520/electron-ssr/issues/180">#180</a>  和 Issue <a href="https://github.com/erguotou520/electron-ssr/issues/176">#176</a>，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">尝试安装</span><br><span class="line">sudo pacman -S libappindicator-sharp libappindicator-gtk3</span><br><span class="line">或者</span><br><span class="line">sudo pacman -S libappindicator-gtk2</span><br></pre></td></tr></table></figure>
+<h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>远程桌面管理，支持VNC、SSH、RDP等，使用 <code>Remmina</code>，功能强大，配置简单。如果要使用 Remmina 进行 RDP 连接，需要安装 <code>freerdp</code> 。<br>管理 FTP 文件服务器，可以使用 <code>Filezilla</code>.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S freerdp remmina</span><br></pre></td></tr></table></figure>
+<h3 id="teamviewer"><a href="#teamviewer" class="headerlink" title="teamviewer"></a>teamviewer</h3><p>teamview 是我最常用的远程控制软件，安装 teamview： <code>yay -S teamviewer</code></p>
+<p>安装完了之后发现无法链接服务器，连本机ID都不显示了，查询了一些文档，在 <a href="https://forum.manjaro.org/t/teamviewer-beta-13-not-ready-please-check-connection/37638/3" target="_blank" rel="noopener">Teamviewer-beta 13, “Not ready, please check connection”</a> 这篇文章中找到解决方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo teamviewer --daemon enable</span><br><span class="line">或者</span><br><span class="line">systemctl enable teamviewerd</span><br><span class="line">systemctl start teamviewerd</span><br></pre></td></tr></table></figure>
+<p>记得右键任务图标退出再重新打开，看能不能链接上服务器。</p>
+<h3 id="虚拟机-virtualbox"><a href="#虚拟机-virtualbox" class="headerlink" title="虚拟机 virtualbox"></a>虚拟机 virtualbox</h3><p>具体安装参考 manjaro 的官方 wiki： <a href="https://wiki.manjaro.org/index.php?title=Virtualbox" target="_blank" rel="noopener">VirtualBox</a></p>
+<p>首先使用 <code>uname -r</code> 查看 manjaro 的内核版本，我的是 <code>4.19.0-Manjaro</code>，在后面选择 virtualbox 模块的时候选择 <code>linux419-virtualbox-host-modules</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S virtualbox</span><br></pre></td></tr></table></figure>
+<p>还可以安装 <code>virtualbox-ext-oracle</code> Oracle 拓展包</p>
+<h3 id="配置菜单或者启动器"><a href="#配置菜单或者启动器" class="headerlink" title="配置菜单或者启动器"></a>配置菜单或者启动器</h3><p>参考 manjaro 官方的 wiki： <a href="https://wiki.archlinux.org/index.php/Desktop_entries_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">Desktop entries (简体中文)</a>)<br>应用程序配置项，即 .desktop 文件是原信息资源和应用程序快捷图标的集合<br>系统程序的配置项通常位于 <code>/usr/share/applications</code> 或 <code>/usr/local/share/applications</code> 目录，单用户安装的程序位于 <code>~/.local/share/applications</code> 目录，优先使用用户的配置项。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd ~/.local/share/applications</span><br><span class="line"></span><br><span class="line">vi idea.desktop</span><br><span class="line"></span><br><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Version=1.0</span><br><span class="line">Name=IntelliJ IDEA</span><br><span class="line">Exec=/opt/ide/idea/bin/idea.sh</span><br><span class="line">Icon=/opt/ide/idea/bin/idea.png</span><br><span class="line">Terminal=false</span><br><span class="line">Categories=Development;Languages;Java;</span><br></pre></td></tr></table></figure>
+<p>Manjaro Gnome 在 <code>~/.config/autostart</code> 目录下, 输入下列内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Name[zh_CN]=Guake 终端</span><br><span class="line">Name=Guake Terminal</span><br><span class="line">Comment=Use the command line in a Quake-like terminal</span><br><span class="line">TryExec=guake</span><br><span class="line">Exec=guake</span><br><span class="line">Icon=guake</span><br><span class="line">Type=Application</span><br><span class="line">Categories=GNOME;GTK;System;Utility;TerminalEmulator;</span><br><span class="line">StartupNotify=true</span><br><span class="line">X-Desktop-File-Install-Version=0.22</span><br></pre></td></tr></table></figure>
+<p>或者在 Manjaro Gnome 中使用 tweaks 管理开机启动项，程序会创建以上内容。</p>
+<h3 id="修改-grub2-的等待时间"><a href="#修改-grub2-的等待时间" class="headerlink" title="修改 grub2 的等待时间"></a>修改 grub2 的等待时间</h3><p>无论你的电脑是否有 2个或更多的操作系统，只要安装了 LinuxMint/Ubuntu，就必然会安装grub2作为引导管理器。grub2 启动时，会在默认的启动项上停留数秒（默认 10秒），等待用户选择。我们可以把这个时间改的更短。如果是 LinuxMint/Ubuntu 单系统，可以直接改为0，即直接进入，无需等待。<br>以管理员身份编辑 grub 配置文件，修改 GRUB_TIMEOUT 项后的数字。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/default/grub</span><br></pre></td></tr></table></figure>
+<h3 id="个人安装记录"><a href="#个人安装记录" class="headerlink" title="个人安装记录"></a>个人安装记录</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yay -S fcitx-im fcitx-configtool fcitx-sogoupinyin fcitx-cloudpinyin fcitx-gtk2 </span><br><span class="line">yay -S git vim zsh oh-my-zsh-git</span><br><span class="line">yay -S electronic-wechat-git  deepin.com.qq.office  deepin.com.qq.im telegram-desktop deepin-screenshot</span><br><span class="line">yay -S python python-pip libappindicator-sharp libappindicator-gtk3 </span><br><span class="line">yay -S guake synapse albert docky copyq screenfetch bleachbit goldendict meld gitkraken</span><br><span class="line">yay -S google-chrome firefox firefox-i18n-zh-cn  thunderbird thunderbird-i18n-zh-cn  man-pages-zh_cn visual-studio-code-bin netease-cloud-music smplayer</span><br><span class="line">yay -S wqy-microhei-lite wqy-bitmapfont wqy-zenhei  adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts  noto-fonts-cjk</span><br><span class="line">yay -S jdk8 maven teamview</span><br><span class="line"></span><br><span class="line">sudo archlinux-java status</span><br><span class="line">sudo archlinux-java set java-8-jdk</span><br><span class="line"></span><br><span class="line">sudo teamviewer --daemon enable</span><br><span class="line">或者</span><br><span class="line">systemctl enable teamviewerd</span><br><span class="line">systemctl start teamviewerd</span><br><span class="line"></span><br><span class="line">sudo vi ~/.xprofile</span><br><span class="line">export GTK_IM_MODULE=fcitx</span><br><span class="line">export QT_IM_MODULE=fcitx</span><br><span class="line">export XMODIFIERS=&quot;@im=fcitx&quot;</span><br><span class="line"></span><br><span class="line">cp /usr/share/oh-my-zsh/zshrc ~/.zshrc #ohmyzsh配置文件</span><br><span class="line">sudo chsh -s /bin/zsh #替换默认shell</span><br><span class="line"></span><br><span class="line">sudo pip install shadowsocks</span><br><span class="line"></span><br><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash</span><br><span class="line">sudo vi ~/.zshrc</span><br><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm</span><br><span class="line">[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;  # This loads nvm bash_completion</span><br><span class="line"></span><br><span class="line">nvm install node</span><br><span class="line">nvm use node</span><br><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">npm install -g nrm</span><br><span class="line">nrm test</span><br><span class="line">nrm use cnpm</span><br><span class="line"></span><br><span class="line">chmod a+x electron-ssr-0.2.4-x86_64.AppImage</span><br><span class="line">./*.AppImage</span><br><span class="line"></span><br><span class="line">mkdir ~/.themes ~/.icons ~/project</span><br><span class="line">git clone git@github.com:paullinuxthemer/Mc-OS-themes.git ~/project</span><br><span class="line">cp -r ~/project/Mc-OS-themes/McOS-MJV-3.30 ~/.themes/</span><br><span class="line">git clone git@github.com:keeferrourke/la-capitaine-icon-theme.git ~/.icons</span><br></pre></td></tr></table></figure>
+<h3 id="其他软件"><a href="#其他软件" class="headerlink" title="其他软件"></a>其他软件</h3><p>在包管理软件中搜索或者使用 pacman/yaourt/aurman 等命令行进行搜索下载。<br>以下的软件有一些还没有试用过，在别人的文章中看到的，在此先记录一下。</p>
+<ol>
+<li>Teamview：PC 远程控制/远程访问软件</li>
+<li>Steam：游戏的分发平台</li>
+<li>goldendict：linux 一款强大的字典</li>
+<li>franz：通讯软件集合，包括 facebook、微信、google+</li>
+<li>intellij-idea：java 开发工具 <code>Intellij IDEA</code></li>
+<li>netease-cloud-music：网易云音乐</li>
+<li>smplayer: 视频播放器</li>
+<li>masterpdfeditor 对linux用户免费的PDF浏览及编辑器，支持实时预览；</li>
+<li>remarkable： 卓越且功能齐全的 Markdown 编辑器</li>
+<li>uget： 媲美迅雷的下载工具；</li>
+<li>filezilla： 强大的FTP工具；</li>
+<li>deepin-screenshot： 深度截图工具；</li>
+<li>shutter： 强大的截图工具，gnome-web-photo配合使用；</li>
+<li>bleachbit： 快速释放磁盘空间并不知疲倦地守卫你的隐私。释放缓存，删除 cookie，清除互联网浏览历史，清理临时文件，删除日志，以及更多功能…</li>
+<li>thunderbird： Mozilla 旗下的邮件管理软件</li>
+<li>redshift： 根据你的周边调整你屏幕的色温。当你夜晚在屏幕前工作时，它也许能帮助你减少对眼睛的伤害；</li>
+<li>wiznote 为知笔记；</li>
+<li>meld 文本比较；</li>
+<li>goldendict 词典软件；</li>
+<li>easystroke 鼠标手势；</li>
+<li>catfish 基于GTK+的非常快速，轻量级的文件搜索工具；</li>
+<li>peek 屏幕录像工具，小巧玲珑，可保存录像为gif动图和兼容于html5的webm视频；</li>
+<li>dbeaver 通用数据库客户端，支持多个平台及多种数据库，社区版是免费的； </li>
+<li>nethack 经典的命令行游戏，启动命令行nethack；</li>
+<li>gnome-mines 经典的扫雷游戏（gnome桌面自带，kde也有类似的kmines）；</li>
+<li>2048-qt 经典的2048游戏；</li>
+<li>zaz 经典的泡泡射击游戏；</li>
+<li>sudokuki 基于Java的跨平台的数独游戏（<a href="https://sourceforge.net/projects/sudokuki/files/sudokuki/）；" target="_blank" rel="noopener">https://sourceforge.net/projects/sudokuki/files/sudokuki/）；</a></li>
+<li>wesnoth 经典的韦诺之战，Linux上比较火的游戏，回合制策略游戏；</li>
+<li>0ad 跨平台的“帝国时代”（<a href="http://sourceforge.net/projects/zero-ad/files/releases/locales/下载对应版本的汉化放到$HOME/.local/share/0ad/mods/public/）；" target="_blank" rel="noopener">http://sourceforge.net/projects/zero-ad/files/releases/locales/下载对应版本的汉化放到$HOME/.local/share/0ad/mods/public/）；</a></li>
+<li>Timeshift: 备份软件</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Manjaro 是一个界面友好的 Linux 发行版，依赖于 Arch Linux 的 AUR 软件系统，拥有着众多的软件，及方便的使用操作。初次使用感觉还不错，众多的软件，甚至包括 Steam 都内置在了系统中。看Linux Kernel 的更新提示，Manjaro 的更新还是很频繁的，经常会有各种更新，更新的稳定性有待译后检查。在这里可以推荐给大家使用以下。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2018/11/03/Manjaro的尝试/" target="_blank" rel="external">/2018/11/03/Manjaro的尝试/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ArchLinux/">ArchLinux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manjaro/">Manjaro</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/&title=《Manjaro的尝试》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/&title=《Manjaro的尝试》 — ZZY补完计划&source=
+linux 拥有大量的发行版，虽然都是使用的相同的 linux kernel，但是由于 linux 下软件的繁多，各种不同的发行版有着不同的软件组合和生..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Manjaro的尝试》 — ZZY补完计划&url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/07/使用nvm安装nodejs/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用nvm安装nodejs</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/23/个人npm命令记录/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">个人npm命令记录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/&title=《Manjaro的尝试》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/&title=《Manjaro的尝试》 — ZZY补完计划&source=
+linux 拥有大量的发行版，虽然都是使用的相同的 linux kernel，但是由于 linux 下软件的繁多，各种不同的发行版有着不同的软件组合和生..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Manjaro的尝试》 — ZZY补完计划&url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2018/11/03/Manjaro的尝试/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQW7DMAwEwP7/0+k1QOpkl3IKWB6diiCROT6wIqmfn3g9ntbzJ/k3X9fRr452PmFhYGBclvF4u16DbgN9jFYeGwYGxn0YRxns6DsJrN2tTesYGBgY7xPu++Ngu1v+LAwMDIw8pbaM2T4YGBgYbRG7Xu7OEu7JtTgGBsYFGXnX/f///sp8AwMD41KMWbO+LWVnOxdRYWBgbM1YH2G2Lf7ZOCEqZTEwMDZlJMG1mJWmW16s/vF/AwMDY1PGrE5sS822fbbSyMPAwNibsZJY2/e03ujHwMC4DyMvQZNGWz6enB0BD18lBgbG1oy2fTYL7iz2hyMpBgbG1ozkAd+4KpH/qn4WBgbGRoy27ZUn0O/tU8xgMTAwtmC0Y4Dk8bOwklK5nmxgYGBswWivO+SANqy8iI22xsDA2IiRDxRnI4SV9L10EMTAwNiOsd6sT06gLXV4fMTAwNiOsVJGzlJnnlKT32JgYNyB0Y4q8+/nI4ec92EHDAyM2zDaY19boK5TD18oBgbGbRgrB742fbcNtQ+pHwMDY2vGLMHNDojD2x/5wAADA2M7xqNcsyS4ktCjpIyBgbE1I18rF8XasIbtNgwMjK0ZbfMrCTQ/Js4unH0422JgYGzKyC9VtGVqu/Ms9WNgYGCclTTzoPOXgoGBgZGHlVzqSj7BwMDAaMcDbZmajx5XLoGd1m7DwMC4CCMvHdvrXyvTiTzdY2BgbM34BYaJzFINM4GsAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

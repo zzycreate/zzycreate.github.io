@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Ubuntu安装sshd | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ubuntu,ssh">
+    <meta name="description" content="ubuntu系统安装sshd的步骤记录  安装ssh1.安装ssh-server sudo apt-get install openssh-server 2.安装ssh-client sudo apt-get install openssh-client 确认sshserver是否安装好ps -e | grep sshd 结果为  450 ?        00:00:00 sshd 如果看到s">
+<meta name="keywords" content="Ubuntu,ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu安装sshd">
+<meta property="og:url" content="https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="ubuntu系统安装sshd的步骤记录  安装ssh1.安装ssh-server sudo apt-get install openssh-server 2.安装ssh-client sudo apt-get install openssh-client 确认sshserver是否安装好ps -e | grep sshd 结果为  450 ?        00:00:00 sshd 如果看到s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu安装sshd">
+<meta name="twitter:description" content="ubuntu系统安装sshd的步骤记录  安装ssh1.安装ssh-server sudo apt-get install openssh-server 2.安装ssh-client sudo apt-get install openssh-client 确认sshserver是否安装好ps -e | grep sshd 结果为  450 ?        00:00:00 sshd 如果看到s">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu安装sshd</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu安装sshd</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-12-28T23:49:39.000Z" itemprop="datePublished" class="page-time">
+  2016-12-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装ssh"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装ssh</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#确认sshserver是否安装好"><span class="post-toc-number">2.</span> <span class="post-toc-text">确认sshserver是否安装好</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#启动-ssh-服务"><span class="post-toc-number">3.</span> <span class="post-toc-text">启动 ssh 服务</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ubuntu16-04-开机启动"><span class="post-toc-number">4.</span> <span class="post-toc-text">ubuntu16.04 开机启动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ubuntu18-10-开机启动"><span class="post-toc-number">5.</span> <span class="post-toc-text">ubuntu18.10 开机启动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#验证是否启动了22端口"><span class="post-toc-number">6.</span> <span class="post-toc-text">验证是否启动了22端口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#允许-root-远程登录"><span class="post-toc-number">7.</span> <span class="post-toc-text">允许 root 远程登录</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Ubuntu安装sshd"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu安装sshd</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-12-28 23:49:39" datetime="2016-12-28T23:49:39.000Z"  itemprop="datePublished">2016-12-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>ubuntu系统安装sshd的步骤记录</p>
+</blockquote>
+<h2 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h2><p>1.安装ssh-server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
+<p>2.安装ssh-client</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-client</span><br></pre></td></tr></table></figure>
+<h2 id="确认sshserver是否安装好"><a href="#确认sshserver是否安装好" class="headerlink" title="确认sshserver是否安装好"></a>确认sshserver是否安装好</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ps -e | grep sshd</span><br></pre></td></tr></table></figure>
+<p>结果为 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">450 ?        00:00:00 sshd</span><br></pre></td></tr></table></figure>
+<p>如果看到sshd，则说明ssh-server已启动。<br>如果只有ssh-agent，说明ssh-server还没有启动，需要执行命令启动ssh服务：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/etc/init.d/ssh start;</span><br></pre></td></tr></table></figure>
+<h2 id="启动-ssh-服务"><a href="#启动-ssh-服务" class="headerlink" title="启动 ssh 服务"></a>启动 ssh 服务</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 重启SSH服务：</span><br><span class="line">sudo /etc/init.d/ssh restart</span><br><span class="line"># 重新启动下ssh服务</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu16-04-开机启动"><a href="#ubuntu16-04-开机启动" class="headerlink" title="ubuntu16.04 开机启动"></a>ubuntu16.04 开机启动</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 检查ssh服务是否为开机启动</span><br><span class="line">chkconfig --list sshd</span><br><span class="line"># 设置开机启动ssh服务</span><br><span class="line">chkconfig --level 2345 sshd on</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu18-10-开机启动"><a href="#ubuntu18-10-开机启动" class="headerlink" title="ubuntu18.10 开机启动"></a>ubuntu18.10 开机启动</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 开机自动启动ssh命令</span><br><span class="line">sudo systemctl enable ssh</span><br><span class="line"># 关闭ssh开机自动启动命令</span><br><span class="line">sudo systemctl disable ssh</span><br><span class="line"># 单次开启ssh</span><br><span class="line">sudo systemctl start ssh</span><br><span class="line"># 单次关闭ssh</span><br><span class="line">sudo systemctl stop ssh</span><br><span class="line"># 设置好后重启系统</span><br><span class="line">reboot</span><br><span class="line"># 查看ssh是否启动，看到Active: active (running)即表示成功</span><br><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
+<h2 id="验证是否启动了22端口"><a href="#验证是否启动了22端口" class="headerlink" title="验证是否启动了22端口"></a>验证是否启动了22端口</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">netstat -antp |grep sshd</span><br></pre></td></tr></table></figure>
+<p>22端口为ssh默认端口，确认ssh服务开启状态</p>
+<h2 id="允许-root-远程登录"><a href="#允许-root-远程登录" class="headerlink" title="允许 root 远程登录"></a>允许 root 远程登录</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+<p>修改参数 <code>PermitRootLogin yes</code>, 默认为 <code># PermitRootLogin prohibit-password</code></p>
+<p>不过，强烈建议不要开启 root 远程登录，使用普通用户和 <code>sudo</code> 即可</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2016/12/28/Ubuntu安装sshd/" target="_blank" rel="external">/2016/12/28/Ubuntu安装sshd/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/&title=《Ubuntu安装sshd》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/&title=《Ubuntu安装sshd》 — ZZY补完计划&source=God is in his heaven,all is right with the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu安装sshd》 — ZZY补完计划&url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/12/30/js生成二维码以及点击下载二维码/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">js生成二维码以及点击下载二维码</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/12/28/Ubuntu安装JDK/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Ubuntu安装JDK</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/&title=《Ubuntu安装sshd》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/&title=《Ubuntu安装sshd》 — ZZY补完计划&source=God is in his heaven,all is right with the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu安装sshd》 — ZZY补完计划&url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2016/12/28/Ubuntu安装sshd/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aQW7DMAxEUd//0i7QVYHUyh/SCWDqa1XYRaynBSFxdBx4nL9j/eTv86v/r729bciQIeOxjHM5XidNSGQqr7959d313GTIkLEPg3wmfcsnQZbvzZxlyJAhA3xgXWTX5VuGDBkyPldw19R0CWTIkCFjzSCFj7TDOm95OZYhQ8ZujDQY+ObfH8w3ZMiQ8RDGWRrrjSAJNWsxwOV8ZMiQMZqRTohfs6jFnGmDD93ykCFDxggGb3il1zJ4q46EBGjpZciQMY7By1k6FR4wpIX7n9+RIUPGlgweCaQH1LvCURkyZOzDuKHYlQLI9FtxhClDhoxxjFr562/vaoX+TTAgQ4aM0QxS1Pqt/NqVLxkyZOzM6G/LakdQvgTo6CtDhozRjPQMmBbZ4FIXvuRxw1FWhgwZj2J0Asj+UbYTJxx80jJkyHg4o7YFTJv7tf1bumQyZMiYyiAte3IcrV3d6CSul8mGDBkyNmCkkUCK5MFkUPplyJAxmlG79MBDx6Bottt8MmTImM1Iyy45XnIG2Z4Wj7IyZMgYykiLYKeVxlt18VFWhgwZ4xh3lT++oeRfjMu9DBkyxjHOcKTpYaeg8wtnMmTImM3go3ZVi7fkat+SIUPGPoxacJhuE9MNaFzoZciQsQGjv6XrTDo9xMqQIUNGWjT7x0teso90PWTIkLEZI70EVosK4thShgwZ2zB43MinkrbVWiGEDBkyRjNqW7f0OQ9HeVlv5RsyZMh4BuMHwBuTYYFrUPgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

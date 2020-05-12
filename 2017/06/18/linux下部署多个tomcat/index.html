@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>linux下部署多个tomcat | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,Tomcat">
+    <meta name="description" content="部署javaweb程序最常见的就是使用tomcat，而tomcat默认使用8080端口，如果要部署多个tomcat，必然需要在配置上进行修改，本文记录linux下多tomcat部署的步骤，用于参考。">
+<meta name="keywords" content="Linux,Tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下部署多个tomcat">
+<meta property="og:url" content="https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="部署javaweb程序最常见的就是使用tomcat，而tomcat默认使用8080端口，如果要部署多个tomcat，必然需要在配置上进行修改，本文记录linux下多tomcat部署的步骤，用于参考。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux下部署多个tomcat">
+<meta name="twitter:description" content="部署javaweb程序最常见的就是使用tomcat，而tomcat默认使用8080端口，如果要部署多个tomcat，必然需要在配置上进行修改，本文记录linux下多tomcat部署的步骤，用于参考。">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">linux下部署多个tomcat</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">linux下部署多个tomcat</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-18T23:25:59.000Z" itemprop="datePublished" class="page-time">
+  2017-06-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#环境"><span class="post-toc-number">1.</span> <span class="post-toc-text">环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#需要解决的问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">需要解决的问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决步骤"><span class="post-toc-number">3.</span> <span class="post-toc-text">解决步骤</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-linux下部署多个tomcat"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">linux下部署多个tomcat</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-18 23:25:59" datetime="2017-06-18T23:25:59.000Z"  itemprop="datePublished">2017-06-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>部署javaweb程序最常见的就是使用tomcat，而tomcat默认使用8080端口，如果要部署多个tomcat，必然需要在配置上进行修改，本文记录linux下多tomcat部署的步骤，用于参考。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ol>
+<li>Centos 6.5  </li>
+<li>tomcat-7.0.79  </li>
+</ol>
+<h2 id="需要解决的问题"><a href="#需要解决的问题" class="headerlink" title="需要解决的问题"></a>需要解决的问题</h2><ol>
+<li>不同的tomcat启动和关闭监听不同的端口  </li>
+<li>不同的tomcat的启动文件startup.sh 中要指定各自的CATALINA_HOME和CATALINA_BASE这两个环境变量。 </li>
+</ol>
+<h2 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h2><ol>
+<li>修改/etc目录下的profile文件，添加一组java环境变量，和两组CATALINA环境变量；修改后的profile文件示例如下：  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JAVA_HOME=/usr/java/jdk</span><br><span class="line">CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib:$JAVA_HOME/bin</span><br><span class="line">export JAVA_HOME CLASSPATH</span><br><span class="line">CATALINA_BASE=/home/app/tomcat1</span><br><span class="line">CATALINA_HOME=/home/app/tomcat1</span><br><span class="line">export CATALINA_BASE CATALINA_HOME</span><br><span class="line">CATALINA_2_BASE=/home/app/tomcat2</span><br><span class="line">CATALINA_2_HOME=/home/app/tomcat2</span><br><span class="line">export CATALINA_2_BASE CATALINA_2_HOME</span><br><span class="line">TOMCAT_HOME=/home/app/tomcat1</span><br><span class="line">export TOMCAT_HOME</span><br><span class="line">TOMCAT_2_HOME=/home/app/tomcat2</span><br><span class="line">export TOMCAT_2_HOME</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>修改完毕后，source /etc/profile。可能是因为修改了profile文件的缘故？</p>
+</li>
+<li><p>第一个安装在/home/app/tomcat1处的tomcat，保持解压后的原状不用修改。修改第二个安装在/home/app/tomcat2处的tomcat。需要修改两个地方：</p>
+</li>
+</ol>
+<p>3.1. 修改server.xml配置和第一个不同的启动、关闭监听端口。修改后示例如下：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Server port=&quot;9085&quot; shutdown=&quot;SHUTDOWN&quot;&gt;　 端口：8085-&gt;9085</span><br><span class="line">&lt;!-- Define a non-SSL HTTP/1.1 Connector on port 8080 --&gt;</span><br><span class="line">    &lt;Connector port=&quot;9080&quot; maxHttpHeaderSize=&quot;8192&quot;　maxThreads=&quot;150&quot; </span><br><span class="line">    minSpareThreads=&quot;25&quot; maxSpareThreads=&quot;75&quot;   </span><br><span class="line">    enableLookups=&quot;false&quot; redirectPort=&quot;8443&quot; acceptCount=&quot;100&quot; </span><br><span class="line">    connectionTimeout=&quot;20000&quot; disableUploadTimeout=&quot;true&quot; /&gt;端口：8080-&gt;9080</span><br></pre></td></tr></table></figure>
+<p>3.2. 修改bin下的startup.sh和shutdown.sh。修改后的示例如下：（同样的修改）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export JAVA_HOME=/usr/jdk</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=$JAVA_HOME/lib</span><br><span class="line">export CATALINA_HOME=$CATALINA_2_HOME `利用profile中第二组设置</span><br><span class="line">export CATALINA_BASE=$CATALINA_2_BASE `利用profile中第二组设置</span><br></pre></td></tr></table></figure>
+<p>在tomcat7.0中可以不修改startup.sh和shutdown.sh，只修改catalina.sh即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CATALINA_HOME=$CATALINA_6_HOME</span><br><span class="line">CATALINA_BASE=$CATALINA_6_BASE</span><br><span class="line">export CATALINA_HOME</span><br><span class="line">export CATALINA_BASE</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>分别进入两个tomcat的bin目录，启动tomcat–./startup.sh</p>
+</li>
+<li><p>然后访问<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 和 <a href="http://localhost:9080" target="_blank" rel="noopener">http://localhost:9080</a> 都可以看到熟悉的tomcat欢迎界面。</p>
+</li>
+<li><p>如果想启动多个可以依此法类推……</p>
+</li>
+</ol>
+<blockquote>
+<p>参考材料： <a href="http://blog.csdn.net/loadrunn/article/details/6579639" target="_blank" rel="noopener">http://blog.csdn.net/loadrunn/article/details/6579639</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2017/06/18/linux下部署多个tomcat/" target="_blank" rel="external">/2017/06/18/linux下部署多个tomcat/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/&title=《linux下部署多个tomcat》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/&title=《linux下部署多个tomcat》 — ZZY补完计划&source=
+部署javaweb程序最常见的就是使用tomcat，而tomcat默认使用8080端口，如果要部署多个tomcat，必然需要在配置上进行修改，本文记录l..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux下部署多个tomcat》 — ZZY补完计划&url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/16/SpringBoot属性配置/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringBoot属性配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/18/Windows下查找端口占用并关闭进程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Windows下查找端口占用并关闭进程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/&title=《linux下部署多个tomcat》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/&title=《linux下部署多个tomcat》 — ZZY补完计划&source=
+部署javaweb程序最常见的就是使用tomcat，而tomcat默认使用8080端口，如果要部署多个tomcat，必然需要在配置上进行修改，本文记录l..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux下部署多个tomcat》 — ZZY补完计划&url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/06/18/linux下部署多个tomcat/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aS27jQAwEUN//0pkDDGRXsdmBAzyvgkCfflqoqSJfr/j38/CbHfN01v/HvL/a2g8PDw9vaentbZKFtsh8PY9rw8PDw7vGe1ru+2Pe49vXevL48jXj4eHhfQ8vKaZPGO2Wg4eHh/cXecm5yYaRnIWHh4f3Pbzk4z+PWWfXSR7HxawFDw8PL+blRe33/H2lv4eHh4d33FWfFb55SDFrpxWrxcPDw7vAa8OF2SjVLESYlct4eHh4v8PL49ckjGgXOtsY8g8APDw8vBu89sb5BpBcsy2s22ECPDw8vNu8kxR01tzKH9NwpAAPDw9vlZeHC3lxnMcWLTv6Jjg5GQ8PD+9gjCApgs8jjDwKOS/c8fDw8HZ5yQntxrBVTLexyKt9Znh4eHgl7xzQLiVpYrUNs8dr4uHh4V3g5SecL6gti9cadXh4eHirvKT8zYODfHCqrfqHLTE8PDy8a7wkMG0bY7NoeNZUi2Yi8PDw8JZ4bZO+Lb7bQrkNbYuRAjw8PLxV3uy1ft64ygcUjoa38PDw8FZ5bXMred23Lau2gC4eKx4eHt4F3klR245VtbCTqHehZsfDw8OL13zyIs7babPRrtngAh4eHt4ubxZAtM2w2Zaz0KjDw8PDu8A7aepvHdMOfrVRCB4eHt5tXtvyb0cKimUdt9Dw8PDwbvPy9n/e4qqzkDioLa6Ah4eHd4138oLeaobNoooPGw8eHh7eKu+n/OUv5TZ0mG0wH+6Lh4eHd4G3sKuUX/2zkKJ9KHubJh4eHt6kMd82xvLxgjacLcYF8PDw8H6Fd/JSbreE3V3rwzaDh4eH9zW8fGz0JHpIjvzwfzw8PLw/xWuHD9oiPgpt8fDw8K7xksJ3Fjq0EXA+dhCtBA8PD+8Cr/3gb5c1a5i1Me5Cfw8PDw/v813+AXqFnHF2uN2uAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

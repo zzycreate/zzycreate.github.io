@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用WSL在Windows中体验Linux | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,Ubuntu,WSL,Windows">
+    <meta name="description" content="微软在 Windows 10 中增加了 WSL 这个新功能，可以跑完整的 linux 镜像，而且不像虚拟机是应用层的实现需要消耗大量资源。现在 Windows 10 的商店里面提供了 Ubuntu、Debian、Kali Linux、OpenSUSE 等 linux 发行版。">
+<meta name="keywords" content="Linux,Ubuntu,WSL,Windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用WSL在Windows中体验Linux">
+<meta property="og:url" content="https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="微软在 Windows 10 中增加了 WSL 这个新功能，可以跑完整的 linux 镜像，而且不像虚拟机是应用层的实现需要消耗大量资源。现在 Windows 10 的商店里面提供了 Ubuntu、Debian、Kali Linux、OpenSUSE 等 linux 发行版。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用WSL在Windows中体验Linux">
+<meta name="twitter:description" content="微软在 Windows 10 中增加了 WSL 这个新功能，可以跑完整的 linux 镜像，而且不像虚拟机是应用层的实现需要消耗大量资源。现在 Windows 10 的商店里面提供了 Ubuntu、Debian、Kali Linux、OpenSUSE 等 linux 发行版。">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用WSL在Windows中体验Linux</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用WSL在Windows中体验Linux</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-18T23:25:43.000Z" itemprop="datePublished" class="page-time">
+  2018-11-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WSL"><span class="post-toc-number">1.</span> <span class="post-toc-text">WSL</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-WSL"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装 WSL</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WSL-的文件系统"><span class="post-toc-number">3.</span> <span class="post-toc-text">WSL 的文件系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用-ConEmu-替代-Windows-命令行"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用 ConEmu 替代 Windows 命令行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用-zsh-替换-bash"><span class="post-toc-number">5.</span> <span class="post-toc-text">使用 zsh 替换 bash</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WSL-管理配置"><span class="post-toc-number">6.</span> <span class="post-toc-text">WSL 管理配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WSL-交互"><span class="post-toc-number">7.</span> <span class="post-toc-text">WSL 交互</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-使用WSL在Windows中体验Linux"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用WSL在Windows中体验Linux</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-18 23:25:43" datetime="2018-11-18T23:25:43.000Z"  itemprop="datePublished">2018-11-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>微软在 Windows 10 中增加了 WSL 这个新功能，可以跑完整的 linux 镜像，而且不像虚拟机是应用层的实现需要消耗大量资源。现在 Windows 10 的商店里面提供了 Ubuntu、Debian、Kali Linux、OpenSUSE 等 linux 发行版。</p>
+<a id="more"></a>
+<h2 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h2><p>Windows Subsystem for Linux (简称 WSL) 是为了能在 Windows10 上原生运行 Linux 二进制可执行文件 (ELF 可执行文件) 而制作的兼容层。这意味着在一些情况，不再需要使用 Linux 虚拟机、双系统、Cygwin/MSYS2 了，这样占用的资源会比虚拟机等方式要更省也更方便。</p>
+<p>虽然WSL不是完整的Linux系统，但你依然可以做到绝大多数在完整Linux系统能做的事（比如vim, apt-get等）。</p>
+<h2 id="安装-WSL"><a href="#安装-WSL" class="headerlink" title="安装 WSL"></a>安装 WSL</h2><p>打开 Microsoft Store ，搜索 linux 可以看见已经有很多 linux 发行版支持可以使用 WSL。我选择了安装熟悉一些的 Ubuntu。</p>
+<p>要使用 WSL 首选需要打开系统对 Linux 子系统的支持。</p>
+<p>在开始菜单中或者小娜那里搜索“启用或关闭 Windows 功能”，打开对应的控制面板，勾选 “适用于 Linux 的 Windows 子系统”。</p>
+<p>在 Microsoft Store 商店中下载安装 Ubuntu。</p>
+<p>安装完毕之后，在开始菜单中会有 Ubuntu 的磁贴，点开磁铁，会出现命令行进行安装。</p>
+<p>等待几分钟让系统自动安装 Ubuntu。</p>
+<p>如果安装出现了错误，可以自行搜索一下错误码，我碰到过一次是因为网络问题，一次是系统更新，需要重启。</p>
+<p>安装完成之后，输入 WSL 的用户名和密码，再打开 Ubuntu ，你会发现命令行已经是 bash 环境，可以直接使用 bash 的命令，使用方式就跟正常的 linux 一模一样。Ubuntu 可以使用 apt 包管理软件进行各种软件安装。</p>
+<h2 id="WSL-的文件系统"><a href="#WSL-的文件系统" class="headerlink" title="WSL 的文件系统"></a>WSL 的文件系统</h2><p>在 WSL 中，你可以看到 Windows 的所有磁盘都挂载在 /mnt/ 下面，你在 Linux 下可以正常访问所有不需要系统权限的文件和文件夹。当然，需要注意的是，如果不是用的管理员账户，在 Linux 下使用 sudo 也无法访问需要 Windows 提升权限才能访问的文件。</p>
+<p>同样，你在Windows下也可以看到WSL里的文件，但因为其使用了NTFS的软链接机制，如果你想让一个文件出现在你的Linux目录下，那你就必须在Linux下进行操作，在Win下操作之后，在Linux下仍然是看不到的。</p>
+<p>在 C 盘创建一个 public 的文件夹，到 bash 中执行命令 <code>ln -s /mnt/c/public ~/public</code> 创建软链接，将 windows 和 WSL 中共享的文件都放在这个目录下，方便直接访问这个目录。</p>
+<p>更新系统和软件可以直接使用 Ubuntu 的命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line"># 升级系统到最新的 Ubuntu，注意：非常耗时，WSL 的磁盘 IO 效率很低</span><br><span class="line">sudo -S apt-mark hold procps strace sudo</span><br><span class="line">sudo -S env RELEASE_UPGRADER_NO_SCREEN=1 do-release-upgrade</span><br></pre></td></tr></table></figure>
+<h2 id="使用-ConEmu-替代-Windows-命令行"><a href="#使用-ConEmu-替代-Windows-命令行" class="headerlink" title="使用 ConEmu 替代 Windows 命令行"></a>使用 ConEmu 替代 Windows 命令行</h2><p>Windows 的命令行，尤其是 CMD 显示效果和使用体验都非常差，PowerShell 相对来说还行，但是还是没有 Linux 下的终端那种爽快感。可以选择使用 ConEmu 或者 Cmder 进行替换，提升命令行使用体验。</p>
+<p>我选择使用 ConEmu，安装完 ConEmu 之后，进入 Setting 设置中，点开左侧导航栏的 <code>Startup &gt; Tasks</code>。</p>
+<p>新增一个 Task ，名称设置成 <code>{Bash::Ubuntu}</code>。</p>
+<p>Command 命令框中输入： <code>%windir%\system32\bash.exe ~ -cur_console:p</code>，这样就可以使用 bash 直接进入用户的 home 目录。</p>
+<p>在 ConEmu 的默认设置中选则 <code>{Bash::Ubuntu}</code> 作为启动的终端，可以在打开 ConEmu 时就能进入 bash 环境的使用。</p>
+<h2 id="使用-zsh-替换-bash"><a href="#使用-zsh-替换-bash" class="headerlink" title="使用 zsh 替换 bash"></a>使用 zsh 替换 bash</h2><p>WSL 不能直接将 bash 替换成 zsh，可以选择在打开 bash 的时候就直接跳转到 zsh 的环境。</p>
+<ol>
+<li>首先安装 zsh</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install zsh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装 oh-my-zsh 提升 zsh 的体验，使用 oh-my-zsh 官网的推荐方式进行安装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># via curl</span><br><span class="line">sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br><span class="line"># 或者</span><br><span class="line"># via wget</span><br><span class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</span><br></pre></td></tr></table></figure>
+<p>如果没有自动进入 zsh 的环境，可以执行 <code>chsh -s zsh</code></p>
+<ol start="3">
+<li>bash 执行即调用 zsh，修改 <code>~/.bashrc</code> 在最后面加入一下内容：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if test -t 1; then</span><br><span class="line">exec zsh</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>按个人配置 zsh，我习惯使用 ys 主题，直接修改 <code>~/.zshrc</code> 进行主题插件的配置。</li>
+</ol>
+<h2 id="WSL-管理配置"><a href="#WSL-管理配置" class="headerlink" title="WSL 管理配置"></a>WSL 管理配置</h2><p>Windows10 自带了 wslconfig，去管理多个安装的发行版，比如卸载某个发行版，设置默认启动的发型版。</p>
+<p>在PowerShell中输入 <code>wslconfig /?</code>， 可以看到:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PS D:\&gt; wslconfig /?</span><br><span class="line">在 Linux Windows 子系统上执行管理操作</span><br><span class="line"></span><br><span class="line">用法:</span><br><span class="line">    /l, /list [/all] - 列出已注册的分发内容。</span><br><span class="line">        /all - 有选择地列出所有分发内容，包括目前</span><br><span class="line">               正安装或未安装的分发内容。</span><br><span class="line">    /s, /setdefault &lt;DistributionName&gt; - 将指定的分发内容设置为默认值。</span><br><span class="line">    /u, /unregister &lt;DistributionName&gt; - 注销分发内容。</span><br></pre></td></tr></table></figure>
+<p>切换默认发行版:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PS D:\&gt; wslconfig /l</span><br><span class="line"># 适用于 Linux 的 Windows 子系统:</span><br><span class="line">Legacy (默认)</span><br><span class="line">Ubuntu</span><br><span class="line">PS D:\&gt; wslconfig /s Ubuntu</span><br><span class="line">PS D:\&gt; wslconfig /l</span><br><span class="line"># 适用于 Linux 的 Windows 子系统:</span><br><span class="line">Ubuntu (默认)</span><br><span class="line">Legacy</span><br></pre></td></tr></table></figure>
+<p>在Windows 1803 后，还支持更多配置。比如网络，root 目录等。进入发行版后， 可以在 /etc/wsl.conf 中配置。 如果没有该文件，可以手动创建一个配置:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[automount]</span><br><span class="line">enabled = true  # 自动挂载 c:/ 等到 /mnt</span><br><span class="line">root = /windir/</span><br><span class="line">options = &quot;metadata,umask=22,fmask=11&quot;</span><br><span class="line">mountFsTab = false</span><br><span class="line"></span><br><span class="line">[network]</span><br><span class="line">generateHosts = true</span><br><span class="line">generateResolvConf = true</span><br></pre></td></tr></table></figure>
+<h2 id="WSL-交互"><a href="#WSL-交互" class="headerlink" title="WSL 交互"></a>WSL 交互</h2><p>也是从1709开始，WSL支持在Windows 10上直接使用 Linux命令:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PS D:\test&gt;  wsl ls -la</span><br><span class="line">total 5836</span><br><span class="line">drwxrwxrwx 1 root root    4096 Jan 25 13:20 .</span><br><span class="line">drwxrwxrwx 1 root root    4096 Apr 20 16:25 ..</span><br><span class="line">-rwxrwxrwx 1 root root     105 Oct 14  2017 03-build.ps1</span><br></pre></td></tr></table></figure>
+<p>同样在 WSL 内也可以使用Windows应用程序，比如notepad，docker：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@mushroom:/mnt/d/go/src/code.teambition.com/soa/webhooks# docker.exe ps</span><br><span class="line">CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                                                                                        NAMES</span><br><span class="line">63698edb01a8        quay.io/coreos/etcd:latest   &quot;/usr/local/bin/etcd&quot;    2 days ago          Up 27 hours         0.0.0.0:2379-&gt;2379/tcp, 2380/tcp                                                             etcd</span><br></pre></td></tr></table></figure>
+<p>这是个非常赞的特性，极大方便了开发者。但在使用过程中发现，有个体验非常不好的地方，必须带.exe后缀才行，不然会提示找不到命令 :</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root@mushroom:/mnt/d/go/src/code.teambition.com/soa/webhooks# docker</span><br><span class="line">The program &apos;docker&apos; is currently not installed. You can install it by typing:</span><br><span class="line">apt-get install docker</span><br></pre></td></tr></table></figure>
+<p>比如在别的 linux 系统上写了个 docker build 的脚本，放到 Windows 上后 想使用 WSL 去执行，发现必须加后缀才行，这样脚本就没办法统一了。</p>
+<p>参考文章：</p>
+<ol>
+<li><a href="https://www.cnblogs.com/mushroom/p/8969338.html" target="_blank" rel="noopener">WSL与Windows交互实践</a></li>
+<li><a href="https://wsl-guide-cn.readthedocs.io/zh_CN/latest/" target="_blank" rel="noopener">Windows Subsystem for Linux (WSL) 最佳实践指南!</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/24537874" target="_blank" rel="noopener">简明的WSL教程</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2018/11/18/使用WSL在Windows中体验Linux/" target="_blank" rel="external">/2018/11/18/使用WSL在Windows中体验Linux/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WSL/">WSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/&title=《使用WSL在Windows中体验Linux》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/&title=《使用WSL在Windows中体验Linux》 — ZZY补完计划&source=微软在 Windows 10 中增加了 WSL 这个新功能，可以跑完整的 linux 镜像，而且不像虚拟机是应用层的实现需要消耗大量资源。现在 Windo..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用WSL在Windows中体验Linux》 — ZZY补完计划&url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/28/恶魔人-Crybaby/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">恶魔人 Crybaby</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/07/使用nvm安装nodejs/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用nvm安装nodejs</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/&title=《使用WSL在Windows中体验Linux》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/&title=《使用WSL在Windows中体验Linux》 — ZZY补完计划&source=微软在 Windows 10 中增加了 WSL 这个新功能，可以跑完整的 linux 镜像，而且不像虚拟机是应用层的实现需要消耗大量资源。现在 Windo..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用WSL在Windows中体验Linux》 — ZZY补完计划&url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2018/11/18/使用WSL在Windows中体验Linux/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwUlEQVR42u3aQY7CMAwF0N7/0ow0KyRU+u3EBaTXFRKd0JdF4/n2ccTX4/96/vx8vd75+m1+5/v7j4kLDw8Pr/XoZ9frPckKZ5uSr5av8H6b8PDw8OZ4+WHQOwbO1sm3NV8fDw8P73t41S14tK68rMfDw8P7FV6v+E5CBzw8PLzf4iUPnT9o8sO90GEwa8HDw8PrVK1H9aX8qc/j/T08PDy8Vlc9eeGuNKvygrsZauDh4eEN8HY1sXpDWr3BguQUKM814OHh4cW8JCDIHyI/VJJv87GD0894eHh4A7zeP/x5OZvHCskx0yzN8fDw8LbyksZ/8ppeyY+rh00haMbDw8Mb4OWv6Tws2PXtrlgEDw8Pb463PtiUt6/yja620PDw8PCmeUlJvTIikA8H5MFEc+gKDw8PbxOvGqH2yuscWd3oKIbGw8PDG+DlgWkv3s2bavn2lQ8PPDw8vE28pJ3fuyd/xF67K8Lj4eHhDfBWmlvVQLaK7OUM0UwZHh4e3gJvpW+Wt83WC/rkt07PPTw8PLytvF0t/KQ9ttJgy8OR5pQZHh4eXszLo4R86V4RnK9TGO3Cw8PDu51XPVXyY6M3rFDG4+Hh4Q3w8p57HrM+4isppnuFNR4eHt6dvOqjV/+qOgqQwyIFHh4e3gBvV8Mpj2ur8ceGxhseHh7eAm+lwK0OBPRe/b1iHQ8PD+8eXm/UqTrwlBwD1Sjk4v8DPDw8vK28PAztHQZJqd2s+ou/i4eHh7eLVy5S890K4oMqL49I8PDw8OZ41dduPlxVjRLyY6M6WICHh4c3wev9cPMVPNAwu1gHDw8Pb4yXJ5/50tVNqR420fbh4eHhfZRXjSp6D52Xy9HKeHh4eF/AqwYHyQorq10g8fDw8MZ4eRhRffQkhlgfzLooqfHw8PC28nrBa/5j6+20vKTe0N/Dw8PDe8f7AzlwnHEARcqgAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

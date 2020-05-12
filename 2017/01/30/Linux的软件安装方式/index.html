@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Linux的软件安装方式 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,rpm,deb">
+    <meta name="description" content="Linux 作为开源的操作系统，有着众多的发行版，不同的发行版本安装 Linux 软件的方式可能有很大的差异。在互联网上搜索安装某个 Linux 软件，可能会有不同的安装方式。">
+<meta name="keywords" content="Linux,rpm,deb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux的软件安装方式">
+<meta property="og:url" content="https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="Linux 作为开源的操作系统，有着众多的发行版，不同的发行版本安装 Linux 软件的方式可能有很大的差异。在互联网上搜索安装某个 Linux 软件，可能会有不同的安装方式。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux的软件安装方式">
+<meta name="twitter:description" content="Linux 作为开源的操作系统，有着众多的发行版，不同的发行版本安装 Linux 软件的方式可能有很大的差异。在互联网上搜索安装某个 Linux 软件，可能会有不同的安装方式。">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Linux的软件安装方式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Linux的软件安装方式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-30T20:22:18.000Z" itemprop="datePublished" class="page-time">
+  2017-01-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux-怎么安装应用软件？"><span class="post-toc-number">1.</span> <span class="post-toc-text">Linux 怎么安装应用软件？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux系统分类"><span class="post-toc-number">2.</span> <span class="post-toc-text">Linux系统分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RedHat-系列"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">RedHat 系列</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debian-系列"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Debian 系列</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux-软件安装包"><span class="post-toc-number">3.</span> <span class="post-toc-text">Linux 软件安装包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux-软件包的类型"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Linux 软件包的类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux软件包的命名"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Linux软件包的命名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux-软件包里的内容"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Linux 软件包里的内容</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux-各种软件包的使用"><span class="post-toc-number">4.</span> <span class="post-toc-text">Linux 各种软件包的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用tar打包的应用软件"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">使用tar打包的应用软件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tar包的安装"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">tar包的安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tar包的卸载"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">tar包的卸载</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#不需要安装的软件"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">不需要安装的软件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用rpm打包的应用软件"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">使用rpm打包的应用软件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#rpm包的安装："><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">rpm包的安装：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#rpm包的卸载："><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">rpm包的卸载：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用yum命令安装rpm包应用程序"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">使用yum命令安装rpm包应用程序</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用deb打包的应用程序"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">使用deb打包的应用程序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#deb包的安装"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">deb包的安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#deb包的卸载"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">deb包的卸载</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用apt命令安装deb包应用程序"><span class="post-toc-number">4.3.3.</span> <span class="post-toc-text">使用apt命令安装deb包应用程序</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用bin源码进行应用程序安装"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">使用bin源码进行应用程序安装</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Linux的软件安装方式"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux的软件安装方式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-30 20:22:18" datetime="2017-01-30T20:22:18.000Z"  itemprop="datePublished">2017-01-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/系统/">系统</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>Linux 作为开源的操作系统，有着众多的发行版，不同的发行版本安装 Linux 软件的方式可能有很大的差异。在互联网上搜索安装某个 Linux 软件，可能会有不同的安装方式。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Linux-怎么安装应用软件？"><a href="#Linux-怎么安装应用软件？" class="headerlink" title="Linux 怎么安装应用软件？"></a>Linux 怎么安装应用软件？</h2><p>我的软件安装在什么地方？<br>如何删除不要的应用软件？<br>……<br>下面，我们就一起来认识一下这些方面的问题。</p>
+<h2 id="Linux系统分类"><a href="#Linux系统分类" class="headerlink" title="Linux系统分类"></a>Linux系统分类</h2><p>一般来说著名的 Linux 系统基本上分两大类：</p>
+<ol>
+<li>RedHat 系列：Redhat、Centos、Fedora 等</li>
+<li>Debian 系列：Debian、Ubuntu 等</li>
+</ol>
+<ul>
+<li>Dpkg (Debian系)：Ubuntu </li>
+<li>RPM (Red Hat系)：CentOS、Fedora</li>
+</ul>
+<h3 id="RedHat-系列"><a href="#RedHat-系列" class="headerlink" title="RedHat 系列"></a><strong>RedHat 系列</strong></h3><ul>
+<li>常见的安装包格式 rpm 包，安装rpm包的命令是“rpm -参数”</li>
+<li>包管理工具 yum</li>
+<li>支持 tar 包</li>
+</ul>
+<h3 id="Debian-系列"><a href="#Debian-系列" class="headerlink" title="Debian 系列"></a><strong>Debian 系列</strong></h3><ul>
+<li>常见的安装包格式 deb 包，安装 deb 包的命令是“dpkg -参数”</li>
+<li>包管理工具 apt-get</li>
+<li>支持 tar 包</li>
+</ul>
+<p>tar 只是一种压缩文件格式，所以，它只是把文件压缩打包而已。</p>
+<p>rpm 相当于windows中的安装文件，它会自动处理软件包之间的依赖关系。优缺点来说，rpm一般都是预先编译好的文件，它可能已经绑定到某种CPU或者发行版上面了。</p>
+<h2 id="Linux-软件安装包"><a href="#Linux-软件安装包" class="headerlink" title="Linux 软件安装包"></a>Linux 软件安装包</h2><h3 id="Linux-软件包的类型"><a href="#Linux-软件包的类型" class="headerlink" title="Linux 软件包的类型"></a>Linux 软件包的类型</h3><p>通常Linux应用软件的安装包有三种：</p>
+<ol>
+<li>tar包，如 software-1.2.3-1.tar.gz。它是使用UNIX系统的打包工具tar打包的。</li>
+<li>rpm包，如 software-1.2.3-1.i386.rpm。它是 Redhat Linux 提供的一种包封装格式。</li>
+<li>dpkg包，如 software-1.2.3-1.deb。它是 Debain Linux 提供的一种包封装格式。</li>
+</ol>
+<h3 id="Linux软件包的命名"><a href="#Linux软件包的命名" class="headerlink" title="Linux软件包的命名"></a>Linux软件包的命名</h3><p>而且，大多数Linux应用软件包的命名也有一定的规律，它遵循：<br><code>名称</code>-<code>版本</code>-<code>修正版</code>-<code>类型</code></p>
+<p>例如：</p>
+<p>1） <code>software-1.2.3-1.tar.gz</code> 的含义：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">软件名称：software</span><br><span class="line">版本号：1.2.3</span><br><span class="line">修正版本：1</span><br><span class="line">类型：tar.gz，说明是一个tar包。</span><br></pre></td></tr></table></figure>
+<p>2） <code>software-1.2.3-1.i386.rpm</code> 的含义：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">软件名称：software</span><br><span class="line">版本号：1.2.3</span><br><span class="line">修正版本：1</span><br><span class="line">可用平台：i386，适用于Intel 80x86平台。</span><br><span class="line">类型：rpm，说明是一个rpm包。</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：由于rpm格式的通常是已编译的程序，所以需指明平台。在后面会详细说明。<br>    而software-1.2.3-1.deb就不用再说了吧！大家自己练习一下。</p>
+<h3 id="Linux-软件包里的内容"><a href="#Linux-软件包里的内容" class="headerlink" title="Linux 软件包里的内容"></a>Linux 软件包里的内容</h3><p>一个 Linux 应用程序的软件包中可以包含两种不同的内容：</p>
+<ol>
+<li>一种就是可执行文件，也就是解开包后就可以直接运行的。在Windows中所 有的软件包都是这种类型。安装完这个程序后，你就可以使用，但你看不到源程序。而且下载时要注意这个软件是否是你所使用的平台，否则将无法正常安装。</li>
+<li>另一种则是源程序，也就解开包后，你还需要使用编译器将其编译成为可执行文件。这在Windows系统中是几乎没有的，因为Windows的思想是不开放源程序的。</li>
+</ol>
+<p>通常，用tar打包的，都是源程序；而用rpm、dpkg打包的则常是可执行程序。一般来说，自己动手编译源程序能够更具灵活性，但也容易遇到各种问题和困难。而相对来说，下载那些可执行程序包，反而是更容易完成软件的安装，当然那样灵活性就差多了。所以一般一个软件总会提供多种打包格式的安装程序的。你可以根据自己的情况来选择。</p>
+<h2 id="Linux-各种软件包的使用"><a href="#Linux-各种软件包的使用" class="headerlink" title="Linux 各种软件包的使用"></a>Linux 各种软件包的使用</h2><h3 id="使用tar打包的应用软件"><a href="#使用tar打包的应用软件" class="headerlink" title="使用tar打包的应用软件"></a>使用tar打包的应用软件</h3><h4 id="tar包的安装"><a href="#tar包的安装" class="headerlink" title="tar包的安装"></a>tar包的安装</h4><p>整个安装过程可以分为以下几步：</p>
+<ol>
+<li>取得应用软件：通过下载、购买光盘的方法获得；</li>
+<li>解压缩文件：一般tar包，都会再做一次压缩，如gzip、bz2等，所以你需要先解压。如果是最常见的gz格式，则可以执行 <code>tar –xvzf 软件包名</code>，就可以一步完成解压与解包工作。如果不是，则先用解压软件，再执行 <code>tar –xvf 解压后的tar包</code> 进行解包；</li>
+<li>阅读附带的INSTALL文件、README文件；</li>
+<li>执行 <code>./configur”</code> 命令为编译做好准备；</li>
+<li>执行 <code>make</code> 命令进行软件编译；</li>
+<li>执行 <code>make install</code> 完成安装；</li>
+<li>执行 <code>make clean</code> 删除安装时产生的临时文件。</li>
+</ol>
+<p>好了，到此大功告成。我们就可以运行应用程序了。但这时，有的读者就会问，我怎么执行呢？这也是一个Linux特色的问题。其实，一般来说， Linux的应用软件的可执行文件会存放在/usr/local/bin目录下！不过这并不是“放四海皆准”的真理，最可靠的还是看这个软件的 INSTALL和README文件，一般都会有说明。</p>
+<p><strong>===安装目录</strong>：注意make install命令过程中的安装目录，或者阅读安装目录里面的readme文件，当然最好的办法是在安装的过程中指定安装目录，即在./configure命令后面加参数–prefix=/**， </p>
+<p>如：<code>./configure --prefix=/usr/local/aaaa</code>，即把软件装在<code>/usr/local/</code>路径的aaaa这个目录里。一般的软件的默认安装目录在<code>/usr/local</code>或者<code>/opt</code>里，可以到那里去找找</p>
+<h4 id="tar包的卸载"><a href="#tar包的卸载" class="headerlink" title="tar包的卸载"></a>tar包的卸载</h4><p>通常软件的开发者很少考虑到如何卸载自己的软件，而tar又仅是完成打包的工作，所以并没有提供良好的卸载方法。<br>那么是不是说就不能够卸载呢！其实也不是，有两个软件能够解决这个问题，那就是 Kinstall 和 Kife ，它们是tar包安装、卸载的黄金搭档。有兴趣可以研究下。</p>
+<h4 id="不需要安装的软件"><a href="#不需要安装的软件" class="headerlink" title="不需要安装的软件"></a>不需要安装的软件</h4><p>有一些tar包其实算是不需要安装的软件，类似于 windows 下的绿色软件<br>有了些软件，比如 lumaqq 是不需要安装的，自带jre解压缩后可直接运行。<br>假设下载的是 lumaqq.tar.gz ，使用方法如下：</p>
+<ol>
+<li>打开一个终端，su -成root用户；</li>
+<li>tar -xzvf lumaqq.tar.gz //这一步会生成一个叫LumaQQ的目录</li>
+<li>cd LumaQQ</li>
+<li>chmod +x lumaqq //设置lumaqq这个程序文件为可运行</li>
+<li>此时就可以运行lumaqq了，用命令./lumaqq即可，但每次运行要输入全路径或切换到刚才生成的LumaQQ目录里</li>
+<li>为了保证不设置路径就可以用，你可以在/bin目录下建立一个lumaqq的链接，用命令ln -s lumaqq /bin/ 即可，以后任何时候打开一个终端输入lumaqq就可以启动QQ聊天软件了</li>
+<li>如果你要想lumaqq有个菜单项，使用菜单编辑工具，比如Alacarte MenuEditor，找到上面生成的LumaQQ目录里的lumaqq设置一个菜单项就可以了，当然你也可以直接到 /usr/share/applications目录，按照里面其它*.desktop文件的格式生成一个自己的desktop文件即可。</li>
+</ol>
+<h3 id="使用rpm打包的应用软件"><a href="#使用rpm打包的应用软件" class="headerlink" title="使用rpm打包的应用软件"></a>使用rpm打包的应用软件</h3><p>RPM 打包方式是 Redhat 公司的一大贡献，它使 Linux 的软件安装工作变得更加简单容易。</p>
+<h4 id="rpm包的安装："><a href="#rpm包的安装：" class="headerlink" title="rpm包的安装："></a>rpm包的安装：</h4><p>只需简单的一句话，就可以说完。执行： <code>rpm –ivh rpm软件包名</code><br>查找安装目录，执行命令查找： <code>rpm -ql firefox-1.0.1-1.3.2</code></p>
+<p>rpm 更高级的用法，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpm 部分参数及参数说明：</span><br><span class="line">    -i 安装软件</span><br><span class="line">    -t 测试安装，不是真的安装</span><br><span class="line">    -p 显示安装进度</span><br><span class="line">    -f 忽略任何错误</span><br><span class="line">    -U 升级安装</span><br><span class="line">    -v 检测套件是否正确安装</span><br></pre></td></tr></table></figure>
+<p>这些参数可以同时采用。更多的内容可以参考RPM的命令帮助。</p>
+<h4 id="rpm包的卸载："><a href="#rpm包的卸载：" class="headerlink" title="rpm包的卸载："></a>rpm包的卸载：</h4><p>同样只需简单的一句话，就可以完成。执行： <code>rpm –e 软件名</code><br>不过要注意的是，后面使用的是软件名，而不是软件包名。例如，要安装software-1.2.3-1.i386.rpm这个包时，应执行： <code>rpm –ivh software-1.2.3-1.i386.rpm</code><br>而当卸载时，则应执行： <code>rpm –e software</code></p>
+<p>另外，在 Linux 中还提供了象 GnoRPM 、kpackage 等图形化的RPM工具，使得整个过程会更加简单。</p>
+<h4 id="使用yum命令安装rpm包应用程序"><a href="#使用yum命令安装rpm包应用程序" class="headerlink" title="使用yum命令安装rpm包应用程序"></a>使用yum命令安装rpm包应用程序</h4><p>yum 全称为 <code>Yellow dog Updater, Modified</code> 是一个在 Fedora 和 RedHat 以及 SUSE 等 Linux 发行版中的 Shell 前端软件包管理器。<br>基于 RPM 包管理，能够从指定的服务器自动下载 RPM 包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软体包，无须繁琐地一次次下载、安装。yum 提供了查找、安装、删除某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。</p>
+<p><code>yum install</code> 全部安装<br><code>yum install package1</code> 安装指定的安装包package1<br><code>yum update</code> 全部更新<br><code>yum update package1</code> 更新指定程序包package1<br><code>yum list</code> 显示所有已经安装和可以安装的程序包<br><code>yum list package1</code> 显示指定程序包安装情况package1<br><code>yum remove package1</code> 删除程序包package1<br><code>yum search keyword</code> 查找软件包</p>
+<h3 id="使用deb打包的应用程序"><a href="#使用deb打包的应用程序" class="headerlink" title="使用deb打包的应用程序"></a>使用deb打包的应用程序</h3><p>​deb 格式包是 <code>Debian Linux</code> 提供的一个包管理器，它与 RPM 十分类似。但由于 RPM 出现得更早，所以在各种版本的 Linux 都常见到。而 debian 的包管理器 dpkg 则只出现在 Debina Linux 中，其它 Linux 版本一般都没有。我们在此就简单地说明一下：</p>
+<h4 id="deb包的安装"><a href="#deb包的安装" class="headerlink" title="deb包的安装"></a>deb包的安装</h4><p>执行 <code>dpkg –i deb软件包名</code><br>如：<code>dpkg –i software-1.2.3-1.deb</code></p>
+<h4 id="deb包的卸载"><a href="#deb包的卸载" class="headerlink" title="deb包的卸载"></a>deb包的卸载</h4><p>执行 <code>dpkg –e 软件名</code><br>如：<code>dpkg –e software</code></p>
+<h4 id="使用apt命令安装deb包应用程序"><a href="#使用apt命令安装deb包应用程序" class="headerlink" title="使用apt命令安装deb包应用程序"></a>使用apt命令安装deb包应用程序</h4><p>apt 的全称是 <code>Advanced Packaging Tool</code> 是Linux系统下的一款安装包管理工具。<br>最初需要在 Linux 系统中安装软件，需要自行编译各类软件，缺乏一个统一管理软件包的工具。此后当 Debian 系统出现后，dpkg 管理工具也就被设计出来了，此后为了更加快捷、方便的安装各类软件，dpkg的前端工具 APT 也出现了。在 Ubuntu16.04 系统下 apt 命令功能又得到了强化，使其更加方便快捷和受欢迎了。</p>
+<ol>
+<li>打开一个终端，su -成root用户；</li>
+<li><code>apt-cache search soft</code> 注：soft是你要找的软件的名称或相关信息</li>
+<li>如果2中找到了软件soft.version，则用 <code>apt-get install soft.version</code> 命令安装软件。（注：只要你可以上网，只需要用 <code>apt-cache search</code> 查找软件，用 <code>apt-get install</code> 安装软件。</li>
+<li>卸载：<code>apt-get uninstall</code> 软件</li>
+</ol>
+<h3 id="使用bin源码进行应用程序安装"><a href="#使用bin源码进行应用程序安装" class="headerlink" title="使用bin源码进行应用程序安装"></a>使用bin源码进行应用程序安装</h3><p>如果你下载到的软件名是soft.bin，一般情况下是个可执行文件，安装方法如下：</p>
+<ol>
+<li>打开一个终端，<code>su -</code> 成root用户；</li>
+<li><code>chmod +x soft.bin</code> 添加可执行属性</li>
+<li><code>./soft.bin</code> 运行这个命令就可以安装软件了</li>
+<li>卸载：删除安装该软件的安装包即可以</li>
+</ol>
+<p>安装完软件后如何执行。 安装完软件后可以有好多种方法执行软件:  </p>
+<ul>
+<li>有些软件安装后会自动在应用程序列表里加上快捷键，和windows一样，到那里找就行了。 </li>
+<li>如果在应用程序列表里找不到的话，可以直接在/开始/运行命令里输入命令：启动命令一般就是软件名，如firefox，realplay，xmms等 </li>
+<li>也可以打开一个shell终端，输入软件名，和在“运行命令”里一样。如果不知道命令全程的话，可以输入开头的字母，然后按tab键查找，系统会自动显示以输入字母开头的所有命令/ </li>
+<li>你也可以直接到安装目录下运行启动文件，<a href="http://lib.csdn.net/base/Linux" target="_blank" rel="noopener">Linux</a>下的可执行图标和shell终端图标很像 </li>
+<li>到 /usr/bin 目录里找安装的软件启动文件执行命令。Linux 系统把所有可执行的文件命令在/usr/bin目录里都作了启动连接，你可以去那个目录寻找你安装的文件的启动命令，双击启动。</li>
+</ul>
+<p>参考文章：</p>
+<ol>
+<li><a href="http://blog.csdn.net/shun01/article/details/22041339" target="_blank" rel="noopener">http://blog.csdn.net/shun01/article/details/22041339</a>  </li>
+<li><a href="http://www.cnblogs.com/zhangfeionline/p/5893748.html" target="_blank" rel="noopener">http://www.cnblogs.com/zhangfeionline/p/5893748.html</a>  </li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2017/01/30/Linux的软件安装方式/" target="_blank" rel="external">/2017/01/30/Linux的软件安装方式/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deb/">deb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rpm/">rpm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/&title=《Linux的软件安装方式》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/&title=《Linux的软件安装方式》 — ZZY补完计划&source=
+Linux 作为开源的操作系统，有着众多的发行版，不同的发行版本安装 Linux 软件的方式可能有很大的差异。在互联网上搜索安装某个 Linux 软件，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux的软件安装方式》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/02/vi的一些设置/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">vi的一些设置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/25/普通用户sudo权限问题/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">普通用户sudo权限问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/&title=《Linux的软件安装方式》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/&title=《Linux的软件安装方式》 — ZZY补完计划&source=
+Linux 作为开源的操作系统，有着众多的发行版，不同的发行版本安装 Linux 软件的方式可能有很大的差异。在互联网上搜索安装某个 Linux 软件，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux的软件安装方式》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/30/Linux的软件安装方式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3a0W7jMAwEwP7/T7dAX4vIS1LM5YDxU5H6Yo0PENkVv77i6/v3On/+9+fzv/p7nZ9+vmd04eHh4bWWfn7keSnn+8+fzL//4TXh4eHhrfGSTf/V4qrlJFl6XoQenoiHh4f3T3kJvvf5uSTg4eHh/e+8pPGttstJIcHDw8P7NF4SRkzi2vMiqiHFStaCh4eHF/OqB2Cf8PPi+R4eHh7e4FQ9b4WrBWPSphdWi4eHh7fAS9rWfNft/bYaQ5QHs/Dw8PCu8qqDVpPINUEmEW2haOHh4eEt8C5UlXgr78Ws1aD2ZXnAw8PDu8RLtvv8eCz/JLkzb6xffgMeHh7eAi9vbauvYL7Q/Hseig0eHh7eVV7y+MlWXo1uqzHEw38GHh4e3gKv+uDqMEFvcGpS5R6OwfDw8PDGvGrQMIkk8u9P4uCojOHh4eGt8fLxpl57XR3Mqr7Q8ikcHh4e3oCXxxDndra33ScxcfXOBzYeHh7eAq/XvE4eP9n6k+KBh4eHt8HLW9jqEVfvmhSnhwMwPDw8vDGvetSUb+J5Mz2JSB4KFR4eHt4a7+4gVN5k3xosePlEPDw8vLfwJodYvea4RyoPXeHh4eFd4vX++K+OWyXjAtVjsAIeDw8P7yqv2v5uRxJ5/BGB8fDw8BZ4yRBA8tv50nv7ebQqPDw8vKu83hflyDzGvRUW4+Hh4b2flwcHydZc3fTzQ7LoNeHh4eEt8PKIYXLn5GAsPx7Dw8PDew/vu3jlrXYvF8mb7yg0wcPDw1vg5dc8ru0NAfSCEjw8PLxtXi8kTWB5AcjLRjUcwcPDw9vjJZFBb8h1MmRQrWB4eHh4n8a71b/3BgWqK8TDw8P7HN68Ca6+gmpRGRUGPDw8vJhXDSMKUwlxQNx7HeeihYeHh7fBmywiigPGkW4+fNC88PDw8NKV/ADyBBg8cD9pswAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

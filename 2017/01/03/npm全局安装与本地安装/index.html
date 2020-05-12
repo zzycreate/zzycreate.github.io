@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>npm全局安装与本地安装 | ZZY补完计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,node,npm">
+    <meta name="description" content="在使用node进行javascript开发的时候，必然会用到npm；npm的设计导致的问题有其历史原因，官方提供的全局安装和本地安装两种方式，在使用的时候根据需要进行全局安装或者本地安装。  什么是全局安装以gulp为例，全局安装方式是键入命令：npm install gulp -g 或 npm install gulp --global，其中参数-g的含义是代表安装到全局环境里面，包安装在No">
+<meta name="keywords" content="javascript,node,npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm全局安装与本地安装">
+<meta property="og:url" content="https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/index.html">
+<meta property="og:site_name" content="ZZY补完计划">
+<meta property="og:description" content="在使用node进行javascript开发的时候，必然会用到npm；npm的设计导致的问题有其历史原因，官方提供的全局安装和本地安装两种方式，在使用的时候根据需要进行全局安装或者本地安装。  什么是全局安装以gulp为例，全局安装方式是键入命令：npm install gulp -g 或 npm install gulp --global，其中参数-g的含义是代表安装到全局环境里面，包安装在No">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T01:17:23.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="npm全局安装与本地安装">
+<meta name="twitter:description" content="在使用node进行javascript开发的时候，必然会用到npm；npm的设计导致的问题有其历史原因，官方提供的全局安装和本地安装两种方式，在使用的时候根据需要进行全局安装或者本地安装。  什么是全局安装以gulp为例，全局安装方式是键入命令：npm install gulp -g 或 npm install gulp --global，其中参数-g的含义是代表安装到全局环境里面，包安装在No">
+    
+        <link rel="alternate" type="application/atom+xml" title="ZZY补完计划" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzycreate</h5>
+          <a href="mailto:zzycreate@gmail.com" title="zzycreate@gmail.com" class="mail">zzycreate@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/collections"  >
+                <i class="icon icon-lg icon-star"></i>
+                收藏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzycreate" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/abort"  >
+                <i class="icon icon-lg icon-user"></i>
+                Abort
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">npm全局安装与本地安装</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">npm全局安装与本地安装</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-03T02:15:56.000Z" itemprop="datePublished" class="page-time">
+  2017-01-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是全局安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是全局安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#全局安装的调用方式"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">全局安装的调用方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是本地安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是本地安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地安装的调用方式"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">本地安装的调用方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么全局安装后还要本地安装"><span class="post-toc-number">3.</span> <span class="post-toc-text">为什么全局安装后还要本地安装</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-npm全局安装与本地安装"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">npm全局安装与本地安装</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-03 02:15:56" datetime="2017-01-03T02:15:56.000Z"  itemprop="datePublished">2017-01-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编码/">编码</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>在使用node进行javascript开发的时候，必然会用到npm；npm的设计导致的问题有其历史原因，官方提供的全局安装和本地安装两种方式，在使用的时候根据需要进行全局安装或者本地安装。</p>
+</blockquote>
+<h2 id="什么是全局安装"><a href="#什么是全局安装" class="headerlink" title="什么是全局安装"></a>什么是全局安装</h2><p>以gulp为例，全局安装方式是键入命令：<code>npm install gulp -g</code> 或 <code>npm install gulp --global</code>，其中参数<code>-g</code>的含义是代表安装到全局环境里面，包安装在Node安装目录下的node_modules文件夹中，windows一般在 <code>\Users\用户名\AppData\Roaming\</code>目录下，可以使用<code>npm root -g</code>查看全局安装目录。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm root -g</span><br><span class="line">C:\Users\用户名\AppData\Roaming\npm\node_modules</span><br></pre></td></tr></table></figure>
+<h3 id="全局安装的调用方式"><a href="#全局安装的调用方式" class="headerlink" title="全局安装的调用方式"></a>全局安装的调用方式</h3><p>全局安装后可以供命令行(command line)使用，用户可以在命令行中直接运行该组件包支持的命令。</p>
+<h2 id="什么是本地安装"><a href="#什么是本地安装" class="headerlink" title="什么是本地安装"></a>什么是本地安装</h2><p>以gulp为例，本地安装方式是键入命令：<code>npm install gulp</code>或 <code>npm install gulp --save-dev</code>等，其中参数<code>--save-dev</code>的含义是代表把你的安装包信息写入package.json文件的devDependencies字段中，包安装在指定项目的node_modules文件夹下。</p>
+<h3 id="本地安装的调用方式"><a href="#本地安装的调用方式" class="headerlink" title="本地安装的调用方式"></a>本地安装的调用方式</h3><p>本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块。</p>
+<h2 id="为什么全局安装后还要本地安装"><a href="#为什么全局安装后还要本地安装" class="headerlink" title="为什么全局安装后还要本地安装"></a>为什么全局安装后还要本地安装</h2><ol>
+<li>在js实例代码中，默认下node.js会在NODE_PATH和目前js所在项目下的node_modules文件夹下去寻找模块，因此，如果只是全局安装，不能直接通过require()的方式去引用模块，需要手动解决包路径的配置问题，当然你也可以复制全局安装的node_modules文件夹到项目下，还有办法可以选择将环境变量的NODE_PATH设置为C:\Program Files\nodejs。</li>
+<li>对于包的更新不好管理，可能你需要为每个包重新命名，如<a href="mailto:gulp@3.8.1" target="_blank" rel="noopener">gulp@3.8.1</a>、<a href="mailto:gulp@3.9.1" target="_blank" rel="noopener">gulp@3.9.1</a>…，为了区别不同项目使用指定的包，保证模块之间的相互依赖（这块下面会介绍），区别每个项目正常运行。</li>
+</ol>
+<p>因此，不推荐只全局安装。</p>
+<p>最早的node.js/npm实际上是全局的，包括现在还兼容NODE_PATH，<strong>但是不能支持全局多版本</strong>，于是nodejs团队改成本地安装的方法可能就是为了保证不同版本包之间的相互依赖。依赖包的版本号，有时候是不可轻易去修改，因为不同版本包对应依赖包的版本的功能有所差别，如果修改指定的版本来运行，就可能会编译出错等bug。</p>
+<p>每一次的更新可能带来不一样的功能，在多人合作、发布模块到npmjs社区、上传到github给其他人使用时，保留模块的版本信息可用于下载指定的版本号显得特别重要。</p>
+<p>本地安装可以让每个项目拥有独立的包，不受全局包的影响，方便项目的移动、复制、打包等，<strong>保证不同版本包之间的相互依赖</strong>，这些优点是全局安装难以做到的。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-05-12T01:17:23.859Z" itemprop="dateUpdated">2020-05-12 01:17:23</time>
+</span><br>
+
+
+        
+        版权所有，未经允许，禁止转载，原文链接：<a href="/2017/01/03/npm全局安装与本地安装/" target="_blank" rel="external">/2017/01/03/npm全局安装与本地安装/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://github.com/zzycreate">
+            <img src="/img/avatar.jpg" alt="zzycreate">
+            zzycreate
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/&title=《npm全局安装与本地安装》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/&title=《npm全局安装与本地安装》 — ZZY补完计划&source=God is in his heaven,all is right with the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《npm全局安装与本地安装》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/19/npm下载慢的解决方法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">npm下载慢的解决方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/12/30/js生成二维码以及点击下载二维码/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">js生成二维码以及点击下载二维码</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="/js/md5.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: '7906a78d4432812755c9',
+            clientSecret: '24740aadb58844e7c4c870d96d6ad472b8ec67e1',
+            repo: 'blog-comments',
+            owner: 'zzycreate',
+            admin: 'zzycreate',
+            id: md5(location.pathname),
+            perPage: 50,
+            distractionFreeMode: 'false'
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!--
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        -->
+    </div>
+    <div class="bottom">
+        <p><span>zzycreate &copy; 2016 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/&title=《npm全局安装与本地安装》 — ZZY补完计划&pic=https://github.com/zzycreate/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/&title=《npm全局安装与本地安装》 — ZZY补完计划&source=God is in his heaven,all is right with the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《npm全局安装与本地安装》 — ZZY补完计划&url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/&via=https://github.com/zzycreate" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/zzycreate/2017/01/03/npm全局安装与本地安装/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACv0lEQVR42u3aQW7jMBAEwPz/08l1gY3k7hnR8aF0MmxHYjEASffM11d8ff9zXb3//3V1n6t37u9zdc8HLjw8PLzF0O9vff/I+6EkA22p0bTi4eHhHeMlD7tfe5M1ObnDbPou38fDw8P7YF6LSY7I7fEaDw8P7/N57eE4GXR7fMfDw8P7K1576/u44R7WbhJvylrw8PDwuspUVEX6nNdH6nt4eHh466r6/YI7+06+JbSbwS/PwsPDwzvAyxfcHJMfqR9oC0gCYjw8PLxHee2D26AhD2dnYcSLT/Hw8PDezstL/rMiVtuUkBfYigQFDw8Pr+QlyLz0tSmetZgkbsbDw8M7wdsMq419k4HmUW9UDMPDw8N7C+/Z4la7uLdhblT6wsPDwzvAm5Xtizh1tLXkU3n5HTw8PLxjvDa9yEv4+Sn3qW9mH+Dh4eHNeXkTQLtktyWxfBLzlgU8PDy807xNFpoX9WeMPCa+LIPh4eHhPcTbtEDNAtx9vnq//ax+DeDh4eF13Uqr+CAvUM2mbPNjAA8PD+9Z3j4yuF+g83N922oQbS14eHh4B3j5HyTxbnLwzadjFhzj4eHhnea1bU/5IPJgd3b4jv4NeHh4eG/k7Qta+WH9RPg7TJ3x8PDwRr/Qn4ob2masPK4tjux4eHh4B3ib5qe2wtaW/9s2r1XWgoeHh1fynnrYbHDJlrBqOMDDw8M7zJtFFXmE0cbEbRz8ovUKDw8P71FeftjNGwL27M3mgYeHh3eC911eCa8NcGfH9Kj5AA8PD+8Ar118Nzdt8bPXwwsPDw+v5CWbQd5olYDz+Z5tDHh4eHjv4eWFsTZK2B+12ynAw8PD+0xeOwVtESuPjI9sDHh4eHiP8tqDcjGUUUy8arrCw8PDW/CSg+/+nU3IO5xiPDw8vAO8VWNTycgP3LNS3Kq+h4eHh/ea9wOSkuQpU+3z9AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'ZZY补完计划';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ZZY补完计划';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
